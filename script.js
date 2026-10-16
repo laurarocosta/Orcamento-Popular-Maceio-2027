@@ -246,7 +246,7 @@
   var caixa = document.getElementById('quiz-caixa');
   var barco = document.getElementById('quiz-barco');
 
-  var BARCO_SVG = '<svg viewBox="0 0 48 44" aria-hidden="true"><path d="M10 34 C16 20 20 10 24 4 C28 14 32 24 38 34" fill="none" stroke="#F39D0F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 36 C18 40 32 40 44 35 C38 42 14 43 4 36 Z" fill="#FFFFFF"/></svg>';
+  var BARCO_SVG = '<svg viewBox="0 0 120 120" aria-hidden="true"><defs><clipPath id="cmedalha"><path d="M56 8 Q86 48 110 86 L56 86 Z"/></clipPath></defs><g clip-path="url(#cmedalha)"><rect x="56" y="8.00" width="60" height="13.51" fill="#FCC326"/><rect x="56" y="21.51" width="60" height="3.93" fill="#6FB8EC"/><rect x="56" y="25.44" width="60" height="19.14" fill="#F39D0F"/><rect x="56" y="44.59" width="60" height="41.41" fill="#FFFFFF"/><rect x="56" y="20.61" width="60" height="1.8" fill="#173E75"/><rect x="56" y="24.54" width="60" height="1.8" fill="#173E75"/><rect x="56" y="43.69" width="60" height="1.8" fill="#173E75"/></g><rect x="47" y="6" width="5" height="86" rx="2.5" fill="#FFFFFF"/><path d="M16 92 H112 C104 104 90 108 72 108 H48 C32 108 22 102 16 92 Z" fill="#FFFFFF"/><path d="M6 116 C26 110 44 120 64 114 C82 109 98 118 114 113" fill="none" stroke="#6FB8EC" stroke-width="5" stroke-linecap="round"/></svg>';
 
   function moverBarco() {
     var feitas = quiz.fim ? PERGUNTAS.length : quiz.atual + (quiz.escolhida !== null ? 1 : 0);
@@ -268,7 +268,7 @@
         el('h3', { text: 'Navegador do Orçamento 2027' }),
         el('p', { text: msg }),
         el('div', { cls: 'botoes', style: { justifyContent: 'center', marginTop: '6px' } }, [
-          el('a', { cls: 'btn btn--laranja', text: 'Participar no Participa Maceió ↗',
+          el('a', { cls: 'btn btn--laranja', text: 'Ir para o Participa Maceió ↗',
             attrs: { href: 'https://www.participa.maceio.al.gov.br/participa-maceio/principal.faces', target: '_blank', rel: 'noopener noreferrer' } }),
           el('button', { cls: 'btn btn--contorno', text: 'Refazer o quiz', attrs: { type: 'button' },
             on: { click: function () { quiz = { atual: 0, escolhida: null, pontos: 0, fim: false }; desenharQuiz(); } } })
@@ -458,7 +458,7 @@
      Marca automaticamente a 1ª vez que cada termo aparece em cada seção.
      Toque (celular), mouse (computador) ou teclado abrem o balão.
      ======================================================== */
-  var NAO_MARCAR = 'a, button, h1, h2, label, script, style, svg, input, textarea, select, .termo-tecnico, .glossario-pop, #dic-lista, .barra-topo, .barra-menu, .cabecalho, .sobretitulo, .pilula, .rodape__titulo, .nota__legenda';
+  var NAO_MARCAR = 'a, button, h1, h2, h3, label, script, style, svg, input, textarea, select, .termo-tecnico, .glossario-pop, #dic-lista, .barra-topo, .barra-menu, .cabecalho, .sobretitulo, .pilula, .rodape__titulo, .nota__legenda';
   var mapaVariantes = {};
   var listaVariantes = [];
   GLOSS.forEach(function (t) {

@@ -305,7 +305,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .quiz__acoes { margin-top: 16px; display: flex; justify-content: flex-end; }
 .resultado { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .medalha { width: 150px; height: 150px; border-radius: 50%; background: var(--marinho); border: 6px solid var(--laranja); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--branco); }
-.medalha svg { width: 52px; height: 48px; }
+.medalha svg { width: 56px; height: 56px; margin-bottom: 2px; }
 .medalha__nota { font-family: var(--fonte-titulo); font-weight: 800; font-size: 30px; line-height: 1; }
 .resultado h3 { font-size: 28px; }
 .resultado p { max-width: 520px; }
