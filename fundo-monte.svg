@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice">
   <!-- Fundo decorativo da seção "Monte o seu orçamento": notas e moedas
-       desenhadas no amarelo do Participa Maceió (#FCC326) sobre o azul-escuro. -->
+       desenhadas no amarelo do Participa Maceió (#FCC326) sobre o azul #0E78BD. -->
   <defs>
     <!-- Nota de R$ (310 x 170) -->
     <g id="nota">
@@ -19,9 +19,9 @@
     </g>
   </defs>
 
-  <rect width="1440" height="720" fill="#173E75"/>
+  <rect width="1440" height="720" fill="#0E78BD"/>
   <!-- opacity no grupo inteiro: as peças sobrepostas não aparecem umas através das outras -->
-  <g opacity=".9" fill="#173E75" stroke="#FCC326" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <g opacity=".9" fill="#0E78BD" stroke="#FCC326" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
 
     <!-- Notas -->
     <use href="#nota" transform="translate(1075 85) rotate(10 155 85)"/>

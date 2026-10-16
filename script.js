@@ -21,26 +21,36 @@
     return e;
   }
   function limpar(e) { while (e.firstChild) e.removeChild(e.firstChild); }
+  function ehCelular() { return window.matchMedia('(max-width: 720px)').matches; }
+  /* No celular, se o elemento estiver fora da tela (ou atrás do menu de baixo), rola até ele */
+  function revelar(e) {
+    if (!e || !ehCelular()) return;
+    var r = e.getBoundingClientRect(), menu = document.querySelector('.nav-celular');
+    var baixo = window.innerHeight - (menu ? menu.offsetHeight : 0) - 12;
+    if (r.top >= 12 && r.bottom <= baixo) return;
+    var alvo = r.height > baixo - 24 ? r.top - 16 : r.bottom - baixo;
+    window.scrollBy({ top: alvo, behavior: semMovimentoGlobal() ? 'auto' : 'smooth' });
+  }
 
   /* ========================================================
-     1. DE CADA R$ 100
+     1. DE CADA R$\u00a0100
      ======================================================== */
   var PARTES = [
-    { id: 'manter', peso: 78, cor: COR.marinho, corTexto: COR.branco, curto: 'R$ 78', reais: 'R$ 78',
-      titulo: 'Manter a cidade funcionando', total: 'R$ 4,81 bilhões', oficial: 'despesas correntes',
+    { id: 'manter', peso: 78, cor: COR.marinho, corTexto: COR.branco, curto: 'R$\u00a078', reais: 'R$\u00a078',
+      titulo: 'Manter a cidade funcionando', total: 'R$\u00a04,81 bilhões', oficial: 'despesas correntes',
       desc: 'Paga o dia a dia: pessoal, funcionamento de escolas, postos e outras unidades, contratos e serviços. Também inclui despesas como juros da dívida.',
       conferido: true },
-    { id: 'investir', peso: 17, cor: COR.laranja, corTexto: COR.marinho, curto: 'R$ 17', reais: 'R$ 17',
-      titulo: 'Investir na cidade', total: 'R$ 1,03 bilhão', oficial: 'investimentos',
+    { id: 'investir', peso: 17, cor: COR.laranja, corTexto: COR.marinho, curto: 'R$\u00a017', reais: 'R$\u00a017',
+      titulo: 'Investir na cidade', total: 'R$\u00a01,03 bilhão', oficial: 'investimentos',
       desc: 'Obras, compra de equipamentos e melhorias que ampliam ou modernizam os serviços públicos. É parte do total, não um dinheiro extra.',
       conferido: true },
-    { id: 'reserva', peso: 2, cor: COR.azul, corTexto: COR.branco, curto: '', reais: 'R$ 2',
-      titulo: 'Guardar para imprevistos', total: 'R$ 113,15 milhões', oficial: 'reserva de contingência',
+    { id: 'reserva', peso: 2, cor: COR.azul, corTexto: COR.branco, curto: '', reais: 'R$\u00a02',
+      titulo: 'Guardar para imprevistos', total: 'R$\u00a0113,15 milhões', oficial: 'reserva de contingência',
       desc: 'Uma parte fica guardada para riscos e necessidades que ninguém consegue prever, conforme as regras legais. Pode nem ser gasta.',
       conferido: true },
-    { id: 'outras', peso: 3, cor: COR.cinza, corTexto: COR.marinho, curto: '', reais: 'R$ 3',
-      titulo: 'Pagar a dívida e a previdência', total: 'R$ 208,91 milhões', oficial: 'amortização da dívida e reserva do RPPS',
-      desc: 'Paga as parcelas de empréstimos já feitos pela cidade (R$ 148,9 milhões) e guarda uma reserva para a previdência dos servidores municipais (R$ 60 milhões).',
+    { id: 'outras', peso: 3, cor: COR.cinza, corTexto: COR.marinho, curto: '', reais: 'R$\u00a03',
+      titulo: 'Pagar a dívida e a previdência', total: 'R$\u00a0208,91 milhões', oficial: 'amortização da dívida e reserva do RPPS',
+      desc: 'Paga as parcelas de empréstimos já feitos pela cidade (R$\u00a0148,9 milhões) e guarda uma reserva para a previdência dos servidores municipais (R$\u00a060 milhões).',
       conferido: true }
   ];
 
@@ -59,11 +69,11 @@
         cls: 'nota__fatia' + (ativa ? ' ativa' : ''),
         attrs: { type: 'button', tabindex: '-1', 'aria-label': p.reais + ' · ' + p.titulo, title: p.reais + ' · ' + p.titulo },
         style: { flex: p.peso + ' 1 0px', background: p.cor },
-        on: { click: function () { parteAtual = p.id; desenharNota(); } }
+        on: { click: function () { parteAtual = p.id; desenharNota(); revelar(notaDetalhe); } }
       }));
       notaBotoes.appendChild(el('button', {
         cls: 'parte', attrs: { type: 'button', 'aria-pressed': ativa ? 'true' : 'false' },
-        on: { click: function () { parteAtual = p.id; desenharNota(); } }
+        on: { click: function () { parteAtual = p.id; desenharNota(); revelar(notaDetalhe); } }
       }, [
         el('span', { cls: 'parte__cor', style: { background: p.cor } }),
         el('span', { cls: 'parte__textos' }, [
@@ -76,7 +86,7 @@
     var p = PARTES.filter(function (x) { return x.id === parteAtual; })[0];
     limpar(notaDetalhe);
     notaDetalhe.appendChild(el('div', { cls: 'detalhe__esq' }, [
-      el('div', { cls: 'detalhe__rotulo', text: p.reais + ' DE CADA R$ 100' }),
+      el('div', { cls: 'detalhe__rotulo', text: p.reais + ' DE CADA R$\u00a0100' }),
       el('div', { cls: 'detalhe__total', text: p.total }),
       el('span', { cls: 'selo ' + (p.conferido ? 'selo--ok' : 'selo--espera'), text: p.conferido ? 'Dado conferido' : 'Em conferência' })
     ]));
@@ -93,15 +103,15 @@
      2. LUPA — Câmara e Emendas Cidadãs em escala
      ======================================================== */
   var NIVEIS = [
-    { escala: 'Escala: o orçamento inteiro = R$ 100',
+    { escala: 'Escala: o orçamento inteiro = R$\u00a0100',
       fatias: [{ w: '2.4%', cor: COR.laranja, txt: '' }],
-      texto: 'A Câmara Municipal fica com cerca de R$ 2,38 de cada R$ 100 (a faixa laranja). As Emendas Cidadãs nem aparecem nesta escala.' },
-    { escala: 'Escala ampliada: R$ 10 do orçamento',
-      fatias: [{ w: '23.8%', cor: COR.laranja, txt: 'Câmara · R$ 2,38' }, { w: '0.5%', cor: COR.azul, txt: '' }],
+      texto: 'A Câmara Municipal fica com cerca de R$\u00a02,38 de cada R$\u00a0100 (a faixa laranja). As Emendas Cidadãs nem aparecem nesta escala.' },
+    { escala: 'Escala ampliada: R$\u00a010 do orçamento',
+      fatias: [{ w: '23.8%', cor: COR.laranja, txt: 'Câmara · R$\u00a02,38' }, { w: '0.5%', cor: COR.azul, txt: '' }],
       texto: 'Ampliando 10 vezes, a Câmara fica bem visível. As Emendas Cidadãs surgem como um risquinho azul ao lado.' },
-    { escala: 'Escala ampliada: R$ 1 do orçamento',
+    { escala: 'Escala ampliada: R$\u00a01 do orçamento',
       fatias: [{ w: '5%', cor: COR.azul, txt: '' }],
-      texto: 'Ampliando até uma moeda de R$ 1, as Emendas Cidadãs finalmente aparecem (a faixa azul): são cerca de 5 centavos de cada R$ 100. Ou seja, R$ 3,13 milhões dentro de R$ 6,16 bilhões.' }
+      texto: 'Ampliando até uma moeda de R$\u00a01, as Emendas Cidadãs finalmente aparecem (a faixa azul): são cerca de 5 centavos de cada R$\u00a0100. Ou seja, R$\u00a03,13 milhões dentro de R$\u00a06,16 bilhões.' }
   ];
   var nivel = 0;
   var lupaMais = document.getElementById('lupa-mais');
@@ -152,24 +162,24 @@
 
     CATEGORIAS.forEach(function (c) {
       var nome = el('div', { cls: 'linha__nome', text: c.nome });
-      if (comparado) nome.appendChild(el('div', { cls: 'linha__real', text: 'Na proposta: R$ ' + c.real }));
+      if (comparado) nome.appendChild(el('div', { cls: 'linha__real', text: 'Na proposta: R$\u00a0' + c.real }));
       lista.appendChild(el('div', { cls: 'linha' }, [
         el('span', { cls: 'linha__cor', style: { background: c.cor } }),
         nome,
         el('div', { cls: 'linha__controles' }, [
           el('button', { cls: 'passo passo--menos', text: '−',
-            attrs: { type: 'button', 'aria-label': 'Tirar R$ ' + PASSO + ' de ' + c.nome },
+            attrs: { type: 'button', 'aria-label': 'Tirar R$\u00a0' + PASSO + ' de ' + c.nome },
             on: { click: function () { if (meu[c.id] > 0) { meu[c.id] = Math.max(0, meu[c.id] - PASSO); comparado = false; desenharMonte(); } } } }),
-          el('div', { cls: 'linha__valor', text: 'R$ ' + meu[c.id] }),
+          el('div', { cls: 'linha__valor', text: 'R$\u00a0' + meu[c.id] }),
           el('button', { cls: 'passo passo--mais', text: '+',
-            attrs: { type: 'button', 'aria-label': 'Colocar R$ ' + PASSO + ' em ' + c.nome },
+            attrs: { type: 'button', 'aria-label': 'Colocar R$\u00a0' + PASSO + ' em ' + c.nome },
             on: { click: function () { var add = Math.min(PASSO, 100 - soma()); if (add > 0) { meu[c.id] += add; comparado = false; desenharMonte(); } } } })
         ])
       ]));
       barra.appendChild(el('div', { style: { width: meu[c.id] + '%', background: c.cor } }));
     });
 
-    document.getElementById('monte-restante').textContent = 'R$ ' + restante;
+    document.getElementById('monte-restante').textContent = 'R$\u00a0' + restante;
     var btnComparar = document.getElementById('monte-comparar');
     btnComparar.disabled = restante !== 0;
     btnComparar.classList.toggle('pronto', restante === 0 && !comparado);
@@ -180,7 +190,7 @@
       var inicio = dif > 0 ? 'Você colocaria mais em investimentos do que a proposta. '
         : dif < 0 ? 'Você colocaria menos em investimentos do que a proposta. '
         : 'Você acertou em cheio os investimentos! ';
-      msg.textContent = inicio + 'Na proposta, a maior parte (R$ 78) mantém os serviços que já existem, porque escolas, postos e coleta precisam funcionar todo dia.';
+      msg.textContent = inicio + 'Na proposta, a maior parte (R$\u00a078) mantém os serviços que já existem, porque escolas, postos e coleta precisam funcionar todo dia.';
       msg.hidden = false;
     } else {
       msg.hidden = true;
@@ -193,9 +203,9 @@
      4. QUIZ — chute e descubra
      ======================================================== */
   var PERGUNTAS = [
-    { p: 'De cada R$ 100 do orçamento, quanto vai para obras e investimentos?', op: ['R$ 5', 'R$ 17', 'R$ 50'], certa: 1,
-      exp: 'São cerca de R$ 17 de cada R$ 100, ou R$ 1,03 bilhão. A maior parte, R$ 78, mantém os serviços funcionando.' },
-    { p: 'Os R$ 6,16 bilhões já estão no caixa da Prefeitura?', op: ['Sim, já estão guardados', 'Não, é uma previsão para 2027'], certa: 1,
+    { p: 'De cada R$\u00a0100 do orçamento, quanto vai para obras e investimentos?', op: ['R$\u00a05', 'R$\u00a017', 'R$\u00a050'], certa: 1,
+      exp: 'São cerca de R$\u00a017 de cada R$\u00a0100, ou R$\u00a01,03 bilhão. A maior parte, R$\u00a078, mantém os serviços funcionando.' },
+    { p: 'Os R$\u00a06,16 bilhões já estão no caixa da Prefeitura?', op: ['Sim, já estão guardados', 'Não, é uma previsão para 2027'], certa: 1,
       exp: 'É uma previsão para o ano todo. O dinheiro entra aos poucos, e parte dele já tem uso definido por lei.' },
     { p: 'Se uma obra aparece no orçamento, ela já está garantida?', op: ['Sim, está garantida', 'Não, ainda depende de outras etapas'], certa: 1,
       exp: 'Estar no orçamento é o primeiro passo. A obra ainda depende de o dinheiro entrar, de projeto e de contratação.' },
@@ -255,6 +265,7 @@
           quiz.escolhida = i;
           if (i === q.certa) quiz.pontos++;
           desenharQuiz();
+          revelar(caixa.querySelector('.quiz__acoes'));
         } } });
       b.disabled = respondida;
       opcoes.appendChild(b);
@@ -273,6 +284,7 @@
           if (ultima) quiz.fim = true;
           else { quiz.atual++; quiz.escolhida = null; }
           desenharQuiz();
+          revelar(caixa);
         } } });
       caixa.appendChild(el('div', { cls: 'quiz__acoes' }, [prox]));
       prox.focus({ preventScroll: true });
@@ -290,30 +302,45 @@
 
   function rotuloCurto(t) { return t.nome.split(' · ')[0]; }
 
+  var dicAberto = null;
+  function normalizar(t) { return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+
   function desenharTermos() {
-    var lista = document.getElementById('termos');
-    var def = document.getElementById('termo-def');
-    if (!lista || !def || !TERMOS_DIC.length) return;
+    var lista = document.getElementById('dic-lista');
+    if (!lista || !TERMOS_DIC.length) return;
+    var busca = document.getElementById('busca-termo');
+    var q = busca ? normalizar(busca.value.trim()) : '';
     limpar(lista);
-    TERMOS_DIC.forEach(function (t, i) {
-      lista.appendChild(el('button', { cls: 'termo', text: rotuloCurto(t),
-        attrs: { type: 'button', 'aria-pressed': i === termoAtual ? 'true' : 'false' },
-        on: { click: function () { termoAtual = i; pararFala(); desenharTermos(); } } }));
+    var achados = 0;
+    TERMOS_DIC.forEach(function (t) {
+      var texto = normalizar(t.nome + ' ' + (t.variantes || []).join(' ') + ' ' + t.def);
+      if (q && texto.indexOf(q) < 0) return;
+      achados++;
+      var aberto = dicAberto === t.id, idPainel = 'dic-' + t.id;
+      var cab = el('button', { cls: 'dic__termo', attrs: { type: 'button', 'aria-expanded': aberto ? 'true' : 'false', 'aria-controls': idPainel },
+        on: { click: function () { dicAberto = aberto ? null : t.id; pararFala(); desenharTermos();
+          if (!aberto) revelar(document.getElementById(idPainel)); } } }, [
+        el('span', { text: t.nome }),
+        el('span', { cls: 'dic__seta', text: aberto ? '−' : '+', attrs: { 'aria-hidden': 'true' } })
+      ]);
+      var painel = el('div', { cls: 'dic__def', attrs: { id: idPainel } }, [el('p', { text: t.def })]);
+      if (!aberto) painel.hidden = true;
+      var ouvir = botaoOuvir(t); if (ouvir && aberto) painel.appendChild(ouvir);
+      lista.appendChild(el('li', { cls: 'dic__item' + (aberto ? ' dic__item--aberto' : '') }, [cab, painel]));
     });
-    var t = TERMOS_DIC[termoAtual];
-    limpar(def);
-    def.appendChild(el('h3', { text: t.nome }));
-    def.appendChild(el('p', { text: t.def }));
-    var ouvir = botaoOuvir(t);
-    if (ouvir) def.appendChild(el('div', { cls: 'termo-def__acoes' }, [ouvir]));
+    var vazio = document.getElementById('dic-vazio'); if (vazio) vazio.hidden = achados > 0;
   }
+  (function () {
+    var busca = document.getElementById('busca-termo');
+    if (busca) busca.addEventListener('input', function () { dicAberto = null; desenharTermos(); });
+  })();
 
   function mostrarNoDicionario(id) {
-    var i = TERMOS_DIC.findIndex(function (t) { return t.id === id; });
-    if (i < 0) return;
-    termoAtual = i; desenharTermos();
-    var secao = document.getElementById('dicionario');
-    if (secao) secao.scrollIntoView({ behavior: semMovimentoGlobal() ? 'auto' : 'smooth', block: 'start' });
+    if (!GLOSS_POR_ID[id]) return;
+    var busca = document.getElementById('busca-termo'); if (busca) busca.value = '';
+    dicAberto = id; desenharTermos();
+    var item = document.getElementById('dic-' + id);
+    if (item) item.parentElement.scrollIntoView({ behavior: semMovimentoGlobal() ? 'auto' : 'smooth', block: 'center' });
   }
   function semMovimentoGlobal() { return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
 
@@ -403,7 +430,7 @@
      Marca automaticamente a 1ª vez que cada termo aparece em cada seção.
      Toque (celular), mouse (computador) ou teclado abrem o balão.
      ======================================================== */
-  var NAO_MARCAR = 'a, button, h1, h2, label, script, style, svg, input, textarea, select, .termo-tecnico, .glossario-pop, #termos, #termo-def, .barra-topo, .barra-menu, .cabecalho, .sobretitulo, .pilula, .rodape__titulo, .nota__legenda';
+  var NAO_MARCAR = 'a, button, h1, h2, label, script, style, svg, input, textarea, select, .termo-tecnico, .glossario-pop, #dic-lista, .barra-topo, .barra-menu, .cabecalho, .sobretitulo, .pilula, .rodape__titulo, .nota__legenda';
   var mapaVariantes = {};
   var listaVariantes = [];
   GLOSS.forEach(function (t) {
@@ -459,8 +486,11 @@
   var popTermo = null, popFixo = false, timerFechar = null, timerAbrir = null;
   var temMouse = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+  var fundoPop = el('div', { cls: 'glossario-fundo', attrs: { hidden: '' } });
+  document.body.appendChild(fundoPop);
   function posicionar() {
     if (!popTermo || pop.hidden) return;
+    if (ehCelular()) { pop.style.left = ''; pop.style.top = ''; return; }
     var r = popTermo.getBoundingClientRect(), m = 12, vw = window.innerWidth, vh = window.innerHeight;
     pop.style.left = '0px'; pop.style.top = '0px';
     var pw = pop.offsetWidth, ph = pop.offsetHeight;
@@ -493,7 +523,8 @@
     pop.appendChild(el('div', { cls: 'glossario-pop__nome', text: t.nome }));
     pop.appendChild(el('p', { cls: 'glossario-pop__def', text: t.def }));
     pop.appendChild(acoes);
-    pop.hidden = false;
+    pop.classList.toggle('glossario-pop--folha', ehCelular());
+    pop.hidden = false; fundoPop.hidden = !ehCelular();
     termoEl.setAttribute('aria-expanded', 'true');
     posicionar();
     if (focarDentro) fechar.focus({ preventScroll: true });
@@ -503,7 +534,7 @@
     clearTimeout(timerFechar); clearTimeout(timerAbrir);
     if (pop.hidden) return;
     pararFala();
-    pop.hidden = true;
+    pop.hidden = true; fundoPop.hidden = true;
     if (popTermo) { popTermo.setAttribute('aria-expanded', 'false'); if (devolverFoco) popTermo.focus({ preventScroll: true }); }
     popTermo = null; popFixo = false;
   }
@@ -554,6 +585,22 @@
     if (agendado) return; agendado = true;
     requestAnimationFrame(function () { agendado = false; marcarTermos(principal); });
   }).observe(principal, { childList: true, subtree: true });
+
+  /* ========================================================
+     8. MENU DE BAIXO (celular) — destaca a seção atual
+     ======================================================== */
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-celular a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var visiveis = {};
+    var obs = new IntersectionObserver(function (itens) {
+      itens.forEach(function (it) { visiveis[it.target.id] = it.isIntersecting ? it.intersectionRatio : 0; });
+      var melhor = null, maior = 0;
+      Object.keys(visiveis).forEach(function (id) { if (visiveis[id] > maior) { maior = visiveis[id]; melhor = id; } });
+      links.forEach(function (a) { if (a.dataset.secao === melhor) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+    }, { rootMargin: '-35% 0px -45% 0px', threshold: [0, .01, .25, .5, .75, 1] });
+    links.forEach(function (a) { var s = document.getElementById(a.dataset.secao); if (s) obs.observe(s); });
+  })();
 
   /* ---------- Início ---------- */
   zerarMeu();
