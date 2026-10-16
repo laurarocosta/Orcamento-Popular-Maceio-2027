@@ -33,26 +33,51 @@
   }
 
   /* ========================================================
-     1. DE CADA R$\u00a0100
+     SALÁRIO MÍNIMO: a régua do site
+     Todo o orçamento é mostrado como se coubesse em um salário mínimo.
+     Quando o salário mínimo mudar, troque só estas duas linhas.
+     ======================================================== */
+  var SALARIO_MINIMO = 1621;      // R$ 1.621 (Decreto de dezembro de 2025, vigente em 2026)
+  var SALARIO_ANO = '2026';
+  var ORCAMENTO_TOTAL = 6161772268; // PLOA 2027, total geral
+
+  function moeda(n) { return 'R$\u00a0' + Math.round(n).toLocaleString('pt-BR'); }
+  /* Divide o salário em partes proporcionais aos valores, em reais inteiros que somam exatamente o salário */
+  function noSalario(valores) {
+    var total = valores.reduce(function (a, v) { return a + v; }, 0);
+    var brutos = valores.map(function (v) { return v / total * SALARIO_MINIMO; });
+    var inteiros = brutos.map(Math.floor);
+    var falta = SALARIO_MINIMO - inteiros.reduce(function (a, v) { return a + v; }, 0);
+    brutos.map(function (b, i) { return { i: i, r: b - inteiros[i] }; })
+      .sort(function (a, b) { return b.r - a.r; })
+      .slice(0, falta).forEach(function (x) { inteiros[x.i]++; });
+    return inteiros;
+  }
+  function fracao(valor) { return Math.round(valor / ORCAMENTO_TOTAL * SALARIO_MINIMO); }
+
+  /* ========================================================
+     1. EM UM SALÁRIO MÍNIMO
      ======================================================== */
   var PARTES = [
-    { id: 'manter', peso: 78, cor: COR.marinho, corTexto: COR.branco, curto: 'R$\u00a078', reais: 'R$\u00a078',
+    { id: 'manter', valor: 4810996874, peso: 78, cor: COR.marinho, corTexto: COR.branco, curto: '', reais: '',
       titulo: 'Manter a cidade funcionando', total: 'R$\u00a04,81 bilhões', oficial: 'despesas correntes',
       desc: 'Paga o dia a dia: pessoal, funcionamento de escolas, postos e outras unidades, contratos e serviços. Também inclui despesas como juros da dívida.',
       conferido: true },
-    { id: 'investir', peso: 17, cor: COR.laranja, corTexto: COR.marinho, curto: 'R$\u00a017', reais: 'R$\u00a017',
+    { id: 'investir', valor: 1028706954, peso: 17, cor: COR.laranja, corTexto: COR.marinho, curto: '', reais: '',
       titulo: 'Investir na cidade', total: 'R$\u00a01,03 bilhão', oficial: 'investimentos',
       desc: 'Obras, compra de equipamentos e melhorias que ampliam ou modernizam os serviços públicos. É parte do total, não um dinheiro extra.',
       conferido: true },
-    { id: 'reserva', peso: 2, cor: COR.azul, corTexto: COR.branco, curto: '', reais: 'R$\u00a02',
+    { id: 'reserva', valor: 113153926, peso: 2, cor: COR.azul, corTexto: COR.branco, curto: '', reais: '',
       titulo: 'Guardar para imprevistos', total: 'R$\u00a0113,15 milhões', oficial: 'reserva de contingência',
       desc: 'Uma parte fica guardada para riscos e necessidades que ninguém consegue prever, conforme as regras legais. Pode nem ser gasta.',
       conferido: true },
-    { id: 'outras', peso: 3, cor: COR.cinza, corTexto: COR.marinho, curto: '', reais: 'R$\u00a03',
+    { id: 'outras', valor: 208914514, peso: 3, cor: COR.cinza, corTexto: COR.marinho, curto: '', reais: '',
       titulo: 'Pagar a dívida e a previdência', total: 'R$\u00a0208,91 milhões', oficial: 'amortização da dívida e reserva do RPPS',
       desc: 'Paga as parcelas de empréstimos já feitos pela cidade (R$\u00a0148,9 milhões) e guarda uma reserva para a previdência dos servidores municipais (R$\u00a060 milhões).',
       conferido: true }
   ];
+  /* Reais de cada parte dentro do salário mínimo (somam exatamente o salário) */
+  noSalario(PARTES.map(function (p) { return p.valor; })).forEach(function (r, i) { PARTES[i].reais = moeda(r); PARTES[i].peso = r; });
 
   var notaBarra = document.getElementById('nota-barra');
   var notaBotoes = document.getElementById('nota-botoes');
@@ -86,7 +111,7 @@
     var p = PARTES.filter(function (x) { return x.id === parteAtual; })[0];
     limpar(notaDetalhe);
     notaDetalhe.appendChild(el('div', { cls: 'detalhe__esq' }, [
-      el('div', { cls: 'detalhe__rotulo', text: p.reais + ' DE CADA R$\u00a0100' }),
+      el('div', { cls: 'detalhe__rotulo', text: p.reais + ' DE ' + moeda(SALARIO_MINIMO) }),
       el('div', { cls: 'detalhe__total', text: p.total }),
       el('span', { cls: 'selo ' + (p.conferido ? 'selo--ok' : 'selo--espera'), text: p.conferido ? 'Dado conferido' : 'Em conferência' })
     ]));
@@ -141,56 +166,58 @@
      3. MONTE O SEU ORÇAMENTO
      ======================================================== */
   var CATEGORIAS = [
-    { id: 'manter', nome: 'Manter os serviços', cor: COR.marinho, real: 78 },
-    { id: 'investir', nome: 'Investir na cidade', cor: COR.laranja, real: 17 },
-    { id: 'reserva', nome: 'Guardar para imprevistos', cor: COR.azul, real: 2 },
-    { id: 'outras', nome: 'Dívida e previdência', cor: COR.cinza, real: 3 }
+    { id: 'manter', nome: 'Manter os serviços', cor: COR.marinho },
+    { id: 'investir', nome: 'Investir na cidade', cor: COR.laranja },
+    { id: 'reserva', nome: 'Guardar para imprevistos', cor: COR.azul },
+    { id: 'outras', nome: 'Dívida e previdência', cor: COR.cinza }
   ];
-  var PASSO = 5;
+  // O valor da proposta vem das mesmas partes da seção anterior
+  CATEGORIAS.forEach(function (c) { c.real = PARTES.filter(function (p) { return p.id === c.id; })[0].peso; });
+  var PASSO = 100;
   var meu = {};
   var comparado = false;
 
-  function zerarMeu() { CATEGORIAS.forEach(function (c) { meu[c.id] = 25; }); comparado = false; }
+  function zerarMeu() { CATEGORIAS.forEach(function (c) { meu[c.id] = 0; }); comparado = false; }
   function soma() { return CATEGORIAS.reduce(function (a, c) { return a + meu[c.id]; }, 0); }
 
   function desenharMonte() {
     var lista = document.getElementById('monte-lista');
     var barra = document.getElementById('monte-barra');
-    var restante = 100 - soma();
+    var restante = SALARIO_MINIMO - soma();
     limpar(lista);
     limpar(barra);
 
     CATEGORIAS.forEach(function (c) {
       var nome = el('div', { cls: 'linha__nome', text: c.nome });
-      if (comparado) nome.appendChild(el('div', { cls: 'linha__real', text: 'Na proposta: R$\u00a0' + c.real }));
+      if (comparado) nome.appendChild(el('div', { cls: 'linha__real', text: 'Na proposta: ' + moeda(c.real) }));
       lista.appendChild(el('div', { cls: 'linha' }, [
         el('span', { cls: 'linha__cor', style: { background: c.cor } }),
         nome,
         el('div', { cls: 'linha__controles' }, [
           el('button', { cls: 'passo passo--menos', text: '−',
-            attrs: { type: 'button', 'aria-label': 'Tirar R$\u00a0' + PASSO + ' de ' + c.nome },
+            attrs: { type: 'button', 'aria-label': 'Tirar ' + moeda(PASSO) + ' de ' + c.nome },
             on: { click: function () { if (meu[c.id] > 0) { meu[c.id] = Math.max(0, meu[c.id] - PASSO); comparado = false; desenharMonte(); } } } }),
-          el('div', { cls: 'linha__valor', text: 'R$\u00a0' + meu[c.id] }),
+          el('div', { cls: 'linha__valor', text: moeda(meu[c.id]) }),
           el('button', { cls: 'passo passo--mais', text: '+',
-            attrs: { type: 'button', 'aria-label': 'Colocar R$\u00a0' + PASSO + ' em ' + c.nome },
-            on: { click: function () { var add = Math.min(PASSO, 100 - soma()); if (add > 0) { meu[c.id] += add; comparado = false; desenharMonte(); } } } })
+            attrs: { type: 'button', 'aria-label': 'Colocar ' + moeda(PASSO) + ' em ' + c.nome },
+            on: { click: function () { var add = Math.min(PASSO, SALARIO_MINIMO - soma()); if (add > 0) { meu[c.id] += add; comparado = false; desenharMonte(); } } } })
         ])
       ]));
-      barra.appendChild(el('div', { style: { width: meu[c.id] + '%', background: c.cor } }));
+      barra.appendChild(el('div', { style: { width: (meu[c.id] / SALARIO_MINIMO * 100) + '%', background: c.cor } }));
     });
 
-    document.getElementById('monte-restante').textContent = 'R$\u00a0' + restante;
+    document.getElementById('monte-restante').textContent = moeda(restante);
     var btnComparar = document.getElementById('monte-comparar');
     btnComparar.disabled = restante !== 0;
     btnComparar.classList.toggle('pronto', restante === 0 && !comparado);
 
     var msg = document.getElementById('monte-msg');
     if (comparado) {
-      var dif = meu.investir - 17;
-      var inicio = dif > 0 ? 'Você colocaria mais em investimentos do que a proposta. '
-        : dif < 0 ? 'Você colocaria menos em investimentos do que a proposta. '
-        : 'Você acertou em cheio os investimentos! ';
-      msg.textContent = inicio + 'Na proposta, a maior parte (R$\u00a078) mantém os serviços que já existem, porque escolas, postos e coleta precisam funcionar todo dia.';
+      var realInv = CATEGORIAS[1].real, dif = meu.investir - realInv;
+      var inicio = Math.abs(dif) < PASSO / 2 ? 'Você chegou bem perto da proposta nos investimentos! '
+        : dif > 0 ? 'Você colocaria mais em investimentos do que a proposta. '
+        : 'Você colocaria menos em investimentos do que a proposta. ';
+      msg.textContent = inicio + 'Na proposta, a maior parte (' + moeda(CATEGORIAS[0].real) + ') mantém os serviços que já existem, porque escolas, postos e coleta precisam funcionar todo dia.';
       msg.hidden = false;
     } else {
       msg.hidden = true;
@@ -203,8 +230,9 @@
      4. QUIZ — chute e descubra
      ======================================================== */
   var PERGUNTAS = [
-    { p: 'De cada R$\u00a0100 do orçamento, quanto vai para obras e investimentos?', op: ['R$\u00a05', 'R$\u00a017', 'R$\u00a050'], certa: 1,
-      exp: 'São cerca de R$\u00a017 de cada R$\u00a0100, ou R$\u00a01,03 bilhão. A maior parte, R$\u00a078, mantém os serviços funcionando.' },
+    { p: 'Se o orçamento coubesse em um salário mínimo (' + moeda(SALARIO_MINIMO) + '), quanto iria para obras e investimentos?',
+      op: [moeda(fracao(ORCAMENTO_TOTAL) * 0.05), PARTES[1].reais, moeda(SALARIO_MINIMO / 2)], certa: 1,
+      exp: 'Seriam cerca de ' + PARTES[1].reais + ', o que no orçamento inteiro dá R$\u00a01,03 bilhão. A maior parte, ' + PARTES[0].reais + ', mantém os serviços funcionando.' },
     { p: 'Os R$\u00a06,16 bilhões já estão no caixa da Prefeitura?', op: ['Sim, já estão guardados', 'Não, é uma previsão para 2027'], certa: 1,
       exp: 'É uma previsão para o ano todo. O dinheiro entra aos poucos, e parte dele já tem uso definido por lei.' },
     { p: 'Se uma obra aparece no orçamento, ela já está garantida?', op: ['Sim, está garantida', 'Não, ainda depende de outras etapas'], certa: 1,
@@ -371,7 +399,7 @@
     if (botaoFalando === btn) { pararFala(); return; }
     pararFala();
     var u = new SpeechSynthesisUtterance((t.falar || t.nome) + '. ' + t.def);
-    u.lang = 'pt-BR'; if (vozPt) u.voice = vozPt; u.rate = 0.95;
+    u.lang = 'pt-BR'; if (vozPt) u.voice = vozPt; u.rate = 1.1;
     u.onend = u.onerror = function () { if (botaoFalando === btn) { marcarBotao(btn, false); botaoFalando = null; } };
     botaoFalando = btn; marcarBotao(btn, true);
     window.speechSynthesis.speak(u);
@@ -603,6 +631,14 @@
   })();
 
   /* ---------- Início ---------- */
+  /* Preenche no HTML as menções ao salário mínimo e os valores por área */
+  Array.prototype.forEach.call(document.querySelectorAll('.js-salario'), function (e) { e.textContent = moeda(SALARIO_MINIMO); });
+  Array.prototype.forEach.call(document.querySelectorAll('.js-salario-ano'), function (e) { e.textContent = SALARIO_ANO; });
+  (function () {
+    var itens = Array.prototype.slice.call(document.querySelectorAll('.area[data-valor]'));
+    var reais = noSalario(itens.map(function (e) { return +e.getAttribute('data-valor'); }));
+    itens.forEach(function (e, i) { var v = e.querySelector('.area__valor'); if (v) v.textContent = moeda(reais[i]); });
+  })();
   zerarMeu();
   desenharNota();
   desenharLupa();

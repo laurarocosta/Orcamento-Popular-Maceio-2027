@@ -1,3 +1,6 @@
+/* Fonte Montserrat servida pelo próprio site (variável: pesos 100 a 900 num arquivo só) */
+@font-face { font-family: 'Montserrat'; src: url('montserrat.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+
 /* ==========================================================
    Orçamento Popular de Maceió 2027 — estilos
    Identidade baseada na marca da Prefeitura de Maceió
@@ -41,7 +44,7 @@
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--fundo);
@@ -115,6 +118,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .marca { display: flex; align-items: center; gap: 14px; text-decoration: none; }
 .marca__logo { height: 52px; width: auto; }
 .marca__texto { display: flex; flex-direction: column; border-left: 2px solid var(--borda); padding-left: 14px; line-height: 1.15; }
+.marca__op { height: 58px; width: auto; }
 .marca__titulo { font-family: var(--fonte-titulo); font-weight: 800; font-size: 20px; color: var(--marinho); }
 .marca__sub { font-size: 13px; font-weight: 800; color: var(--azul); letter-spacing: 1px; }
 
@@ -438,6 +442,7 @@ section[id] { scroll-margin-top: 12px; }
   .marca { gap: 10px; }
   .marca__logo { height: 38px; }
   .marca__texto { padding-left: 10px; }
+  .marca__op { height: 46px; }
   .marca__titulo { font-size: 16px; }
   .marca__sub { font-size: 11px; }
 
@@ -539,4 +544,65 @@ section[id] { scroll-margin-top: 12px; }
   .glossario-pop--folha .glossario-pop__link { min-height: 44px; font-size: 15px; }
 }
 @keyframes subir { from { transform: translateY(100%); } to { transform: translateY(0); } }
+/* Números-chave no celular: o aviso em cima, os dois números lado a lado */
+@media (max-width: 720px) {
+  .secao--compacta { padding-top: 14px; }
+  .grade-cartoes .cartao:not(.cartao--aviso) { flex: 1 1 calc(50% - 5px); padding: 14px; }
+  .grade-cartoes .cartao__numero { font-size: 22px; line-height: 1.15; margin: 4px 0; }
+  .grade-cartoes .cartao__rotulo { font-size: 12.5px; }
+  .grade-cartoes .cartao__texto { font-size: 13.5px; line-height: 1.4; }
+}
+
+/* Telas bem estreitas: barra de cima numa linha só e topo mais baixo */
+@media (max-width: 400px) {
+  .so-largo { display: none; }
+  .barra-topo__aviso { white-space: nowrap; }
+  .marca__op { height: 40px; }
+}
 @media (max-width: 720px) and (prefers-reduced-motion: reduce) { .glossario-pop.glossario-pop--folha { animation: none; } }
+
+/* ==========================================================
+   Abertura no celular: título, explicação e a prévia do salário
+   cabem na primeira tela, sem precisar rolar
+   ========================================================== */
+.previa { display: none; }
+@media (max-width: 720px) {
+  .hero__arte { display: none; }
+  .hero__inner { padding-top: 20px; padding-bottom: 6px; }
+  .pilula { font-size: 11px; padding: 5px 10px; }
+  .hero h1 { font-size: clamp(28px, 8.2vw, 34px); line-height: 1.08; margin: 12px 0 10px; }
+  .hero__lead { font-size: 16.5px; line-height: 1.5; margin-bottom: 16px; }
+  .previa { display: block; text-decoration: none; color: var(--marinho); background: var(--branco);
+    border-radius: 18px; padding: 14px 16px 0; box-shadow: 0 6px 20px rgba(23, 62, 117, .12); overflow: hidden;
+    -webkit-tap-highlight-color: transparent; transition: transform .15s ease; }
+  .previa:active { transform: scale(.98); }
+  .previa__topo { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .previa__rotulo { font-size: 13px; font-weight: 700; color: var(--texto-2); }
+  .previa__valor { font-family: var(--fonte-titulo); font-weight: 800; font-size: 24px; }
+  .previa__barra { display: flex; gap: 3px; height: 26px; margin: 10px 0 14px; }
+  .previa__barra i { display: block; min-width: 6px; border-radius: 4px; }
+  .previa__barra i:first-child { border-radius: 8px 4px 4px 8px; }
+  .previa__barra i:last-child { border-radius: 4px 8px 8px 4px; }
+  .previa__acao { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 -16px;
+    min-height: 52px; background: var(--laranja); font-weight: 800; font-size: 16px; color: var(--marinho); }
+  /* A prévia já é o convite principal: o botão laranja repetido sai, o quiz fica como segunda opção */
+  .hero .botoes { margin-top: 12px; }
+  .hero .botoes .btn--laranja { display: none; }
+  .hero .botoes .btn--contorno { min-height: 48px; }
+}
+/* Números-chave no celular: o aviso em cima, os dois números lado a lado */
+@media (max-width: 720px) {
+  .secao--compacta { padding-top: 14px; }
+  .grade-cartoes .cartao:not(.cartao--aviso) { flex: 1 1 calc(50% - 5px); padding: 14px; }
+  .grade-cartoes .cartao__numero { font-size: 22px; line-height: 1.15; margin: 4px 0; }
+  .grade-cartoes .cartao__rotulo { font-size: 12.5px; }
+  .grade-cartoes .cartao__texto { font-size: 13.5px; line-height: 1.4; }
+}
+
+/* Telas bem estreitas: barra de cima numa linha só e topo mais baixo */
+@media (max-width: 400px) {
+  .so-largo { display: none; }
+  .barra-topo__aviso { white-space: nowrap; }
+  .marca__op { height: 40px; }
+}
+@media (max-width: 720px) and (prefers-reduced-motion: reduce) { .previa { transition: none; } }

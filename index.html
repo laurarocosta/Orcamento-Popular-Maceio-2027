@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="icon" href="favicon.svg?v=2026-10-16h" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2026-10-16h">
   <meta name="theme-color" content="#173E75">
   <title>Orçamento Popular de Maceió 2027</title>
-  <meta name="description" content="O orçamento de Maceió para 2027 explicado de forma simples: de cada R$&nbsp;100, para onde vai cada parte.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2026-10-16b">
+  <meta name="description" content="O orçamento de Maceió para 2027 explicado de forma simples: se coubesse em um salário mínimo, para onde iria cada real?">
+  <!-- Fonte dentro do próprio site: um arquivo só (31 KB) com todos os pesos da Montserrat -->
+  <link rel="preload" href="montserrat.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=2026-10-16h">
 </head>
 <body>
 
   <!-- Barra superior (mesmo padrão do Participa Maceió) -->
   <div class="barra-topo">
     <div class="container barra-topo__inner">
-      <span>PREFEITURA DE MACEIÓ · <strong>PROTÓTIPO DEMONSTRATIVO</strong></span>
+      <span class="barra-topo__aviso"><span class="so-largo">PREFEITURA DE MACEIÓ · </span><strong>PROTÓTIPO DEMONSTRATIVO</strong></span>
       <span class="barra-topo__links">
         <a href="https://www.participa.maceio.al.gov.br/participa-maceio/principal.faces" target="_blank" rel="noopener noreferrer">PARTICIPA MACEIÓ</a>
         <a href="https://www.transparencia.maceio.al.gov.br/transparencia/pages/homepage.faces" target="_blank" rel="noopener noreferrer">TRANSPARÊNCIA</a>
@@ -28,11 +29,7 @@
   <header class="cabecalho">
     <div class="container cabecalho__inner">
       <a href="#inicio" class="marca">
-        <img src="logo-prefeitura.png" alt="Prefeitura de Maceió" class="marca__logo">
-        <span class="marca__texto">
-          <span class="marca__titulo">Orçamento Popular</span>
-          <span class="marca__sub">MACEIÓ 2027</span>
-        </span>
+        <img src="logo-op-mcz.svg?v=2026-10-16h" alt="OP MCZ, Orçamento Popular de Maceió" class="marca__op" width="235" height="60">
       </a>
     </div>
   </header>
@@ -40,7 +37,7 @@
   <!-- Menu (faixa laranja, como no Participa Maceió) -->
   <nav class="barra-menu" aria-label="Navegação principal">
     <div class="container barra-menu__inner">
-      <a href="#cem">De cada R$&nbsp;100</a>
+      <a href="#cem">Em um salário mínimo</a>
       <a href="#monte">Monte o seu</a>
       <a href="#caminho">O caminho</a>
       <a href="#quiz">Quiz</a>
@@ -55,8 +52,14 @@
       <div class="container hero__inner">
         <div class="hero__texto">
           <span class="pilula">PROPOSTA DE ORÇAMENTO PARA 2027</span>
-          <h1>O orçamento de Maceió, explicado em R$&nbsp;100.</h1>
-          <p class="hero__lead">A Prefeitura prevê <strong>R$&nbsp;6,16 bilhões</strong> para 2027. É muito dinheiro para imaginar. Então vamos fazer de conta que todo esse orçamento cabe numa nota de R$&nbsp;100 e ver para onde vai cada parte.</p>
+          <h1>O orçamento de Maceió, explicado em um salário mínimo.</h1>
+          <p class="hero__lead">A Prefeitura prevê <strong>R$&nbsp;6,16 bilhões</strong> para 2027. Para ficar fácil de imaginar, vamos dividir todo o orçamento como se fosse um salário mínimo de <span class="js-salario">R$&nbsp;1.621</span>.</p>
+          <!-- Só no celular: uma prévia que já convida a tocar -->
+          <a href="#cem" class="previa" aria-label="Ver para onde vai cada parte do salário">
+            <span class="previa__topo"><span class="previa__rotulo">O orçamento em um salário</span><strong class="previa__valor js-salario">R$&nbsp;1.621</strong></span>
+            <span class="previa__barra" aria-hidden="true"><i style="flex:1266;background:#173E75"></i><i style="flex:270;background:#F39D0F"></i><i style="flex:30;background:#036BAC"></i><i style="flex:55;background:#9FB3C6"></i></span>
+            <span class="previa__acao">Ver para onde vai cada parte <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
           <div class="botoes">
             <a href="#cem" class="btn btn--laranja">Ver para onde vai</a>
             <a href="#quiz" class="btn btn--contorno">Fazer o quiz · 1 min</a>
@@ -100,16 +103,16 @@
       </div>
     </section>
 
-    <!-- De cada R$&nbsp;100 -->
+    <!-- Em um salário mínimo (o valor fica em script.js, SALARIO_MINIMO) -->
     <section id="cem" class="container secao">
-      <div class="sobretitulo">DE CADA R$&nbsp;100</div>
-      <h2>Para onde vai cada parte da nota?</h2>
+      <div class="sobretitulo">EM UM SALÁRIO MÍNIMO</div>
+      <h2>Para onde vai cada parte do salário?</h2>
       <p class="intro">Toque em cada parte para entender o que ela paga. Os valores são proporcionais à proposta de 2027.</p>
 
       <div class="nota">
         <div class="nota__topo">
-          <span class="nota__valor">R$&nbsp;100</span>
-          <span class="nota__legenda">Orçamento de Maceió 2027 · representação</span>
+          <span class="nota__valor"><span class="js-salario">R$&nbsp;1.621</span></span>
+          <span class="nota__legenda">Salário mínimo <span class="js-salario-ano">2026</span> · orçamento de Maceió 2027</span>
         </div>
         <div class="nota__barra" id="nota-barra"></div>
         <div class="nota__botoes" id="nota-botoes"></div>
@@ -118,36 +121,36 @@
       <div class="detalhe" id="nota-detalhe" aria-live="polite"></div>
 
       <div class="areas">
-        <h3 class="areas__titulo">Outra forma de ver os mesmos R$&nbsp;100: por área</h3>
-        <p class="areas__intro">Aqui o mesmo dinheiro aparece dividido pelas áreas em que é usado. As cinco maiores ficam com mais de R$&nbsp;80 de cada R$&nbsp;100.</p>
+        <h3 class="areas__titulo">Outra forma de ver o mesmo salário: por área</h3>
+        <p class="areas__intro">Aqui o mesmo dinheiro aparece dividido pelas áreas em que é usado. As cinco maiores ficam com mais de quatro de cada cinco reais.</p>
         <ul class="areas__lista">
-          <li class="area">
-            <div class="area__topo"><span class="area__nome">Saúde</span><span class="area__valor">R$&nbsp;22</span></div>
+          <li class="area" data-valor="1352441009">
+            <div class="area__topo"><span class="area__nome">Saúde</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 100.0%"></span></div>
             <p class="area__desc"><strong>R$&nbsp;1,35 bilhão</strong> · Atendimento em postos e unidades de saúde e programas de saúde para a população.</p>
           </li>
-          <li class="area">
-            <div class="area__topo"><span class="area__nome">Administração</span><span class="area__valor">R$&nbsp;18</span></div>
+          <li class="area" data-valor="1110165103">
+            <div class="area__topo"><span class="area__nome">Administração</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 81.8%"></span></div>
             <p class="area__desc"><strong>R$&nbsp;1,11 bilhão</strong> · Funcionamento da gestão da Prefeitura: secretarias, sistemas, tecnologia e serviços administrativos.</p>
           </li>
-          <li class="area">
-            <div class="area__topo"><span class="area__nome">Educação</span><span class="area__valor">R$&nbsp;18</span></div>
+          <li class="area" data-valor="1089077378">
+            <div class="area__topo"><span class="area__nome">Educação</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 81.8%"></span></div>
             <p class="area__desc"><strong>R$&nbsp;1,09 bilhão</strong> · Escolas e creches da rede municipal.</p>
           </li>
-          <li class="area">
-            <div class="area__topo"><span class="area__nome">Urbanismo</span><span class="area__valor">R$&nbsp;14</span></div>
+          <li class="area" data-valor="853679060">
+            <div class="area__topo"><span class="area__nome">Urbanismo</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 63.6%"></span></div>
             <p class="area__desc"><strong>R$&nbsp;853,7 milhões</strong> · Obras e serviços da cidade, como ruas, praças e infraestrutura urbana.</p>
           </li>
-          <li class="area">
-            <div class="area__topo"><span class="area__nome">Previdência</span><span class="area__valor">R$&nbsp;10</span></div>
+          <li class="area" data-valor="615062198">
+            <div class="area__topo"><span class="area__nome">Previdência</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 45.5%"></span></div>
             <p class="area__desc"><strong>R$&nbsp;615,1 milhões</strong> · Aposentadorias e pensões dos servidores municipais.</p>
           </li>
-          <li class="area area--outras">
-            <div class="area__topo"><span class="area__nome">Outras áreas</span><span class="area__valor">R$&nbsp;18</span></div>
+          <li class="area area--outras" data-valor="1141347520">
+            <div class="area__topo"><span class="area__nome">Outras áreas</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 81.8%"></span></div>
             <p class="area__desc"><strong>R$&nbsp;1,14 bilhão</strong> · Encargos especiais, como o pagamento da dívida (R$&nbsp;408 mi), saneamento (R$&nbsp;200,1 mi), reservas (R$&nbsp;173,2 mi), Câmara (R$&nbsp;146,4 mi), transporte (R$&nbsp;93,1 mi), assistência social (R$&nbsp;43,4 mi) e mais 10 áreas menores.</p>
           </li>
@@ -161,7 +164,7 @@
       <div class="container secao">
         <div class="sobretitulo sobretitulo--claro">SUA VEZ</div>
         <h2>Monte o seu orçamento</h2>
-        <p class="intro">Se você decidisse, como dividiria os R$&nbsp;100? Distribua tudo e compare com a proposta da Prefeitura.</p>
+        <p class="intro">Se você decidisse, como dividiria os <span class="js-salario">R$&nbsp;1.621</span>? Distribua tudo e compare com a proposta da Prefeitura.</p>
         <div class="monte">
           <div class="monte__lista" id="monte-lista"></div>
           <aside class="monte__painel">
@@ -251,7 +254,7 @@
 
   <!-- Menu fixo na parte de baixo (só no celular) -->
   <nav class="nav-celular" aria-label="Navegação rápida">
-    <a href="#cem" data-secao="cem"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg><span>R$&nbsp;100</span></a>
+    <a href="#cem" data-secao="cem"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg><span>Salário</span></a>
     <a href="#monte" data-secao="monte"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Monte</span></a>
     <a href="#caminho" data-secao="caminho"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h6a3 3 0 0 1 0 6H10a3 3 0 0 0 0 6h6"/></svg><span>Caminho</span></a>
     <a href="#quiz" data-secao="quiz"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14"/><path d="M12 17.2v.1"/></svg><span>Quiz</span></a>
@@ -262,11 +265,11 @@
     <svg class="onda onda--rodape" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C240 0 480 40 720 20 C960 0 1200 40 1440 20 L1440 40 L0 40 Z" fill="#173E75"/></svg>
     <div class="container rodape__inner">
       <div class="rodape__titulo">Orçamento Popular · Maceió 2027</div>
-      <p>Protótipo demonstrativo, não publicado nem integrado ao Participa Maceió. Fonte: Exposição de Motivos e Projeto de Lei Orçamentária 2027 (outubro de 2026) e demonstrativos oficiais. Valores arredondados; a divisão “de cada R$&nbsp;100” é proporcional à proposta.</p>
+      <p>Protótipo demonstrativo, não publicado nem integrado ao Participa Maceió. Fonte: Exposição de Motivos e Projeto de Lei Orçamentária 2027 (outubro de 2026) e demonstrativos oficiais. Valores arredondados; a divisão “em um salário mínimo” (<span class="js-salario">R$&nbsp;1.621</span>, valor de <span class="js-salario-ano">2026</span>) é proporcional à proposta.</p>
     </div>
   </footer>
 
-  <script src="glossario.js?v=2026-10-16b"></script>
-  <script src="script.js?v=2026-10-16b"></script>
+  <script src="glossario.js?v=2026-10-16h"></script>
+  <script src="script.js?v=2026-10-16h"></script>
 </body>
 </html>
