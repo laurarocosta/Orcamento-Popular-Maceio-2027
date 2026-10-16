@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice">
+  <!-- Fundo decorativo da seção "Monte o seu orçamento": notas e moedas
+       desenhadas no amarelo do Participa Maceió (#FCC326) sobre o azul-escuro. -->
+  <defs>
+    <!-- Nota de R$ (310 x 170) -->
+    <g id="nota">
+      <rect x="0" y="0" width="310" height="170" rx="20"/>
+      <rect x="25" y="23" width="260" height="124" rx="12" fill="none" stroke-width="5"/>
+      <circle cx="155" cy="85" r="44"/>
+      <text x="155" y="100" text-anchor="middle" fill="#FCC326" stroke="none" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="40">R$</text>
+      <circle cx="55" cy="50" r="8" fill="#FCC326" stroke="none"/>
+      <circle cx="255" cy="120" r="8" fill="#FCC326" stroke="none"/>
+    </g>
+    <!-- Moeda solta (centro 0,0) -->
+    <g id="moeda">
+      <circle cx="0" cy="0" r="40"/>
+      <circle cx="0" cy="0" r="28" fill="none" stroke-width="4"/>
+      <text x="0" y="8" text-anchor="middle" fill="#FCC326" stroke="none" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="22">R$</text>
+    </g>
+  </defs>
+
+  <rect width="1440" height="720" fill="#173E75"/>
+  <!-- opacity no grupo inteiro: as peças sobrepostas não aparecem umas através das outras -->
+  <g opacity=".9" fill="#173E75" stroke="#FCC326" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Notas -->
+    <use href="#nota" transform="translate(1075 85) rotate(10 155 85)"/>
+    <use href="#nota" transform="translate(40 470) rotate(-12 155 85)"/>
+    <use href="#nota" transform="translate(70 500) rotate(-4 155 85)"/>
+
+    <!-- Pilha de moedas (direita) -->
+    <path d="M1200 640 v28 a92 26 0 0 0 184 0 v-28"/>
+    <ellipse cx="1292" cy="640" rx="92" ry="26"/>
+    <path d="M1200 600 v28 a92 26 0 0 0 184 0 v-28"/>
+    <ellipse cx="1292" cy="600" rx="92" ry="26"/>
+    <path d="M1200 560 v28 a92 26 0 0 0 184 0 v-28"/>
+    <ellipse cx="1292" cy="560" rx="92" ry="26"/>
+    <path d="M1200 520 v28 a92 26 0 0 0 184 0 v-28"/>
+    <ellipse cx="1292" cy="520" rx="92" ry="26"/>
+
+    <!-- Moedas soltas -->
+    <use href="#moeda" transform="translate(860 60)"/>
+    <use href="#moeda" transform="translate(940 668) scale(.85)"/>
+    <use href="#moeda" transform="translate(560 694) scale(.7)"/>
+    <use href="#moeda" transform="translate(1090 400) scale(1.1)"/>
+    <use href="#moeda" transform="translate(48 330) scale(.7)"/>
+  </g>
+</svg>
