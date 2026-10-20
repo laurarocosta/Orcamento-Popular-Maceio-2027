@@ -96,7 +96,7 @@ window.GLOSSARIO = [
 
   { id: 'duodecimo', nome: 'Duodécimo', falar: 'Duodécimo',
     variantes: ['duodécimo', 'duodécimos'],
-    def: 'O repasse mensal que a Prefeitura faz à Câmara para ela funcionar: o valor do ano dividido em doze partes.' },
+    def: 'O repasse mensal que a Prefeitura faz à Câmara para ela funcionar: o orçamento da Câmara dividido em doze partes, entregue até o dia 20 de cada mês.' },
 
   { id: 'funcoes-governo', nome: 'Funções de governo', falar: 'Funções de governo',
     variantes: ['funções de governo'],

@@ -769,3 +769,34 @@ section[id] { scroll-margin-top: 12px; }
 }
 /* No celular, os atalhos logo abaixo já levam ao quiz: o botão repetido do topo sai */
 @media (max-width: 720px) { .hero .botoes { display: none; } .hero__inner { padding-bottom: 14px; } }
+
+/* ==========================================================
+   O que são as emendas
+   ========================================================== */
+.emenda { max-width: 760px; margin-top: 8px; }
+.emenda__def { font-size: 18px; line-height: 1.55; color: var(--texto-2); background: var(--ceu); border-radius: 18px; padding: 18px 20px; }
+.emenda__def strong { color: var(--marinho); }
+.emenda__passos { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.emenda__passos li { display: flex; flex-direction: column; gap: 10px; background: var(--branco); border: 1px solid var(--borda); border-radius: 18px; padding: 16px; }
+.emenda__icone { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--marinho); color: var(--branco); }
+.emenda__passos strong { color: var(--marinho); font-size: 16px; }
+.emenda__passos p { font-size: 15px; color: var(--texto-2); margin-top: 4px; }
+.emenda__sub { font-size: 19px; margin: 24px 0 10px; }
+.emenda__regras { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.emenda__regras li { position: relative; padding: 12px 14px 12px 44px; border-radius: 14px; background: var(--branco); border: 1px solid var(--borda); font-size: 15.5px; color: var(--texto-2); }
+.emenda__regras li::before { content: ""; position: absolute; left: 14px; top: 15px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--laranja) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23173E75' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4L18 8'/%3E%3C/svg%3E") center / 14px no-repeat; }
+.emenda__regras strong { color: var(--marinho); }
+.emenda__cidada { margin-top: 14px; padding: 14px 16px; border-left: 5px solid #036BAC; border-radius: 12px; background: #F3F7FB; font-size: 15px; color: var(--texto-2); }
+.emenda__cidada strong { color: var(--marinho); }
+@media (max-width: 720px) {
+  .emenda__def { font-size: 16.5px; padding: 16px; }
+  .emenda__passos { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .emenda__passos li { flex-direction: row; align-items: flex-start; padding: 14px; }
+  .emenda__icone { width: 44px; height: 44px; flex-shrink: 0; }
+}
+
+/* Duodécimo: calendário dos 12 repasses */
+.duodecimo { margin-top: 0; }
+.duodecimo__calendario { margin-top: 12px; padding: 16px; border-radius: 18px; background: var(--marinho); }
+.duodecimo__calendario .camara__rotulo { color: var(--laranja-claro); }

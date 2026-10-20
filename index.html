@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- Instalar como aplicativo -->
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="favicon.svg?v=2026-10-20j" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2026-10-20j">
+  <link rel="icon" href="favicon.svg?v=2026-10-20l" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2026-10-20l">
   <meta name="theme-color" content="#173E75">
   <title>OP MCZ · Orçamento Popular de Maceió</title>
   <meta name="description" content="O orçamento de Maceió para 2027 explicado de forma simples: quanto vai para pessoal, custeio, investimentos, dívida e reservas.">
   <!-- Fonte dentro do próprio site: um arquivo só (31 KB) com todos os pesos da Montserrat -->
   <link rel="preload" href="montserrat.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=2026-10-20j">
+  <link rel="stylesheet" href="style.css?v=2026-10-20l">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
   <header class="cabecalho">
     <div class="container cabecalho__inner">
       <a href="#inicio" class="marca">
-        <img src="logo-op-mcz.svg?v=2026-10-20j" alt="OP MCZ, Orçamento Popular de Maceió" class="marca__op" width="235" height="60">
+        <img src="logo-op-mcz.svg?v=2026-10-20l" alt="OP MCZ, Orçamento Popular de Maceió" class="marca__op" width="235" height="60">
       </a>
     </div>
   </header>
@@ -84,7 +84,7 @@
       <div class="atalhos__grade">
         <a href="#cem" class="atalho"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg><span>Para onde vai o dinheiro</span></a>
         <a href="#temas" class="atalho"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20v-3a5 5 0 0 1 10 0v3"/><path d="M14 20v-2.5a3.5 3.5 0 0 1 7 0V20"/></svg><span>Quem é atendido</span></a>
-        <a href="#camara" class="atalho"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><path d="M5 20v-6a7 7 0 0 1 14 0v6"/><circle cx="9" cy="14" r="1.2"/><circle cx="12" cy="11.5" r="1.2"/><circle cx="15" cy="14" r="1.2"/></svg><span>Quanto é das emendas</span></a>
+        <a href="#camara" class="atalho"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><path d="M5 20v-6a7 7 0 0 1 14 0v6"/><circle cx="9" cy="14" r="1.2"/><circle cx="12" cy="11.5" r="1.2"/><circle cx="15" cy="14" r="1.2"/></svg><span>O que são as emendas</span></a>
         <a href="#quiz" class="atalho"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14"/><path d="M12 17.2v.1"/></svg><span>Teste seu conhecimento</span></a>
       </div>
     </nav>
@@ -281,9 +281,27 @@
     <!-- A Câmara e as emendas (plenário). Valores em script.js: RESERVA_PARLAMENTAR, RESERVA_CONTINGENCIA, VEREADORES -->
     <section id="camara" class="container secao">
       <div class="sobretitulo">A CÂMARA E AS EMENDAS</div>
-      <h2>O dinheiro das emendas</h2>
-      <p class="intro">Os 27 vereadores podem indicar onde aplicar uma parte do orçamento. Cada um tem a mesma fatia, e metade dela vai obrigatoriamente para a saúde.</p>
+      <h2>O que são as emendas</h2>
+      <p class="intro">Antes de votar o orçamento, os vereadores podem propor mudanças nele. Essas mudanças se chamam emendas.</p>
 
+      <div class="emenda">
+        <p class="emenda__def"><strong>Emenda</strong> é uma mudança que o vereador propõe no projeto de orçamento. A mais comum é <strong>indicar para onde vai uma parte do dinheiro</strong>: reformar uma escola, equipar um posto de saúde ou apoiar um projeto social, por exemplo.</p>
+        <ol class="emenda__passos">
+          <li><span class="emenda__icone"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span><div><strong>1. O vereador indica</strong><p>Escolhe uma ação e o valor, dentro da parte que cabe a ele.</p></div></li>
+          <li><span class="emenda__icone"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><path d="M5 20v-6a7 7 0 0 1 14 0v6"/><path d="M9 13l2 2 4-4"/></svg></span><div><strong>2. A Câmara vota</strong><p>Aprovada, a indicação passa a fazer parte da lei do orçamento.</p></div></li>
+          <li><span class="emenda__icone"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M10 21v-6h4v6"/></svg></span><div><strong>3. A Prefeitura executa</strong><p>Faz a obra ou o serviço. O dinheiro não passa pelas mãos do vereador.</p></div></li>
+        </ol>
+        <h3 class="emenda__sub">As regras em Maceió</h3>
+        <ul class="emenda__regras">
+          <li><strong>A Prefeitura é obrigada a executar</strong>, a não ser que exista um impedimento técnico, como um projeto que não pode ser feito.</li>
+          <li><strong>Metade vai para a saúde.</strong> A Lei Orgânica do Município exige isso de cada vereador.</li>
+          <li><strong>Todos têm a mesma parte.</strong> O total é dividido igualmente entre os 27 vereadores.</li>
+          <li><strong>Tudo deve ser público:</strong> para onde foi o dinheiro, quem foi atendido e qual foi o resultado.</li>
+        </ul>
+        <p class="emenda__cidada"><strong>E as Emendas Cidadãs?</strong> São outro tipo: ações ligadas a prioridades indicadas pela população. Em 2027 somam R$&nbsp;3,13 milhões, para construir creches (R$&nbsp;2,65 milhões) e manter equipamentos de segurança alimentar (R$&nbsp;480 mil).</p>
+      </div>
+
+      <h3 class="camara__subtitulo">Quanto dinheiro é isso?</h3>
       <div class="plenario">
         <h3 class="plenario__titulo"><span id="emendas-total">R$&nbsp;67,0 milhões</span> em emendas</h3>
         <svg class="plenario__desenho" viewBox="0 0 320 196" aria-label="Plenário com 27 cadeiras de vereador. Toque em uma cadeira.">
@@ -296,25 +314,31 @@
         </div>
         <p class="plenario__frase" id="plenario-frase">Cada cadeira indica <strong>R$&nbsp;2,5 milhões</strong>: metade para a saúde, metade para outras áreas.</p>
         <div class="plenario__resumo" id="plenario-resumo" aria-live="polite">Toque em uma cadeira.</div>
-        <p class="plenario__nota">O dinheiro não vai para o vereador: ele indica onde aplicar e quem executa é a Prefeitura, que é obrigada a cumprir, salvo impedimento técnico. O valor equivale a 1,45% da Receita Corrente Líquida.</p>
+        <p class="plenario__nota">O total equivale a 1,45% da Receita Corrente Líquida, como manda a lei.</p>
         <p class="plenario__origem" id="plenario-origem">Esse valor sai da reserva de contingência, que guarda R$&nbsp;113,2 milhões.</p>
       </div>
 
-      <h3 class="camara__subtitulo">E a Câmara em si?</h3>
-      <div class="camara">
-        <div class="camara__cartao">
-          <div class="camara__rotulo">Orçamento da Câmara em 2027</div>
-          <div class="camara__numero">R$&nbsp;146,4 milhões</div>
-          <p>Paga salários, funcionamento e estrutura da Câmara Municipal. Esse dinheiro não se mistura com as emendas.</p>
-        </div>
-        <div class="camara__cartao camara__cartao--destaque">
-          <div class="camara__rotulo">Duodécimo: o repasse de cada mês</div>
-          <div class="camara__numero">R$&nbsp;12,2 milhões por mês</div>
+      <h3 class="camara__subtitulo">E o dinheiro da própria Câmara?</h3>
+      <div class="emenda duodecimo">
+        <p class="emenda__def"><strong>Duodécimo</strong> quer dizer “um doze avos”. É a parcela que a Prefeitura <strong>repassa todo mês à Câmara Municipal</strong> para ela funcionar: o orçamento da Câmara dividido em 12 partes iguais.</p>
+        <ol class="emenda__passos">
+          <li><span class="emenda__icone"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span><div><strong>1. O orçamento define o ano</strong><p>Para 2027, a Câmara tem <strong>R$&nbsp;146,4 milhões</strong>.</p></div></li>
+          <li><span class="emenda__icone"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><strong>2. O valor vira 12 parcelas</strong><p>R$&nbsp;146,4 milhões ÷ 12 = <strong>R$&nbsp;12,2 milhões</strong> por mês.</p></div></li>
+          <li><span class="emenda__icone"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h13"/><path d="M12 7l5 5-5 5"/><path d="M20 4v16"/></svg></span><div><strong>3. A Prefeitura repassa</strong><p>Todo mês, até o dia 20, a parcela vai para a Câmara.</p></div></li>
+        </ol>
+        <div class="duodecimo__calendario">
+          <div class="camara__rotulo">Repasse previsto em 2027, em R$ milhões</div>
           <ol class="calendario" aria-label="Repasse de R$ 12,2 milhões em cada mês do ano"><li><span>jan</span><strong>12,2</strong></li><li><span>fev</span><strong>12,2</strong></li><li><span>mar</span><strong>12,2</strong></li><li><span>abr</span><strong>12,2</strong></li><li><span>mai</span><strong>12,2</strong></li><li><span>jun</span><strong>12,2</strong></li><li><span>jul</span><strong>12,2</strong></li><li><span>ago</span><strong>12,2</strong></li><li><span>set</span><strong>12,2</strong></li><li><span>out</span><strong>12,2</strong></li><li><span>nov</span><strong>12,2</strong></li><li><span>dez</span><strong>12,2</strong></li></ol>
-          <p>Todo mês a Prefeitura repassa à Câmara um doze avos do orçamento dela.</p>
         </div>
+        <h3 class="emenda__sub">Para que serve e quais são as regras</h3>
+        <ul class="emenda__regras">
+          <li><strong>Paga o funcionamento da Câmara:</strong> salários dos vereadores e servidores, sessões, estrutura e serviços. Não é o mesmo dinheiro das emendas.</li>
+          <li><strong>Tem data certa:</strong> a Constituição manda entregar a parcela até o dia 20 de cada mês.</li>
+          <li><strong>Tem limite:</strong> a Constituição limita quanto a Câmara pode gastar, conforme a população e a arrecadação da cidade. A folha de pagamento não pode passar de 70% do que ela recebe.</li>
+          <li><strong>Não pode atrasar nem faltar:</strong> repassar acima do limite, depois do dia 20 ou menos do que a lei do orçamento prevê é crime de responsabilidade do prefeito.</li>
+        </ul>
       </div>
-      <p class="areas__fonte"><span class="selo selo--ok">Dado conferido</span> Fonte: PLOA 2027 (Demonstrativo da Despesa por Órgão, Quadro de Detalhamento da Despesa do Órgão 99000 e art. 17 do Projeto de Lei) e Lei Orgânica do Município, art. 74-B.</p>
+      <p class="areas__fonte"><span class="selo selo--ok">Dado conferido</span> Fonte: PLOA 2027 (Demonstrativo da Despesa por Órgão, Quadro de Detalhamento da Despesa do Órgão 99000, Demonstrativo das Emendas Cidadãs e art. 17 do Projeto de Lei), Lei Orgânica do Município (art. 74-B) e Constituição Federal (arts. 29-A e 168).</p>
     </section>
 
     <!-- O caminho -->
@@ -592,7 +616,7 @@
     </div>
   </footer>
 
-  <script src="glossario.js?v=2026-10-20j"></script>
-  <script src="script.js?v=2026-10-20j"></script>
+  <script src="glossario.js?v=2026-10-20l"></script>
+  <script src="script.js?v=2026-10-20l"></script>
 </body>
 </html>
