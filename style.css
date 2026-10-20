@@ -318,7 +318,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 
 /* ---------- "Mitos e verdades": azul-marinho da identidade, com ondas como no rodapé ---------- */
 #mitos { background: var(--marinho); }
-.onda--mitos-topo { display: block; height: 32px; background: var(--fundo); }
+.onda--mitos-topo { display: block; height: 32px; background: var(--areia); }
 .onda--mitos-base { display: block; height: 32px; background: var(--marinho); }
 
 /* ---------- Termos técnicos com explicação (balão) ---------- */
@@ -622,17 +622,13 @@ section[id] { scroll-margin-top: 12px; }
 .areas--receitas { margin-top: 18px; }
 .receita__oficial { margin-top: 4px; font-size: 13px; color: var(--texto-suave); }
 
-/* Botão "Compartilhar" dos Mitos */
-.mitos__acoes { display: flex; justify-content: center; margin-top: 22px; }
-.mitos__acoes .btn { min-height: 50px; }
-@media (max-width: 720px) { .mitos__acoes .btn { width: 100%; } }
 
 /* ==========================================================
    Orçamento para quem mais precisa (OCA, idoso, situação de rua)
    ========================================================== */
 .faixa--ceu { background: var(--ceu); }
-#receitas { padding-top: 56px; }
-@media (max-width: 720px) { #receitas { padding-top: 40px; } }
+#receitas { padding-top: 32px; }
+@media (max-width: 720px) { #receitas { padding-top: 24px; } }
 .temas__chips { display: none; }
 .temas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; margin-top: 8px; }
 .tema { position: relative; background: var(--branco); border-radius: 22px; padding: 22px; box-shadow: 0 8px 24px rgba(23, 62, 117, .10); border-top: 8px solid var(--cor-tema); }
@@ -721,3 +717,55 @@ section[id] { scroll-margin-top: 12px; }
 @media (max-width: 720px) {
   .camara { grid-template-columns: minmax(0, 1fr); gap: 10px; }
 }
+
+/* ==========================================================
+   Atalhos "O que você quer descobrir?"
+   ========================================================== */
+.atalhos { padding-top: 28px; }
+.atalhos__titulo { font-size: 22px; margin-bottom: 12px; }
+.atalhos__grade { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.atalho { display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 14px 16px; border-radius: 18px; background: var(--branco);
+  border: 2px solid var(--borda); color: var(--marinho); font-weight: 800; font-size: 16px; line-height: 1.25; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.atalho svg { flex-shrink: 0; color: #036BAC; }
+.atalho:hover { border-color: var(--marinho); }
+.atalho:active { background: var(--ceu); }
+@media (max-width: 900px) { .atalhos__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  .atalhos { padding-top: 20px; }
+  .atalhos__titulo { font-size: 19px; }
+  .atalhos__grade { gap: 8px; }
+  .atalho { flex-direction: column; align-items: flex-start; gap: 8px; min-height: 96px; padding: 12px 14px; font-size: 15px; }
+}
+
+/* De onde vem: "Ver mais 2 fontes" */
+.receitas__mais > summary { list-style: none; display: flex; justify-content: space-between; align-items: center; min-height: 50px; margin-top: 14px;
+  font-weight: 800; color: var(--marinho); cursor: pointer; border-top: 1px solid var(--borda); -webkit-tap-highlight-color: transparent; }
+.receitas__mais > summary::-webkit-details-marker { display: none; }
+.receitas__mais[open] > summary { margin-bottom: 14px; }
+.receitas__mais[open] .tema__seta { transform: rotate(45deg); }
+
+/* ==========================================================
+   Menu completo do celular
+   ========================================================== */
+.nav-celular__menu { all: unset; box-sizing: border-box; cursor: pointer; }
+.menu-fundo, .menu-folha { display: none; }
+@media (max-width: 720px) {
+  .nav-celular__menu { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    min-height: 62px; padding: 6px 2px; color: var(--texto-suave); font-size: 12px; font-weight: 700; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+  .nav-celular__menu[aria-expanded="true"] { color: var(--marinho); }
+  .menu-fundo:not([hidden]) { display: block; position: fixed; inset: 0; z-index: 70; background: rgba(10, 25, 50, .4); }
+  .menu-folha:not([hidden]) { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 71; max-height: 82vh; overflow-y: auto;
+    background: var(--branco); border-radius: 22px 22px 0 0; padding: 14px 16px calc(18px + env(safe-area-inset-bottom)); box-shadow: 0 -10px 30px rgba(10, 25, 50, .25); }
+  .menu-folha__topo { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 4px 0 8px; }
+  .menu-folha__topo h2 { font-size: 19px; }
+  .menu-folha__fechar { all: unset; cursor: pointer; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--ceu); color: var(--marinho); font-size: 26px; line-height: 1; }
+  .menu-folha__lista { list-style: none; margin: 0; padding: 0; counter-reset: secao; }
+  .menu-folha__lista li { counter-increment: secao; border-top: 1px solid var(--borda); }
+  .menu-folha__lista a { display: grid; grid-template-columns: 30px 1fr; column-gap: 8px; align-items: center; min-height: 58px; padding: 8px 2px; text-decoration: none; color: var(--marinho); }
+  .menu-folha__lista a::before { content: counter(secao); grid-row: 1 / 3; width: 26px; height: 26px; border-radius: 50%; background: var(--ceu); display: grid; place-items: center; font-size: 13px; font-weight: 800; }
+  .menu-folha__lista strong { font-size: 16px; }
+  .menu-folha__lista span { font-size: 13.5px; color: var(--texto-suave); }
+  html.menu-aberto { overflow: hidden; }
+}
+/* No celular, os atalhos logo abaixo já levam ao quiz: o botão repetido do topo sai */
+@media (max-width: 720px) { .hero .botoes { display: none; } .hero__inner { padding-bottom: 14px; } }

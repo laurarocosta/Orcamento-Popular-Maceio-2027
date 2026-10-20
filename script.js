@@ -199,17 +199,23 @@
   });
 
   /* ========================================================
-     COMPARTILHAR — usa o menu do celular; sem ele, abre o WhatsApp
+     MENU COMPLETO (celular) — abre por cima da página
      ======================================================== */
-  function compartilhar(texto) {
-    var url = location.href.split('#')[0];
-    if (navigator.share) { navigator.share({ title: 'OP MCZ · Orçamento Popular de Maceió', text: texto, url: url }).catch(function () {}); return; }
-    window.open('https://wa.me/?text=' + encodeURIComponent(texto + ' ' + url), '_blank', 'noopener');
-  }
-  document.addEventListener('click', function (ev) {
-    var b = ev.target.closest && ev.target.closest('.js-compartilhar');
-    if (b) compartilhar(b.getAttribute('data-texto') || 'Entenda o orçamento de Maceió de um jeito simples.');
-  });
+  (function () {
+    var abrir = document.getElementById('abrir-menu'), folha = document.getElementById('menu-completo');
+    var fundo = document.getElementById('menu-fundo'), fechar = document.getElementById('fechar-menu');
+    if (!abrir || !folha) return;
+    function mostrar(sim) {
+      folha.hidden = !sim; fundo.hidden = !sim; abrir.setAttribute('aria-expanded', sim ? 'true' : 'false');
+      document.documentElement.classList.toggle('menu-aberto', sim);
+      if (sim) { var a = folha.querySelector('a'); if (a) a.focus(); } else abrir.focus();
+    }
+    abrir.addEventListener('click', function () { mostrar(folha.hidden); });
+    fechar.addEventListener('click', function () { mostrar(false); });
+    fundo.addEventListener('click', function () { mostrar(false); });
+    folha.addEventListener('click', function (ev) { if (ev.target.closest('a')) { folha.hidden = true; fundo.hidden = true; abrir.setAttribute('aria-expanded', 'false'); document.documentElement.classList.remove('menu-aberto'); } });
+    document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && !folha.hidden) mostrar(false); });
+  })();
 
   /* ========================================================
      4. QUIZ — chute e descubra
@@ -252,10 +258,8 @@
         el('h3', { text: 'Navegador do Orçamento 2027' }),
         el('p', { text: msg }),
         el('div', { cls: 'botoes', style: { justifyContent: 'center', marginTop: '6px' } }, [
-          el('a', { cls: 'btn btn--marinho', text: 'Ir para o Participa Maceió ↗',
+          el('a', { cls: 'btn btn--laranja', text: 'Ir para o Participa Maceió ↗',
             attrs: { href: 'https://www.participa.maceio.al.gov.br/participa-maceio/principal.faces', target: '_blank', rel: 'noopener noreferrer' } }),
-          el('button', { cls: 'btn btn--laranja js-compartilhar', text: 'Compartilhar meu resultado',
-            attrs: { type: 'button', 'data-texto': 'Acertei ' + quiz.pontos + ' de 5 no quiz sobre o orçamento de Maceió. E você?' } }),
           el('button', { cls: 'btn btn--contorno', text: 'Refazer o quiz', attrs: { type: 'button' },
             on: { click: function () { quiz = { atual: 0, escolhida: null, pontos: 0, fim: false }; desenharQuiz(); } } })
         ])
