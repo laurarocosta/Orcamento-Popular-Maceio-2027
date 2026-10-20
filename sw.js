@@ -1,6 +1,6 @@
 /* OP MCZ — funciona sem internet depois da primeira visita.
    Ao publicar uma versão nova, troque o número de VERSAO para o celular baixar os arquivos novos. */
-var VERSAO = 'opmcz-2026-10-20m';
+var VERSAO = 'opmcz-2026-10-20n';
 var ARQUIVOS = ['./', 'index.html', 'style.css', 'script.js', 'glossario.js', 'montserrat.woff2',
   'logo-op-mcz.svg', 'favicon.svg', 'apple-touch-icon.png', 'icone-192.png', 'icone-512.png'];
 
@@ -17,7 +17,8 @@ self.addEventListener('fetch', function (e) {
   var req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
   if (req.mode === 'navigate') {
-    e.respondWith(fetch(req).then(function (r) {
+    /* cache: 'no-cache' = sempre confere com o servidor, para nunca mostrar uma página antiga */
+    e.respondWith(fetch(req, { cache: 'no-cache' }).then(function (r) {
       var copia = r.clone(); caches.open(VERSAO).then(function (c) { c.put('index.html', copia); }); return r;
     }).catch(function () { return caches.match('index.html'); }));
     return;
