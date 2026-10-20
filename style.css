@@ -723,13 +723,14 @@ section[id] { scroll-margin-top: 12px; }
    ========================================================== */
 .atalhos { padding-top: 28px; }
 .atalhos__titulo { font-size: 22px; margin-bottom: 12px; }
-.atalhos__grade { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.atalhos__grade { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .atalho { display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 14px 16px; border-radius: 18px; background: var(--branco);
   border: 2px solid var(--borda); color: var(--marinho); font-weight: 800; font-size: 16px; line-height: 1.25; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 .atalho svg { flex-shrink: 0; color: #036BAC; }
 .atalho:hover { border-color: var(--marinho); }
 .atalho:active { background: var(--ceu); }
-@media (max-width: 900px) { .atalhos__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1100px) { .atalhos__grade { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .atalhos__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } .atalho:last-child { grid-column: 1 / -1; } }
 @media (max-width: 720px) {
   .atalhos { padding-top: 20px; }
   .atalhos__titulo { font-size: 19px; }
@@ -800,3 +801,7 @@ section[id] { scroll-margin-top: 12px; }
 .duodecimo { margin-top: 0; }
 .duodecimo__calendario { margin-top: 12px; padding: 16px; border-radius: 18px; background: var(--marinho); }
 .duodecimo__calendario .camara__rotulo { color: var(--laranja-claro); }
+
+/* Atalhos no celular: o último ocupa a linha inteira */
+@media (max-width: 720px) { .atalho:last-child { flex-direction: row; align-items: center; min-height: 64px; } }
+#duodecimo { scroll-margin-top: 16px; }
