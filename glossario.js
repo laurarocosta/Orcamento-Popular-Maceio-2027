@@ -46,13 +46,33 @@ window.GLOSSARIO = [
     variantes: ['despesas correntes', 'despesa corrente'],
     def: 'O dinheiro que mantém a cidade funcionando todo dia, como salários, remédios, merenda escolar e contratos de serviços.' },
 
+  { id: 'despesa-pessoal', nome: 'Despesa com pessoal', falar: 'Despesa com pessoal',
+    variantes: ['pessoal e encargos sociais', 'despesa com pessoal', 'despesas com pessoal'],
+    def: 'Salários e encargos dos servidores da Prefeitura, como professores e profissionais de saúde, e também aposentadorias e pensões. A lei limita quanto a cidade pode gastar com pessoal.' },
+
+  { id: 'custeio', nome: 'Custeio', falar: 'Custeio',
+    variantes: ['outras despesas correntes', 'custeio'],
+    def: 'Os gastos que mantêm os serviços funcionando no dia a dia, além dos salários: contratos, materiais, merenda, remédios, energia e manutenção.' },
+
+  { id: 'divida-publica', nome: 'Dívida pública', falar: 'Dívida pública',
+    variantes: ['dívida pública', 'dívida'],
+    def: 'O que a cidade deve por empréstimos feitos para obras e outros projetos. Pagar a dívida envolve duas partes: os juros e a amortização.' },
+
+  { id: 'operacoes-credito', nome: 'Operações de crédito', falar: 'Operações de crédito',
+    variantes: ['operações de crédito', 'operação de crédito'],
+    def: 'Empréstimos que a cidade pega com bancos ou outras instituições, em geral para obras. Precisam seguir os limites da lei e ser pagos com juros.' },
+
+  { id: 'receita-intraorcamentaria', nome: 'Receitas intraorçamentárias', falar: 'Receitas intraorçamentárias',
+    variantes: ['receitas intraorçamentárias', 'intraorçamentárias'],
+    def: 'Dinheiro que passa de um órgão para outro dentro da própria Prefeitura, como a contribuição que ela paga à previdência dos servidores.' },
+
   { id: 'investimentos', nome: 'Investimentos', falar: 'Investimentos',
     variantes: ['investimentos'],
     def: 'Gastos com obras e compra de equipamentos que deixam algo novo ou melhor para a cidade, como uma escola, uma praça ou uma ambulância.' },
 
   { id: 'reserva-contingencia', nome: 'Reserva de contingência', falar: 'Reserva de contingência',
     variantes: ['reserva de contingência'],
-    def: 'Uma parte do orçamento guardada para imprevistos e riscos que não dá para prever. Se nada acontecer, pode nem ser usada.' },
+    def: 'Dinheiro guardado no orçamento para despesas imprevistas e riscos. Em Maceió, ela também guarda a reserva parlamentar, o espaço das emendas que os vereadores vão indicar.' },
 
   { id: 'rcl', nome: 'RCL · Receita Corrente Líquida', falar: 'Receita Corrente Líquida',
     variantes: ['RCL', 'Receita Corrente Líquida'],

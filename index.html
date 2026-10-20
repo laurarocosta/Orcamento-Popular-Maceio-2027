@@ -3,21 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <link rel="icon" href="favicon.svg?v=2026-10-16i" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2026-10-16i">
+  <!-- Prévia do link no WhatsApp e redes sociais.
+       Depois de publicar, troque ENDERECO-DO-SITE pelo endereço completo (ex.: https://usuario.github.io/repositorio/) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="OP MCZ · Orçamento Popular de Maceió">
+  <meta property="og:title" content="Orçamento público não precisa ser difícil">
+  <meta property="og:description" content="Veja para onde vão os R$ 6,16 bilhões de Maceió em 2027: pessoal, custeio, investimentos, dívida e reservas.">
+  <meta property="og:image" content="ENDERECO-DO-SITE/og-imagem.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OP MCZ: Orçamento público não precisa ser difícil.">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Instalar como aplicativo -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="favicon.svg?v=2026-10-20i" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2026-10-20i">
   <meta name="theme-color" content="#173E75">
-  <title>Orçamento Popular de Maceió 2027</title>
-  <meta name="description" content="O orçamento de Maceió para 2027 explicado de forma simples: se coubesse em um salário mínimo, para onde iria cada real?">
+  <title>OP MCZ · Orçamento Popular de Maceió</title>
+  <meta name="description" content="O orçamento de Maceió para 2027 explicado de forma simples: quanto vai para pessoal, custeio, investimentos, dívida e reservas.">
   <!-- Fonte dentro do próprio site: um arquivo só (31 KB) com todos os pesos da Montserrat -->
   <link rel="preload" href="montserrat.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=2026-10-16i">
+  <link rel="stylesheet" href="style.css?v=2026-10-20i">
 </head>
 <body>
 
   <!-- Barra superior (mesmo padrão do Participa Maceió) -->
   <div class="barra-topo">
     <div class="container barra-topo__inner">
-      <span class="barra-topo__aviso"><span class="so-largo">PREFEITURA DE MACEIÓ · </span><strong>PROTÓTIPO DEMONSTRATIVO</strong></span>
+      <span class="barra-topo__aviso"><strong>PREFEITURA DE MACEIÓ</strong></span>
       <span class="barra-topo__links">
         <a href="https://www.participa.maceio.al.gov.br/participa-maceio/principal.faces" target="_blank" rel="noopener noreferrer">PARTICIPA MACEIÓ</a>
         <a href="https://www.transparencia.maceio.al.gov.br/transparencia/pages/homepage.faces" target="_blank" rel="noopener noreferrer">TRANSPARÊNCIA</a>
@@ -29,7 +43,7 @@
   <header class="cabecalho">
     <div class="container cabecalho__inner">
       <a href="#inicio" class="marca">
-        <img src="logo-op-mcz.svg?v=2026-10-16i" alt="OP MCZ, Orçamento Popular de Maceió" class="marca__op" width="235" height="60">
+        <img src="logo-op-mcz.svg?v=2026-10-20i" alt="OP MCZ, Orçamento Popular de Maceió" class="marca__op" width="235" height="60">
       </a>
     </div>
   </header>
@@ -37,8 +51,11 @@
   <!-- Menu (faixa laranja, como no Participa Maceió) -->
   <nav class="barra-menu" aria-label="Navegação principal">
     <div class="container barra-menu__inner">
-      <a href="#cem">Em um salário mínimo</a>
-      <a href="#monte">Monte o seu</a>
+      <a href="#cem">Para onde vai</a>
+      <a href="#temas">Para quem</a>
+      <a href="#receitas">De onde vem</a>
+      <a href="#camara">Câmara</a>
+      <a href="#mitos">Mitos e verdades</a>
       <a href="#caminho">O caminho</a>
       <a href="#quiz">Quiz</a>
       <a href="#dicionario">Dicionário</a>
@@ -52,12 +69,12 @@
       <div class="container hero__inner">
         <div class="hero__texto">
           <span class="pilula">PROPOSTA DE ORÇAMENTO PARA 2027</span>
-          <h1>O orçamento de Maceió, explicado em um salário mínimo.</h1>
-          <p class="hero__lead">A Prefeitura prevê <strong>R$&nbsp;6,16 bilhões</strong> para 2027. Para ficar fácil de imaginar, vamos dividir todo o orçamento como se fosse um salário mínimo de <span class="js-salario">R$&nbsp;1.621</span>.</p>
+          <h1>Orçamento público não precisa ser difícil.</h1>
+          <p class="hero__lead">A Prefeitura prevê <strong>R$&nbsp;6,16 bilhões</strong> para 2027. Veja quanto vai para pessoal, custeio, investimentos, dívida e reservas, e o que cada parte paga.</p>
           <!-- Só no celular: uma prévia que já convida a tocar -->
-          <a href="#cem" class="previa" aria-label="Ver para onde vai cada parte do salário">
-            <span class="previa__topo"><span class="previa__rotulo">O orçamento em um salário</span><strong class="previa__valor js-salario">R$&nbsp;1.621</strong></span>
-            <span class="previa__barra" aria-hidden="true"><i style="flex:1266;background:#173E75"></i><i style="flex:270;background:#F39D0F"></i><i style="flex:30;background:#036BAC"></i><i style="flex:55;background:#9FB3C6"></i></span>
+          <a href="#cem" class="previa" aria-label="Ver para onde vai cada parte das despesas">
+            <span class="previa__topo"><span class="previa__rotulo">Despesas de 2027</span><strong class="previa__valor">R$&nbsp;6,16&nbsp;bi</strong></span>
+            <span class="previa__barra" aria-hidden="true"><i style="flex:39;background:#173E75"></i><i style="flex:36;background:#0E78BD"></i><i style="flex:17;background:#F39D0F"></i><i style="flex:5;background:#FCC326"></i><i style="flex:3;background:#9FB3C6"></i></span>
             <span class="previa__acao">Ver para onde vai cada parte <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
           <div class="botoes">
@@ -88,24 +105,19 @@
           <div class="cartao__numero">R$&nbsp;6,16 bilhões</div>
           <div class="cartao__texto">O que a Prefeitura espera receber e planeja gastar no ano.</div>
         </div>
-        <div class="cartao">
-          <div class="cartao__rotulo">Em relação a 2026</div>
-          <div class="cartao__numero">+9,30%</div>
-          <div class="cartao__texto">Comparando as previsões dos dois anos, sem descontar a inflação.</div>
-        </div>
       </div>
     </section>
 
-    <!-- Em um salário mínimo (o valor fica em script.js, SALARIO_MINIMO) -->
+    <!-- Para onde vai o dinheiro: as despesas por tipo (dados em script.js, PARTES) -->
     <section id="cem" class="container secao">
-      <div class="sobretitulo">EM UM SALÁRIO MÍNIMO</div>
-      <h2>Para onde vai cada parte do salário?</h2>
-      <p class="intro">Toque em cada parte para entender o que ela paga. Os valores são proporcionais à proposta de 2027.</p>
+      <div class="sobretitulo">PARA ONDE VAI O DINHEIRO</div>
+      <h2>As despesas de 2027, parte por parte</h2>
+      <p class="intro">Toque em cada parte para ver quanto ela custa e o que ela paga.</p>
 
       <div class="nota">
         <div class="nota__topo">
-          <span class="nota__valor"><span class="js-salario">R$&nbsp;1.621</span></span>
-          <span class="nota__legenda">Salário mínimo <span class="js-salario-ano">2026</span> · orçamento de Maceió 2027</span>
+          <span class="nota__valor">R$&nbsp;6,16 bilhões</span>
+          <span class="nota__legenda">Despesas previstas · Maceió 2027</span>
         </div>
         <div class="nota__barra" id="nota-barra"></div>
         <div class="nota__botoes" id="nota-botoes"></div>
@@ -114,62 +126,360 @@
       <div class="detalhe" id="nota-detalhe" aria-live="polite"></div>
 
       <div class="areas">
-        <h3 class="areas__titulo">Outra forma de ver o mesmo salário: por área</h3>
-        <p class="areas__intro">Aqui o mesmo dinheiro aparece dividido pelas áreas em que é usado. As cinco maiores ficam com mais de quatro de cada cinco reais.</p>
+        <h3 class="areas__titulo">As mesmas despesas, por área</h3>
+        <p class="areas__intro">Aqui o mesmo dinheiro aparece dividido pelas áreas em que é usado. Saúde, administração, educação, urbanismo e previdência somam R$&nbsp;5,02 bilhões.</p>
+        <details class="areas__mais" id="areas-mais">
+          <summary class="areas__abrir"><span class="areas__abrir-txt">Ver as despesas por área</span><span class="areas__seta" aria-hidden="true">+</span></summary>
         <ul class="areas__lista">
           <li class="area" data-valor="1352441009">
             <div class="area__topo"><span class="area__nome">Saúde</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 100.0%"></span></div>
-            <p class="area__desc"><strong>R$&nbsp;1,35 bilhão</strong> · Atendimento em postos e unidades de saúde e programas de saúde para a população.</p>
+            <p class="area__desc">Atendimento em postos e unidades de saúde e programas de saúde para a população.</p>
           </li>
           <li class="area" data-valor="1110165103">
             <div class="area__topo"><span class="area__nome">Administração</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 81.8%"></span></div>
-            <p class="area__desc"><strong>R$&nbsp;1,11 bilhão</strong> · Funcionamento da gestão da Prefeitura: secretarias, sistemas, tecnologia e serviços administrativos.</p>
+            <p class="area__desc">Funcionamento da gestão da Prefeitura: secretarias, sistemas, tecnologia e serviços administrativos.</p>
           </li>
           <li class="area" data-valor="1089077378">
             <div class="area__topo"><span class="area__nome">Educação</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 81.8%"></span></div>
-            <p class="area__desc"><strong>R$&nbsp;1,09 bilhão</strong> · Escolas e creches da rede municipal.</p>
+            <p class="area__desc">Escolas e creches da rede municipal.</p>
           </li>
           <li class="area" data-valor="853679060">
             <div class="area__topo"><span class="area__nome">Urbanismo</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 63.6%"></span></div>
-            <p class="area__desc"><strong>R$&nbsp;853,7 milhões</strong> · Obras e serviços da cidade, como ruas, praças e infraestrutura urbana.</p>
+            <p class="area__desc">Obras e serviços da cidade, como ruas, praças e infraestrutura urbana.</p>
           </li>
           <li class="area" data-valor="615062198">
             <div class="area__topo"><span class="area__nome">Previdência</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 45.5%"></span></div>
-            <p class="area__desc"><strong>R$&nbsp;615,1 milhões</strong> · Aposentadorias e pensões dos servidores municipais.</p>
+            <p class="area__desc">Aposentadorias e pensões dos servidores municipais.</p>
           </li>
           <li class="area area--outras" data-valor="1141347520">
             <div class="area__topo"><span class="area__nome">Outras áreas</span><span class="area__valor">R$&nbsp;—</span></div>
             <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 81.8%"></span></div>
-            <p class="area__desc"><strong>R$&nbsp;1,14 bilhão</strong> · Encargos especiais, como o pagamento da dívida (R$&nbsp;408 mi), saneamento (R$&nbsp;200,1 mi), reservas (R$&nbsp;173,2 mi), Câmara (R$&nbsp;146,4 mi), transporte (R$&nbsp;93,1 mi), assistência social (R$&nbsp;43,4 mi) e mais 10 áreas menores.</p>
+            <p class="area__desc">Encargos especiais (R$&nbsp;408 mi, que incluem o pagamento da dívida), saneamento (R$&nbsp;200,1 mi), reservas (R$&nbsp;173,2 mi), Câmara (R$&nbsp;146,4 mi), transporte (R$&nbsp;93,1 mi), assistência social (R$&nbsp;43,4 mi) e mais 10 áreas menores.</p>
           </li>
         </ul>
         <p class="areas__fonte"><span class="selo selo--ok">Dado conferido</span> Fonte: PLOA 2027, Anexo 07 (funções de governo). Valores arredondados.</p>
+        </details>
       </div>
     </section>
 
-    <!-- Monte o seu -->
-    <section id="monte" class="faixa faixa--marinho">
+    <!-- Orçamentos temáticos: demonstrativos exigidos pelo art. 29 da Lei nº 7.777/2026 (LDO 2027) -->
+    <section id="temas" class="faixa faixa--ceu">
       <div class="container secao">
-        <div class="sobretitulo sobretitulo--claro">SUA VEZ</div>
-        <h2>Monte o seu orçamento</h2>
-        <p class="intro">Se você decidisse, como dividiria os <span class="js-salario">R$&nbsp;1.621</span>? Distribua tudo e compare com a proposta da Prefeitura.</p>
-        <div class="monte">
-          <div class="monte__lista" id="monte-lista"></div>
-          <aside class="monte__painel">
-            <div class="monte__rotulo">Ainda para distribuir</div>
-            <div class="monte__restante" id="monte-restante">R$&nbsp;0</div>
-            <div class="monte__barra" id="monte-barra" aria-hidden="true"></div>
-            <button type="button" class="btn btn--laranja btn--comparar" id="monte-comparar">Comparar com a proposta</button>
-            <button type="button" class="btn btn--contorno" id="monte-recomecar">Recomeçar</button>
-            <p class="monte__msg" id="monte-msg" hidden></p>
-          </aside>
+        <div class="sobretitulo">PARA QUEM É O DINHEIRO</div>
+        <h2>Orçamento para quem mais precisa</h2>
+        <p class="intro">A Prefeitura também mostra quanto do orçamento chega a públicos que precisam de mais cuidado. Escolha um público para ver para onde vai o dinheiro.</p>
+        <div class="temas__chips" role="tablist" aria-label="Escolha um público"><button type="button" class="temas__chip" role="tab" id="chip-oca" aria-controls="tema-oca" aria-selected="true"><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="12" r="5"/><circle cx="33" cy="17" r="4"/><path d="M9 40V28a8 8 0 0 1 16 0v12"/><path d="M27 40v-9a6 6 0 0 1 12 0v9"/></svg><span>Crianças e adolescentes</span></button><button type="button" class="temas__chip" role="tab" id="chip-idoso" aria-controls="tema-idoso" aria-selected="false"><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="22" cy="9" r="5"/><path d="M22 16c-5 0-7 4-7 9v6l3 3v8"/><path d="M22 16c4 0 6 3 7 7l2 6"/><path d="M24 34l3 8"/><path d="M33 26v16"/><path d="M31 26h4"/></svg><span>Pessoas idosas</span></button><button type="button" class="temas__chip" role="tab" id="chip-rua" aria-controls="tema-rua" aria-selected="false"><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22L24 8l18 14"/><path d="M11 19v21h26V19"/><path d="M20 40v-9h8v9"/><path d="M24 25v-1"/></svg><span>Pessoas em situação de rua</span></button></div>
+        <div class="temas">
+        <article class="tema" id="tema-oca" role="tabpanel" aria-labelledby="chip-oca" style="--cor-tema:#F39D0F">
+          <div class="tema__cabeca"><span class="tema__icone"><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="12" r="5"/><circle cx="33" cy="17" r="4"/><path d="M9 40V28a8 8 0 0 1 16 0v12"/><path d="M27 40v-9a6 6 0 0 1 12 0v9"/></svg></span><h3 class="tema__titulo">Crianças e adolescentes</h3></div>
+          <div class="tema__total">R$&nbsp;437,0 milhões</div>
+          <p class="tema__desc">Creches, escolas, transporte e merenda, saúde da mulher e da criança, conselhos tutelares e proteção contra a violência e o trabalho infantil.</p>
+          <div class="tema__divisao" aria-hidden="true"><span style="width:92.7%;background:#F39D0F"></span></div>
+          <div class="tema__legenda">
+            <span><i style="background:#F39D0F"></i><strong>R$&nbsp;405,1&nbsp;mi</strong> só para esse público</span>
+            <span><i style="background:#C9D6E3"></i><strong>R$&nbsp;31,9&nbsp;mi</strong> em serviços para toda a população</span>
+          </div>
+          <h4 class="tema__sub">Para onde vai</h4>
+          <ul class="tema__lista"><li><span class="tema__acao">Funcionamento das creches e pré-escolas</span><span class="tema__valor">R$&nbsp;126,9&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:100.0%;background:#F39D0F"></i></span></li><li><span class="tema__acao">Transporte escolar</span><span class="tema__valor">R$&nbsp;116,7&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:91.9%;background:#F39D0F"></i></span></li><li><span class="tema__acao">Construção de creches e escolas</span><span class="tema__valor">R$&nbsp;48,7&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:38.4%;background:#F39D0F"></i></span></li></ul>
+          <details class="tema__mais">
+            <summary><span>Ver mais 5 ações</span><span class="tema__seta" aria-hidden="true">+</span></summary>
+            <ul class="tema__lista"><li><span class="tema__acao">Manutenção das escolas</span><span class="tema__valor">R$&nbsp;41,4&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:32.6%;background:#F39D0F"></i></span></li><li><span class="tema__acao">Alimentação escolar</span><span class="tema__valor">R$&nbsp;30,0&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:23.6%;background:#F39D0F"></i></span></li><li><span class="tema__acao">Saúde da mulher e da criança</span><span class="tema__valor">R$&nbsp;13,8&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:10.9%;background:#F39D0F"></i></span></li><li><span class="tema__acao">Conselhos tutelares</span><span class="tema__valor">R$&nbsp;2,8&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:2.2%;background:#F39D0F"></i></span></li><li><span class="tema__acao">Acolhimento de crianças e adolescentes</span><span class="tema__valor">R$&nbsp;2,5&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:2.0%;background:#F39D0F"></i></span></li></ul>
+          </details>
+          <p class="tema__oficial">Nos documentos: Demonstrativo do Orçamento da Criança e do Adolescente (OCA)</p>
+        </article>
+        <article class="tema" id="tema-idoso" role="tabpanel" aria-labelledby="chip-idoso" style="--cor-tema:#0E78BD">
+          <div class="tema__cabeca"><span class="tema__icone"><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="22" cy="9" r="5"/><path d="M22 16c-5 0-7 4-7 9v6l3 3v8"/><path d="M22 16c4 0 6 3 7 7l2 6"/><path d="M24 34l3 8"/><path d="M33 26v16"/><path d="M31 26h4"/></svg></span><h3 class="tema__titulo">Pessoas idosas</h3></div>
+          <div class="tema__total">R$&nbsp;18,5 milhões</div>
+          <p class="tema__desc">Saúde, acolhimento em instituições, convivência, benefícios assistenciais, educação de jovens, adultos e idosos e defesa de direitos.</p>
+          <div class="tema__divisao" aria-hidden="true"><span style="width:16.4%;background:#0E78BD"></span></div>
+          <div class="tema__legenda">
+            <span><i style="background:#0E78BD"></i><strong>R$&nbsp;3,0&nbsp;mi</strong> só para esse público</span>
+            <span><i style="background:#C9D6E3"></i><strong>R$&nbsp;15,5&nbsp;mi</strong> em serviços para toda a população</span>
+          </div>
+          <h4 class="tema__sub">Para onde vai</h4>
+          <ul class="tema__lista"><li><span class="tema__acao">Rede de urgência e emergência</span><span class="tema__valor">R$&nbsp;7,2&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:100.0%;background:#0E78BD"></i></span></li><li><span class="tema__acao">Acolhimento institucional para idosos</span><span class="tema__valor">R$&nbsp;2,3&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:32.0%;background:#0E78BD"></i></span></li><li><span class="tema__acao">Atenção especializada</span><span class="tema__valor">R$&nbsp;2,0&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:27.8%;background:#0E78BD"></i></span></li></ul>
+          <details class="tema__mais">
+            <summary><span>Ver mais 5 ações</span><span class="tema__seta" aria-hidden="true">+</span></summary>
+            <ul class="tema__lista"><li><span class="tema__acao">Remédios do SUS</span><span class="tema__valor">R$&nbsp;1,8&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:25.0%;background:#0E78BD"></i></span></li><li><span class="tema__acao">Benefícios assistenciais</span><span class="tema__valor">R$&nbsp;1,7&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:23.8%;background:#0E78BD"></i></span></li><li><span class="tema__acao">Atenção primária à saúde</span><span class="tema__valor">R$&nbsp;1,2&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:16.7%;background:#0E78BD"></i></span></li><li><span class="tema__acao">Defesa dos direitos da pessoa idosa</span><span class="tema__valor">R$&nbsp;408,2&nbsp;mil</span><span class="tema__trilho" aria-hidden="true"><i style="width:5.7%;background:#0E78BD"></i></span></li><li><span class="tema__acao">Educação de jovens, adultos e idosos (EJAI)</span><span class="tema__valor">R$&nbsp;300&nbsp;mil</span><span class="tema__trilho" aria-hidden="true"><i style="width:4.2%;background:#0E78BD"></i></span></li></ul>
+          </details>
+          <p class="tema__oficial">Nos documentos: Demonstrativo do Orçamento do Idoso</p>
+        </article>
+        <article class="tema" id="tema-rua" role="tabpanel" aria-labelledby="chip-rua" style="--cor-tema:#FCC326">
+          <div class="tema__cabeca"><span class="tema__icone"><svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22L24 8l18 14"/><path d="M11 19v21h26V19"/><path d="M20 40v-9h8v9"/><path d="M24 25v-1"/></svg></span><h3 class="tema__titulo">Pessoas em situação de rua</h3></div>
+          <div class="tema__total">R$&nbsp;12,0 milhões</div>
+          <p class="tema__desc">Acolhimento, Centro POP, abordagem social nas ruas, benefícios assistenciais, saúde e defesa de direitos.</p>
+          <div class="tema__divisao" aria-hidden="true"><span style="width:78.4%;background:#FCC326"></span></div>
+          <div class="tema__legenda">
+            <span><i style="background:#FCC326"></i><strong>R$&nbsp;9,4&nbsp;mi</strong> só para esse público</span>
+            <span><i style="background:#C9D6E3"></i><strong>R$&nbsp;2,6&nbsp;mi</strong> em serviços para toda a população</span>
+          </div>
+          <h4 class="tema__sub">Para onde vai</h4>
+          <ul class="tema__lista"><li><span class="tema__acao">Acolhimento institucional</span><span class="tema__valor">R$&nbsp;6,5&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:100.0%;background:#FCC326"></i></span></li><li><span class="tema__acao">Centro POP (centro de referência)</span><span class="tema__valor">R$&nbsp;2,5&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:38.4%;background:#FCC326"></i></span></li><li><span class="tema__acao">Benefícios assistenciais</span><span class="tema__valor">R$&nbsp;1,7&nbsp;mi</span><span class="tema__trilho" aria-hidden="true"><i style="width:26.5%;background:#FCC326"></i></span></li></ul>
+          <details class="tema__mais">
+            <summary><span>Ver mais 4 ações</span><span class="tema__seta" aria-hidden="true">+</span></summary>
+            <ul class="tema__lista"><li><span class="tema__acao">Abordagem social</span><span class="tema__valor">R$&nbsp;420&nbsp;mil</span><span class="tema__trilho" aria-hidden="true"><i style="width:6.5%;background:#FCC326"></i></span></li><li><span class="tema__acao">Remédios do SUS</span><span class="tema__valor">R$&nbsp;400&nbsp;mil</span><span class="tema__trilho" aria-hidden="true"><i style="width:6.2%;background:#FCC326"></i></span></li><li><span class="tema__acao">Direitos humanos de grupos vulneráveis</span><span class="tema__valor">R$&nbsp;239,9&nbsp;mil</span><span class="tema__trilho" aria-hidden="true"><i style="width:3.7%;background:#FCC326"></i></span></li><li><span class="tema__acao">Atenção primária à saúde</span><span class="tema__valor">R$&nbsp;200&nbsp;mil</span><span class="tema__trilho" aria-hidden="true"><i style="width:3.1%;background:#FCC326"></i></span></li></ul>
+          </details>
+          <p class="tema__oficial">Nos documentos: Demonstrativo do Orçamento da Pessoa em Situação de Rua</p>
+        </article>
+        </div>
+        <p class="temas__nota"><strong>Como ler:</strong> parte do valor vem de serviços que atendem toda a população, como postos de saúde e benefícios assistenciais, e é contada para mais de um público. Por isso os três valores não devem ser somados.</p>
+        <p class="areas__fonte"><span class="selo selo--ok">Dado conferido</span> Fonte: PLOA 2027, Demonstrativos do Orçamento da Criança e do Adolescente, do Idoso e da Pessoa em Situação de Rua.</p>
+      </div>
+    </section>
+
+    <!-- De onde vem o dinheiro: receitas previstas (PLOA 2027, Evolução da Receita) -->
+    <section id="receitas" class="container secao">
+      <div class="sobretitulo">DE ONDE VEM O DINHEIRO</div>
+      <h2>Quem paga a conta da cidade</h2>
+      <p class="intro">Os mesmos R$&nbsp;6,16 bilhões, agora pelo lado de quem entra. Quase metade vem de repasses da União e do Estado.</p>
+      <div class="areas areas--receitas">
+        <ul class="areas__lista">
+          <li class="area" data-valor="2912559747">
+            <div class="area__topo"><span class="area__nome">Repasses da União e do Estado</span><span class="area__valor">R$&nbsp;—</span></div>
+            <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 100.0%; background: #173E75"></span></div>
+            <p class="area__desc">Parte dos impostos arrecadados pelo país e pelo estado que volta para a cidade, como o Fundo de Participação dos Municípios, a cota do ICMS e o dinheiro do SUS e do Fundeb.</p>
+            <p class="receita__oficial">Nos documentos: transferências correntes e de capital</p>
+          </li>
+          <li class="area" data-valor="1612676699">
+            <div class="area__topo"><span class="area__nome">Impostos e taxas da cidade</span><span class="area__valor">R$&nbsp;—</span></div>
+            <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 55.4%; background: #0E78BD"></span></div>
+            <p class="area__desc">Cobrados pela própria Prefeitura, como IPTU, ISS e ITBI, além de taxas municipais.</p>
+            <p class="receita__oficial">Nos documentos: impostos, taxas e contribuições de melhoria</p>
+          </li>
+          <li class="area" data-valor="748480849">
+            <div class="area__topo"><span class="area__nome">Contribuições</span><span class="area__valor">R$&nbsp;—</span></div>
+            <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 25.7%; background: #9FB3C6"></span></div>
+            <p class="area__desc">Principalmente as contribuições para a previdência dos servidores, pagas pelos próprios servidores e pela Prefeitura, e a contribuição para a iluminação pública.</p>
+            <p class="receita__oficial">Nos documentos: contribuições e receitas intraorçamentárias</p>
+          </li>
+          <li class="area" data-valor="736673504">
+            <div class="area__topo"><span class="area__nome">Empréstimos</span><span class="area__valor">R$&nbsp;—</span></div>
+            <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 25.3%; background: #F39D0F"></span></div>
+            <p class="area__desc">Dinheiro que a cidade prevê pegar emprestado, em geral para obras. Depois ele precisa ser devolvido com juros.</p>
+            <p class="receita__oficial">Nos documentos: operações de crédito</p>
+          </li>
+          <li class="area" data-valor="151381469">
+            <div class="area__topo"><span class="area__nome">Outras receitas</span><span class="area__valor">R$&nbsp;—</span></div>
+            <div class="area__trilho" aria-hidden="true"><span class="area__barra" style="width: 5.2%; background: #FCC326"></span></div>
+            <p class="area__desc">Rendimentos de dinheiro aplicado, aluguel de bens da cidade, multas e cobrança de impostos atrasados.</p>
+            <p class="receita__oficial">Nos documentos: receita patrimonial e outras receitas correntes</p>
+          </li>
+        </ul>
+        <p class="areas__fonte"><span class="selo selo--ok">Dado conferido</span> Fonte: PLOA 2027, Evolução da Receita. Valores previstos e arredondados.</p>
+      </div>
+    </section>
+
+    <!-- Mitos e verdades: para editar, troque o texto dos cartões abaixo -->
+    <section id="mitos" class="faixa faixa--marinho">
+      <svg class="onda onda--mitos-topo" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C240 0 480 40 720 20 C960 0 1200 40 1440 20 L1440 40 L0 40 Z" fill="#173E75"/></svg>
+      <div class="container secao">
+        <div class="sobretitulo sobretitulo--claro">MITOS E VERDADES</div>
+        <h2>O que é verdade sobre o orçamento?</h2>
+        <p class="intro">Leia cada frase, chute se é mito ou verdade e toque no cartão para descobrir.</p>
+        <p class="mitos__contador" id="mitos-contador" aria-live="polite">Você descobriu 0 de 9</p>
+        <ul class="mitos" id="mitos-lista">
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 1 de 9: A Prefeitura pode gastar quanto quiser com salários. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">1/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“A Prefeitura pode gastar quanto quiser com salários.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--mito"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> MITO</span>
+                  <span class="mito__exp">A Lei de Responsabilidade Fiscal limita a despesa com pessoal do município a 60% da Receita Corrente Líquida: 54% para a Prefeitura e 6% para a Câmara.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 2 de 9: Parte do dinheiro já chega com destino certo. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">2/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“Parte do dinheiro já chega com destino certo.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--verdade"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg> VERDADE</span>
+                  <span class="mito__exp">A Constituição obriga o município a aplicar pelo menos 25% dos impostos em educação e 15% em saúde. Esse dinheiro não pode ir para outra área.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 3 de 9: Pegar empréstimo é sempre sinal de contas ruins. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">3/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“Pegar empréstimo é sempre sinal de contas ruins.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--mito"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> MITO</span>
+                  <span class="mito__exp">Empréstimos podem pagar obras que a cidade não conseguiria fazer de uma vez, desde que respeitem os limites da lei. Para 2027, a previsão é receber R$&nbsp;736,7 milhões em operações de crédito.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 4 de 9: Investimento é um dinheiro extra, além do orçamento. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">4/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“Investimento é um dinheiro extra, além do orçamento.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--mito"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> MITO</span>
+                  <span class="mito__exp">Os investimentos fazem parte do total. Dos R$&nbsp;6,16 bilhões previstos para 2027, R$&nbsp;1,03 bilhão vai para obras e equipamentos.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 5 de 9: A maior parte do dinheiro de Maceió vem dos impostos pagos na cidade. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">5/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“A maior parte do dinheiro de Maceió vem dos impostos pagos na cidade.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--mito"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> MITO</span>
+                  <span class="mito__exp">A maior fonte são as transferências da União e do Estado: R$&nbsp;2,76 bilhões. Impostos, taxas e contribuições cobrados pela cidade somam R$&nbsp;1,61 bilhão.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 6 de 9: Aposentadorias de servidores também são despesa da Prefeitura. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">6/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“Aposentadorias de servidores também são despesa da Prefeitura.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--verdade"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg> VERDADE</span>
+                  <span class="mito__exp">A cidade paga aposentadorias e pensões dos servidores municipais pela previdência própria. Em 2027, a área de previdência soma R$&nbsp;615,1 milhões.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 7 de 9: A reserva de contingência é um dinheiro que vai sobrar. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">7/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“A reserva de contingência é um dinheiro que vai sobrar.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--mito"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> MITO</span>
+                  <span class="mito__exp">Não é sobra. Dos R$&nbsp;113,2 milhões, R$&nbsp;67,0 milhões estão guardados para as emendas dos vereadores e R$&nbsp;46,2 milhões ficam para riscos e despesas que ninguém consegue prever.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 8 de 9: Qualquer pessoa pode acompanhar como o dinheiro é gasto. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">8/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“Qualquer pessoa pode acompanhar como o dinheiro é gasto.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--verdade"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg> VERDADE</span>
+                  <span class="mito__exp">O Portal da Transparência mostra, durante o ano, quanto já foi empenhado, liquidado e pago em cada área.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="mito" aria-pressed="false" aria-label="Afirmação 9 de 9: A emenda parlamentar é um dinheiro que o vereador recebe. Toque para descobrir se é mito ou verdade.">
+              <span class="mito__giro">
+                <span class="mito__face mito__frente">
+                  <span class="mito__num">9/9</span>
+                  <span class="mito__pergunta">MITO OU VERDADE?</span>
+                  <span class="mito__frase">“A emenda parlamentar é um dinheiro que o vereador recebe.”</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para descobrir</span>
+                </span>
+                <span class="mito__face mito__verso" aria-hidden="true">
+                  <span class="mito__selo mito__selo--mito"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> MITO</span>
+                  <span class="mito__exp">O vereador só indica onde aplicar, como numa obra ou num serviço de saúde. Quem executa e paga é a Prefeitura. Em 2027, cada um dos 27 vereadores pode indicar cerca de R$&nbsp;2,5 milhões, e metade vai para a saúde.</span>
+                  <span class="mito__dica"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg> Toque para voltar</span>
+                </span>
+              </span>
+            </button>
+          </li>
+        </ul>
+        <div class="mitos__acoes"><button type="button" class="btn btn--laranja js-compartilhar" data-texto="Você sabia? Descubra o que é mito e o que é verdade sobre o orçamento de Maceió.">Compartilhar com alguém</button></div>
+        <p class="mitos__arraste" aria-hidden="true">Arraste para o lado para ver mais <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+      </div>
+      <svg class="onda onda--mitos-base" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C240 40 480 0 720 20 C960 40 1200 0 1440 20 L1440 40 L0 40 Z" fill="#FAFCFE"/></svg>
+    </section>
+
+    <!-- A Câmara e as emendas (plenário). Valores em script.js: RESERVA_PARLAMENTAR, RESERVA_CONTINGENCIA, VEREADORES -->
+    <section id="camara" class="container secao">
+      <div class="sobretitulo">A CÂMARA E AS EMENDAS</div>
+      <h2>O dinheiro das emendas</h2>
+      <p class="intro">Os 27 vereadores podem indicar onde aplicar uma parte do orçamento. Cada um tem a mesma fatia, e metade dela vai obrigatoriamente para a saúde.</p>
+
+      <div class="plenario">
+        <h3 class="plenario__titulo"><span id="emendas-total">R$&nbsp;67,0 milhões</span> em emendas</h3>
+        <svg class="plenario__desenho" viewBox="0 0 320 196" aria-label="Plenário com 27 cadeiras de vereador. Toque em uma cadeira.">
+          <g class="cadeira" tabindex="0" role="button" data-n="1" aria-label="Cadeira 1 de 27"><circle cx="98.0" cy="176.0" r="15.0" class="cadeira__aro"/><path d="M98.0 164.5 A11.5 11.5 0 0 0 98.0 187.5 Z" fill="#0E78BD"/><path d="M98.0 164.5 A11.5 11.5 0 0 1 98.0 187.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="2" aria-label="Cadeira 2 de 27"><circle cx="109.8" cy="139.6" r="15.0" class="cadeira__aro"/><path d="M109.8 128.1 A11.5 11.5 0 0 0 109.8 151.1 Z" fill="#0E78BD"/><path d="M109.8 128.1 A11.5 11.5 0 0 1 109.8 151.1 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="3" aria-label="Cadeira 3 de 27"><circle cx="140.8" cy="117.0" r="15.0" class="cadeira__aro"/><path d="M140.8 105.5 A11.5 11.5 0 0 0 140.8 128.5 Z" fill="#0E78BD"/><path d="M140.8 105.5 A11.5 11.5 0 0 1 140.8 128.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="4" aria-label="Cadeira 4 de 27"><circle cx="179.2" cy="117.0" r="15.0" class="cadeira__aro"/><path d="M179.2 105.5 A11.5 11.5 0 0 0 179.2 128.5 Z" fill="#0E78BD"/><path d="M179.2 105.5 A11.5 11.5 0 0 1 179.2 128.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="5" aria-label="Cadeira 5 de 27"><circle cx="210.2" cy="139.6" r="15.0" class="cadeira__aro"/><path d="M210.2 128.1 A11.5 11.5 0 0 0 210.2 151.1 Z" fill="#0E78BD"/><path d="M210.2 128.1 A11.5 11.5 0 0 1 210.2 151.1 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="6" aria-label="Cadeira 6 de 27"><circle cx="222.0" cy="176.0" r="15.0" class="cadeira__aro"/><path d="M222.0 164.5 A11.5 11.5 0 0 0 222.0 187.5 Z" fill="#0E78BD"/><path d="M222.0 164.5 A11.5 11.5 0 0 1 222.0 187.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="7" aria-label="Cadeira 7 de 27"><circle cx="58.0" cy="176.0" r="15.0" class="cadeira__aro"/><path d="M58.0 164.5 A11.5 11.5 0 0 0 58.0 187.5 Z" fill="#0E78BD"/><path d="M58.0 164.5 A11.5 11.5 0 0 1 58.0 187.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="8" aria-label="Cadeira 8 de 27"><circle cx="65.8" cy="137.0" r="15.0" class="cadeira__aro"/><path d="M65.8 125.5 A11.5 11.5 0 0 0 65.8 148.5 Z" fill="#0E78BD"/><path d="M65.8 125.5 A11.5 11.5 0 0 1 65.8 148.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="9" aria-label="Cadeira 9 de 27"><circle cx="87.9" cy="103.9" r="15.0" class="cadeira__aro"/><path d="M87.9 92.4 A11.5 11.5 0 0 0 87.9 115.4 Z" fill="#0E78BD"/><path d="M87.9 92.4 A11.5 11.5 0 0 1 87.9 115.4 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="10" aria-label="Cadeira 10 de 27"><circle cx="121.0" cy="81.8" r="15.0" class="cadeira__aro"/><path d="M121.0 70.3 A11.5 11.5 0 0 0 121.0 93.3 Z" fill="#0E78BD"/><path d="M121.0 70.3 A11.5 11.5 0 0 1 121.0 93.3 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="11" aria-label="Cadeira 11 de 27"><circle cx="160.0" cy="74.0" r="15.0" class="cadeira__aro"/><path d="M160.0 62.5 A11.5 11.5 0 0 0 160.0 85.5 Z" fill="#0E78BD"/><path d="M160.0 62.5 A11.5 11.5 0 0 1 160.0 85.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="12" aria-label="Cadeira 12 de 27"><circle cx="199.0" cy="81.8" r="15.0" class="cadeira__aro"/><path d="M199.0 70.3 A11.5 11.5 0 0 0 199.0 93.3 Z" fill="#0E78BD"/><path d="M199.0 70.3 A11.5 11.5 0 0 1 199.0 93.3 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="13" aria-label="Cadeira 13 de 27"><circle cx="232.1" cy="103.9" r="15.0" class="cadeira__aro"/><path d="M232.1 92.4 A11.5 11.5 0 0 0 232.1 115.4 Z" fill="#0E78BD"/><path d="M232.1 92.4 A11.5 11.5 0 0 1 232.1 115.4 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="14" aria-label="Cadeira 14 de 27"><circle cx="254.2" cy="137.0" r="15.0" class="cadeira__aro"/><path d="M254.2 125.5 A11.5 11.5 0 0 0 254.2 148.5 Z" fill="#0E78BD"/><path d="M254.2 125.5 A11.5 11.5 0 0 1 254.2 148.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="15" aria-label="Cadeira 15 de 27"><circle cx="262.0" cy="176.0" r="15.0" class="cadeira__aro"/><path d="M262.0 164.5 A11.5 11.5 0 0 0 262.0 187.5 Z" fill="#0E78BD"/><path d="M262.0 164.5 A11.5 11.5 0 0 1 262.0 187.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="16" aria-label="Cadeira 16 de 27"><circle cx="18.0" cy="176.0" r="15.0" class="cadeira__aro"/><path d="M18.0 164.5 A11.5 11.5 0 0 0 18.0 187.5 Z" fill="#0E78BD"/><path d="M18.0 164.5 A11.5 11.5 0 0 1 18.0 187.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="17" aria-label="Cadeira 17 de 27"><circle cx="23.8" cy="136.0" r="15.0" class="cadeira__aro"/><path d="M23.8 124.5 A11.5 11.5 0 0 0 23.8 147.5 Z" fill="#0E78BD"/><path d="M23.8 124.5 A11.5 11.5 0 0 1 23.8 147.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="18" aria-label="Cadeira 18 de 27"><circle cx="40.5" cy="99.2" r="15.0" class="cadeira__aro"/><path d="M40.5 87.7 A11.5 11.5 0 0 0 40.5 110.7 Z" fill="#0E78BD"/><path d="M40.5 87.7 A11.5 11.5 0 0 1 40.5 110.7 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="19" aria-label="Cadeira 19 de 27"><circle cx="67.0" cy="68.7" r="15.0" class="cadeira__aro"/><path d="M67.0 57.2 A11.5 11.5 0 0 0 67.0 80.2 Z" fill="#0E78BD"/><path d="M67.0 57.2 A11.5 11.5 0 0 1 67.0 80.2 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="20" aria-label="Cadeira 20 de 27"><circle cx="101.0" cy="46.8" r="15.0" class="cadeira__aro"/><path d="M101.0 35.3 A11.5 11.5 0 0 0 101.0 58.3 Z" fill="#0E78BD"/><path d="M101.0 35.3 A11.5 11.5 0 0 1 101.0 58.3 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="21" aria-label="Cadeira 21 de 27"><circle cx="139.8" cy="35.4" r="15.0" class="cadeira__aro"/><path d="M139.8 23.9 A11.5 11.5 0 0 0 139.8 46.9 Z" fill="#0E78BD"/><path d="M139.8 23.9 A11.5 11.5 0 0 1 139.8 46.9 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="22" aria-label="Cadeira 22 de 27"><circle cx="180.2" cy="35.4" r="15.0" class="cadeira__aro"/><path d="M180.2 23.9 A11.5 11.5 0 0 0 180.2 46.9 Z" fill="#0E78BD"/><path d="M180.2 23.9 A11.5 11.5 0 0 1 180.2 46.9 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="23" aria-label="Cadeira 23 de 27"><circle cx="219.0" cy="46.8" r="15.0" class="cadeira__aro"/><path d="M219.0 35.3 A11.5 11.5 0 0 0 219.0 58.3 Z" fill="#0E78BD"/><path d="M219.0 35.3 A11.5 11.5 0 0 1 219.0 58.3 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="24" aria-label="Cadeira 24 de 27"><circle cx="253.0" cy="68.7" r="15.0" class="cadeira__aro"/><path d="M253.0 57.2 A11.5 11.5 0 0 0 253.0 80.2 Z" fill="#0E78BD"/><path d="M253.0 57.2 A11.5 11.5 0 0 1 253.0 80.2 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="25" aria-label="Cadeira 25 de 27"><circle cx="279.5" cy="99.2" r="15.0" class="cadeira__aro"/><path d="M279.5 87.7 A11.5 11.5 0 0 0 279.5 110.7 Z" fill="#0E78BD"/><path d="M279.5 87.7 A11.5 11.5 0 0 1 279.5 110.7 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="26" aria-label="Cadeira 26 de 27"><circle cx="296.2" cy="136.0" r="15.0" class="cadeira__aro"/><path d="M296.2 124.5 A11.5 11.5 0 0 0 296.2 147.5 Z" fill="#0E78BD"/><path d="M296.2 124.5 A11.5 11.5 0 0 1 296.2 147.5 Z" fill="#F39D0F"/></g><g class="cadeira" tabindex="0" role="button" data-n="27" aria-label="Cadeira 27 de 27"><circle cx="302.0" cy="176.0" r="15.0" class="cadeira__aro"/><path d="M302.0 164.5 A11.5 11.5 0 0 0 302.0 187.5 Z" fill="#0E78BD"/><path d="M302.0 164.5 A11.5 11.5 0 0 1 302.0 187.5 Z" fill="#F39D0F"/></g>
+          <rect x="124" y="168" width="72" height="20" rx="6" fill="#173E75"/>
+        </svg>
+        <div class="plenario__legenda" aria-hidden="true">
+          <span><i style="background:#0E78BD"></i>Saúde</span>
+          <span><i style="background:#F39D0F"></i>Outras áreas</span>
+        </div>
+        <p class="plenario__frase" id="plenario-frase">Cada cadeira indica <strong>R$&nbsp;2,5 milhões</strong>: metade para a saúde, metade para outras áreas.</p>
+        <div class="plenario__resumo" id="plenario-resumo" aria-live="polite">Toque em uma cadeira.</div>
+        <p class="plenario__nota">O dinheiro não vai para o vereador: ele indica onde aplicar e quem executa é a Prefeitura, que é obrigada a cumprir, salvo impedimento técnico. O valor equivale a 1,45% da Receita Corrente Líquida.</p>
+        <p class="plenario__origem" id="plenario-origem">Esse valor sai da reserva de contingência, que guarda R$&nbsp;113,2 milhões.</p>
+      </div>
+
+      <h3 class="camara__subtitulo">E a Câmara em si?</h3>
+      <div class="camara">
+        <div class="camara__cartao">
+          <div class="camara__rotulo">Orçamento da Câmara em 2027</div>
+          <div class="camara__numero">R$&nbsp;146,4 milhões</div>
+          <p>Paga salários, funcionamento e estrutura da Câmara Municipal. Esse dinheiro não se mistura com as emendas.</p>
+        </div>
+        <div class="camara__cartao camara__cartao--destaque">
+          <div class="camara__rotulo">Duodécimo: o repasse de cada mês</div>
+          <div class="camara__numero">R$&nbsp;12,2 milhões por mês</div>
+          <ol class="calendario" aria-label="Repasse de R$ 12,2 milhões em cada mês do ano"><li><span>jan</span><strong>12,2</strong></li><li><span>fev</span><strong>12,2</strong></li><li><span>mar</span><strong>12,2</strong></li><li><span>abr</span><strong>12,2</strong></li><li><span>mai</span><strong>12,2</strong></li><li><span>jun</span><strong>12,2</strong></li><li><span>jul</span><strong>12,2</strong></li><li><span>ago</span><strong>12,2</strong></li><li><span>set</span><strong>12,2</strong></li><li><span>out</span><strong>12,2</strong></li><li><span>nov</span><strong>12,2</strong></li><li><span>dez</span><strong>12,2</strong></li></ol>
+          <p>Todo mês a Prefeitura repassa à Câmara um doze avos do orçamento dela.</p>
         </div>
       </div>
+      <p class="areas__fonte"><span class="selo selo--ok">Dado conferido</span> Fonte: PLOA 2027 (Demonstrativo da Despesa por Órgão, Quadro de Detalhamento da Despesa do Órgão 99000 e art. 17 do Projeto de Lei) e Lei Orgânica do Município, art. 74-B.</p>
     </section>
 
     <!-- O caminho -->
@@ -177,15 +487,15 @@
       <div class="container secao">
         <div class="sobretitulo sobretitulo--escuro">O CAMINHO DO ORÇAMENTO</div>
         <h2>Do plano até a obra pronta</h2>
-        <ol class="etapas" id="etapas">
+        <!-- Etapa atual do orçamento: troque o número em data-atual (1 a 4) quando o processo avançar -->
+        <ol class="etapas" id="etapas" data-atual="1">
           <li class="etapa">
-            <span class="selo-aqui">VOCÊ ESTÁ AQUI · OUT/2026</span>
             <h3>1. A Prefeitura propõe</h3>
             <p>Calcula quanto espera receber e envia a proposta (PLOA) aos vereadores.</p>
           </li>
           <li class="etapa">
             <h3>2. A Câmara analisa</h3>
-            <p>Os vereadores discutem, podem fazer mudanças e votam a proposta.</p>
+            <p>Os vereadores discutem, podem fazer mudanças e votam a proposta. É aqui que eles indicam onde vão as emendas. <a href="#camara">Veja o dinheiro das emendas</a>.</p>
           </li>
           <li class="etapa">
             <h3>3. Vira lei</h3>
@@ -247,9 +557,9 @@
 
   <!-- Menu fixo na parte de baixo (só no celular) -->
   <nav class="nav-celular" aria-label="Navegação rápida">
-    <a href="#cem" data-secao="cem"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg><span>Salário</span></a>
-    <a href="#monte" data-secao="monte"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span>Monte</span></a>
-    <a href="#caminho" data-secao="caminho"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h6a3 3 0 0 1 0 6H10a3 3 0 0 0 0 6h6"/></svg><span>Caminho</span></a>
+    <a href="#cem" data-secao="cem"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg><span>Despesas</span></a>
+    <a href="#mitos" data-secao="mitos"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="13" height="17" rx="2"/><path d="M8 21h11a1 1 0 0 0 1-1V7"/><path d="M8.5 9.5l4 4M12.5 9.5l-4 4"/></svg><span>Mitos</span></a>
+    <a href="#temas" data-secao="temas"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20v-3a5 5 0 0 1 10 0v3"/><path d="M14 20v-2.5a3.5 3.5 0 0 1 7 0V20"/></svg><span>Para quem</span></a>
     <a href="#quiz" data-secao="quiz"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14"/><path d="M12 17.2v.1"/></svg><span>Quiz</span></a>
     <a href="#dicionario" data-secao="dicionario"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19"/></svg><span>Dicionário</span></a>
   </nav>
@@ -258,11 +568,11 @@
     <svg class="onda onda--rodape" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C240 0 480 40 720 20 C960 0 1200 40 1440 20 L1440 40 L0 40 Z" fill="#173E75"/></svg>
     <div class="container rodape__inner">
       <div class="rodape__titulo">Orçamento Popular · Maceió 2027</div>
-      <p>Protótipo demonstrativo, não publicado nem integrado ao Participa Maceió. Fonte: Exposição de Motivos e Projeto de Lei Orçamentária 2027 (outubro de 2026) e demonstrativos oficiais. Valores arredondados; a divisão “em um salário mínimo” (<span class="js-salario">R$&nbsp;1.621</span>, valor de <span class="js-salario-ano">2026</span>) é proporcional à proposta.</p>
+      <p>Fonte: Projeto de Lei Orçamentária 2027, Exposição de Motivos e demonstrativos oficiais da Prefeitura de Maceió. Valores arredondados.</p>
     </div>
   </footer>
 
-  <script src="glossario.js?v=2026-10-16i"></script>
-  <script src="script.js?v=2026-10-16i"></script>
+  <script src="glossario.js?v=2026-10-20i"></script>
+  <script src="script.js?v=2026-10-20i"></script>
 </body>
 </html>

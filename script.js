@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var COR = { marinho: '#173E75', laranja: '#F39D0F', azul: '#036BAC', cinza: '#9FB3C6', branco: '#FFFFFF' };
+  var COR = { marinho: '#173E75', laranja: '#F39D0F', azul: '#036BAC', azulClaro: '#0E78BD', amarelo: '#FCC326', cinza: '#9FB3C6', branco: '#FFFFFF' };
 
   /* Cria um elemento com classe, texto e atributos */
   function el(tag, opts, filhos) {
@@ -33,56 +33,57 @@
   }
 
   /* ========================================================
-     SALÁRIO MÍNIMO: a régua do site
-     Todo o orçamento é mostrado como se coubesse em um salário mínimo.
-     Quando o salário mínimo mudar, troque só estas duas linhas.
+     1. PARA ONDE VAI O DINHEIRO — as despesas por tipo
+     Valores do PLOA 2027 (Anexo 02, natureza da despesa), em reais.
      ======================================================== */
-  var SALARIO_MINIMO = 1621;      // R$ 1.621 (Decreto de dezembro de 2025, vigente em 2026)
-  var SALARIO_ANO = '2026';
   var ORCAMENTO_TOTAL = 6161772268; // PLOA 2027, total geral
 
-  function moeda(n) { return 'R$\u00a0' + Math.round(n).toLocaleString('pt-BR'); }
-  /* Divide o salário em partes proporcionais aos valores, em reais inteiros que somam exatamente o salário */
-  function noSalario(valores) {
+  /* R$ 2,43 bilhões · R$ 306,9 milhões (curto: R$ 2,43 bi · R$ 306,9 mi) */
+  function formatar(v, curto) {
+    if (v >= 1e9) {
+      var b = (v / 1e9).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return 'R$\u00a0' + b + (curto ? '\u00a0bi' : (v < 2e9 ? ' bilhão' : ' bilhões'));
+    }
+    var m = (v / 1e6).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    return 'R$\u00a0' + m + (curto ? '\u00a0mi' : (v < 2e6 ? ' milhão' : ' milhões'));
+  }
+  /* Percentuais inteiros que somam exatamente 100 */
+  function percentuais(valores) {
     var total = valores.reduce(function (a, v) { return a + v; }, 0);
-    var brutos = valores.map(function (v) { return v / total * SALARIO_MINIMO; });
+    var brutos = valores.map(function (v) { return v / total * 100; });
     var inteiros = brutos.map(Math.floor);
-    var falta = SALARIO_MINIMO - inteiros.reduce(function (a, v) { return a + v; }, 0);
+    var falta = 100 - inteiros.reduce(function (a, v) { return a + v; }, 0);
     brutos.map(function (b, i) { return { i: i, r: b - inteiros[i] }; })
       .sort(function (a, b) { return b.r - a.r; })
       .slice(0, falta).forEach(function (x) { inteiros[x.i]++; });
     return inteiros;
   }
-  function fracao(valor) { return Math.round(valor / ORCAMENTO_TOTAL * SALARIO_MINIMO); }
 
-  /* ========================================================
-     1. EM UM SALÁRIO MÍNIMO
-     ======================================================== */
   var PARTES = [
-    { id: 'manter', valor: 4810996874, peso: 78, cor: COR.marinho, corTexto: COR.branco, curto: '', reais: '',
-      titulo: 'Manter a cidade funcionando', total: 'R$\u00a04,81 bilhões', oficial: 'despesas correntes',
-      desc: 'Paga o dia a dia: pessoal, funcionamento de escolas, postos e outras unidades, contratos e serviços. Também inclui despesas como juros da dívida.',
-      conferido: true },
-    { id: 'investir', valor: 1028706954, peso: 17, cor: COR.laranja, corTexto: COR.marinho, curto: '', reais: '',
-      titulo: 'Investir na cidade', total: 'R$\u00a01,03 bilhão', oficial: 'investimentos',
-      desc: 'Obras, compra de equipamentos e melhorias que ampliam ou modernizam os serviços públicos. É parte do total, não um dinheiro extra.',
-      conferido: true },
-    { id: 'reserva', valor: 113153926, peso: 2, cor: COR.azul, corTexto: COR.branco, curto: '', reais: '',
-      titulo: 'Guardar para imprevistos', total: 'R$\u00a0113,15 milhões', oficial: 'reserva de contingência',
-      desc: 'Uma parte fica guardada para riscos e necessidades que ninguém consegue prever, conforme as regras legais. Pode nem ser gasta.',
-      conferido: true },
-    { id: 'outras', valor: 208914514, peso: 3, cor: COR.cinza, corTexto: COR.marinho, curto: '', reais: '',
-      titulo: 'Pagar a dívida e a previdência', total: 'R$\u00a0208,91 milhões', oficial: 'amortização da dívida e reserva do RPPS',
-      desc: 'Paga as parcelas de empréstimos já feitos pela cidade (R$\u00a0148,9 milhões) e guarda uma reserva para a previdência dos servidores municipais (R$\u00a060 milhões).',
-      conferido: true }
+    { id: 'pessoal', valor: 2427341277, cor: COR.marinho,
+      titulo: 'Pessoal', oficial: 'pessoal e encargos sociais',
+      desc: 'Salários e encargos de quem trabalha para a cidade: professores, profissionais de saúde, guardas, agentes e outros servidores. Também entram aqui as aposentadorias e pensões dos servidores.' },
+    { id: 'custeio', valor: 2225661121, cor: COR.azulClaro,
+      titulo: 'Custeio dos serviços', oficial: 'outras despesas correntes',
+      desc: 'O que faz os serviços funcionarem no dia a dia: contratos de limpeza e coleta de lixo, merenda, remédios, energia, aluguel, manutenção e programas sociais.' },
+    { id: 'investir', valor: 1028706954, cor: COR.laranja,
+      titulo: 'Investimentos', oficial: 'investimentos',
+      desc: 'Obras, compra de equipamentos e melhorias que ampliam ou modernizam os serviços públicos. É parte do total, não um dinheiro extra.' },
+    { id: 'divida', valor: 306893990, cor: COR.amarelo,
+      titulo: 'Dívida', oficial: 'juros e encargos da dívida + amortização da dívida',
+      desc: 'A cidade paga empréstimos feitos no passado. Os juros (R$\u00a0158,0 milhões) são o custo de ter pegado o dinheiro emprestado. A amortização (R$\u00a0148,9 milhões) é a parte que diminui o que a cidade ainda deve.' },
+    { id: 'reservas', valor: 173168926, cor: COR.cinza,
+      titulo: 'Reservas', oficial: 'reserva de contingência (inclui a reserva parlamentar) e reserva do RPPS',
+      desc: 'Dinheiro guardado para usar depois: R$\u00a067,0 milhões para as emendas que os vereadores vão indicar, R$\u00a046,2 milhões para imprevistos e R$\u00a060,0 milhões para a previdência dos servidores.' }
   ];
-  /* Reais de cada parte dentro do salário mínimo (somam exatamente o salário) */
-  noSalario(PARTES.map(function (p) { return p.valor; })).forEach(function (r, i) { PARTES[i].reais = moeda(r); PARTES[i].peso = r; });
+  percentuais(PARTES.map(function (p) { return p.valor; })).forEach(function (pc, i) {
+    PARTES[i].pct = pc; PARTES[i].total = formatar(PARTES[i].valor); PARTES[i].curto = formatar(PARTES[i].valor, true);
+  });
 
   var notaBarra = document.getElementById('nota-barra');
   var notaBotoes = document.getElementById('nota-botoes');
   var notaDetalhe = document.getElementById('nota-detalhe');
-  var parteAtual = 'manter';
+  var parteAtual = 'pessoal';
 
   function desenharNota() {
     limpar(notaBarra);
@@ -92,8 +93,8 @@
       // Fatia da barra: sem número dentro, clicável (os botões abaixo seguem como opção pelo teclado)
       notaBarra.appendChild(el('button', {
         cls: 'nota__fatia' + (ativa ? ' ativa' : ''),
-        attrs: { type: 'button', tabindex: '-1', 'aria-label': p.reais + ' · ' + p.titulo, title: p.reais + ' · ' + p.titulo },
-        style: { flex: p.peso + ' 1 0px', background: p.cor },
+        attrs: { type: 'button', tabindex: '-1', 'aria-label': p.titulo + ' · ' + p.total, title: p.titulo + ' · ' + p.total },
+        style: { flex: p.valor + ' 1 0px', background: p.cor },
         on: { click: function () { parteAtual = p.id; desenharNota(); revelar(notaDetalhe); } }
       }));
       notaBotoes.appendChild(el('button', {
@@ -102,7 +103,7 @@
       }, [
         el('span', { cls: 'parte__cor', style: { background: p.cor } }),
         el('span', { cls: 'parte__textos' }, [
-          el('span', { cls: 'parte__valor', text: p.reais }),
+          el('span', { cls: 'parte__valor', text: p.curto }),
           el('span', { cls: 'parte__nome', text: p.titulo })
         ])
       ]));
@@ -111,9 +112,9 @@
     var p = PARTES.filter(function (x) { return x.id === parteAtual; })[0];
     limpar(notaDetalhe);
     notaDetalhe.appendChild(el('div', { cls: 'detalhe__esq' }, [
-      el('div', { cls: 'detalhe__rotulo', text: p.reais + ' DE ' + moeda(SALARIO_MINIMO) }),
+      el('div', { cls: 'detalhe__rotulo', text: p.pct + '% DAS DESPESAS' }),
       el('div', { cls: 'detalhe__total', text: p.total }),
-      el('span', { cls: 'selo ' + (p.conferido ? 'selo--ok' : 'selo--espera'), text: p.conferido ? 'Dado conferido' : 'Em conferência' })
+      el('span', { cls: 'selo selo--ok', text: 'Dado conferido' })
     ]));
     var oficial = el('div', { cls: 'detalhe__oficial', text: 'Nome nos documentos oficiais: ' });
     oficial.appendChild(el('strong', { text: p.oficial }));
@@ -125,122 +126,105 @@
   }
 
   /* ========================================================
-     2. LUPA — Câmara e Emendas Cidadãs em escala
+     PARA QUEM É O DINHEIRO — no celular, um público por vez
      ======================================================== */
-  var NIVEIS = [
-    { escala: 'Escala: o orçamento inteiro = R$\u00a0100',
-      fatias: [{ w: '2.4%', cor: COR.laranja, txt: '' }],
-      texto: 'A Câmara Municipal fica com cerca de R$\u00a02,38 de cada R$\u00a0100 (a faixa laranja). As Emendas Cidadãs nem aparecem nesta escala.' },
-    { escala: 'Escala ampliada: R$\u00a010 do orçamento',
-      fatias: [{ w: '23.8%', cor: COR.laranja, txt: 'Câmara · R$\u00a02,38' }, { w: '0.5%', cor: COR.azul, txt: '' }],
-      texto: 'Ampliando 10 vezes, a Câmara fica bem visível. As Emendas Cidadãs surgem como um risquinho azul ao lado.' },
-    { escala: 'Escala ampliada: R$\u00a01 do orçamento',
-      fatias: [{ w: '5%', cor: COR.azul, txt: '' }],
-      texto: 'Ampliando até uma moeda de R$\u00a01, as Emendas Cidadãs finalmente aparecem (a faixa azul): são cerca de 5 centavos de cada R$\u00a0100. Ou seja, R$\u00a03,13 milhões dentro de R$\u00a06,16 bilhões.' }
-  ];
-  var nivel = 0;
-  var lupaMais = document.getElementById('lupa-mais');
-  var lupaMenos = document.getElementById('lupa-menos');
-
-  function desenharLupa() {
-    if (!lupaMais || !lupaMenos) return;
-    var n = NIVEIS[nivel];
-    document.getElementById('lupa-escala').textContent = n.escala;
-    document.getElementById('lupa-nivel').textContent = 'Nível ' + (nivel + 1) + ' de 3';
-    document.getElementById('lupa-texto').textContent = n.texto;
-    var barra = document.getElementById('lupa-barra');
-    limpar(barra);
-    n.fatias.forEach(function (f) {
-      barra.appendChild(el('div', { cls: 'lupa__fatia', text: f.txt, style: { width: f.w, background: f.cor } }));
+  (function () {
+    var lista = document.querySelector('.temas'); if (!lista) return;
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.temas__chip'));
+    var temas = Array.prototype.slice.call(lista.querySelectorAll('.tema'));
+    lista.classList.add('com-abas');
+    function escolher(i) {
+      chips.forEach(function (c, k) { c.setAttribute('aria-selected', k === i ? 'true' : 'false'); c.tabIndex = k === i ? 0 : -1; });
+      temas.forEach(function (t, k) { t.classList.toggle('tema--ativo', k === i); });
+    }
+    chips.forEach(function (c, i) {
+      c.addEventListener('click', function () { escolher(i); });
+      c.addEventListener('keydown', function (ev) {
+        if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft') { var n = (i + (ev.key === 'ArrowRight' ? 1 : chips.length - 1)) % chips.length; escolher(n); chips[n].focus(); }
+      });
     });
-    lupaMenos.disabled = nivel === 0;
-    lupaMais.disabled = nivel === NIVEIS.length - 1;
-  }
-  // A seção da lupa pode estar fora da página (seção "Câmara e emendas" removida por enquanto)
-  if (lupaMais && lupaMenos) {
-    lupaMais.addEventListener('click', function () { if (nivel < NIVEIS.length - 1) { nivel++; desenharLupa(); } });
-    lupaMenos.addEventListener('click', function () { if (nivel > 0) { nivel--; desenharLupa(); } });
-  }
+    escolher(0);
+  })();
 
   /* ========================================================
-     3. MONTE O SEU ORÇAMENTO
+     CÂMARA E EMENDAS — plenário com 27 cadeiras
+     Reserva parlamentar: parte da reserva de contingência guardada para as emendas
+     individuais dos vereadores (Quadro de Detalhamento da Despesa, Órgão 99000,
+     ação 242109). Equivale a 1,45% da Receita Corrente Líquida prevista.
      ======================================================== */
-  var CATEGORIAS = [
-    { id: 'manter', nome: 'Manter os serviços', cor: COR.marinho },
-    { id: 'investir', nome: 'Investir na cidade', cor: COR.laranja },
-    { id: 'reserva', nome: 'Guardar para imprevistos', cor: COR.azul },
-    { id: 'outras', nome: 'Dívida e previdência', cor: COR.cinza }
-  ];
-  // O valor da proposta vem das mesmas partes da seção anterior
-  CATEGORIAS.forEach(function (c) { c.real = PARTES.filter(function (p) { return p.id === c.id; })[0].peso; });
-  var PASSO = 100;
-  var meu = {};
-  var comparado = false;
-
-  function zerarMeu() { CATEGORIAS.forEach(function (c) { meu[c.id] = 0; }); comparado = false; }
-  function soma() { return CATEGORIAS.reduce(function (a, c) { return a + meu[c.id]; }, 0); }
-
-  function desenharMonte() {
-    var lista = document.getElementById('monte-lista');
-    var barra = document.getElementById('monte-barra');
-    var restante = SALARIO_MINIMO - soma();
-    limpar(lista);
-    limpar(barra);
-
-    CATEGORIAS.forEach(function (c) {
-      var nome = el('div', { cls: 'linha__nome', text: c.nome });
-      if (comparado) nome.appendChild(el('div', { cls: 'linha__real', text: 'Na proposta: ' + moeda(c.real) }));
-      lista.appendChild(el('div', { cls: 'linha' }, [
-        el('span', { cls: 'linha__cor', style: { background: c.cor } }),
-        nome,
-        el('div', { cls: 'linha__controles' }, [
-          el('button', { cls: 'passo passo--menos', text: '−',
-            attrs: { type: 'button', 'aria-label': 'Tirar ' + moeda(PASSO) + ' de ' + c.nome },
-            on: { click: function () { if (meu[c.id] > 0) { meu[c.id] = Math.max(0, meu[c.id] - PASSO); comparado = false; desenharMonte(); } } } }),
-          el('div', { cls: 'linha__valor', text: moeda(meu[c.id]) }),
-          el('button', { cls: 'passo passo--mais', text: '+',
-            attrs: { type: 'button', 'aria-label': 'Colocar ' + moeda(PASSO) + ' em ' + c.nome },
-            on: { click: function () { var add = Math.min(PASSO, SALARIO_MINIMO - soma()); if (add > 0) { meu[c.id] += add; comparado = false; desenharMonte(); } } } })
-        ])
-      ]));
-      barra.appendChild(el('div', { style: { width: (meu[c.id] / SALARIO_MINIMO * 100) + '%', background: c.cor } }));
-    });
-
-    document.getElementById('monte-restante').textContent = moeda(restante);
-    var btnComparar = document.getElementById('monte-comparar');
-    btnComparar.disabled = restante !== 0;
-    btnComparar.classList.toggle('pronto', restante === 0 && !comparado);
-
-    var msg = document.getElementById('monte-msg');
-    if (comparado) {
-      var realInv = CATEGORIAS[1].real, dif = meu.investir - realInv;
-      var inicio = Math.abs(dif) < PASSO / 2 ? 'Você chegou bem perto da proposta nos investimentos! '
-        : dif > 0 ? 'Você colocaria mais em investimentos do que a proposta. '
-        : 'Você colocaria menos em investimentos do que a proposta. ';
-      msg.textContent = inicio + 'Na proposta, a maior parte (' + moeda(CATEGORIAS[0].real) + ') mantém os serviços que já existem, porque escolas, postos e coleta precisam funcionar todo dia.';
-      msg.hidden = false;
-    } else {
-      msg.hidden = true;
+  var RESERVA_PARLAMENTAR = 66968646;   // R$ — SIGEF/MCZ, relatório de 14/10/2026
+  var RESERVA_CONTINGENCIA = 113153926; // R$ — reserva de contingência total (inclui a parlamentar)
+  var VEREADORES = 27;                  // legislatura 2025–2028
+  (function () {
+    var desenho = document.querySelector('.plenario__desenho'); if (!desenho) return;
+    var cada = RESERVA_PARLAMENTAR / VEREADORES;
+    var $ = function (id) { return document.getElementById(id); };
+    $('emendas-total').textContent = formatar(RESERVA_PARLAMENTAR);
+    $('plenario-frase').innerHTML = 'Cada cadeira indica <strong>' + formatar(cada) + '</strong>: metade para a saúde, metade para outras áreas.';
+    $('plenario-origem').textContent = 'Esse valor sai da reserva de contingência, que guarda ' + formatar(RESERVA_CONTINGENCIA) + '.';
+    var cadeiras = Array.prototype.slice.call(desenho.querySelectorAll('.cadeira'));
+    function escolher(c) {
+      cadeiras.forEach(function (x) { x.classList.toggle('cadeira--ativa', x === c); x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      $('plenario-resumo').innerHTML = '<strong>Cadeira ' + c.getAttribute('data-n') + ' de ' + VEREADORES + '</strong> indica ' + formatar(cada) +
+        ': <span class="cor-saude">' + formatar(cada / 2) + ' para a saúde</span> e <span class="cor-outras">' + formatar(cada / 2) + ' para outras áreas</span>.';
     }
+    cadeiras.forEach(function (c) {
+      c.addEventListener('click', function () { escolher(c); });
+      c.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); escolher(c); } });
+    });
+  })();
+
+  /* ========================================================
+     3. MITOS E VERDADES — cartões que viram ao tocar
+     ======================================================== */
+  var cartoesMito = Array.prototype.slice.call(document.querySelectorAll('.mito'));
+  var contadorMitos = document.getElementById('mitos-contador');
+  var descobertos = {};
+  cartoesMito.forEach(function (c, i) {
+    var frente = c.querySelector('.mito__frente'), verso = c.querySelector('.mito__verso');
+    var rotuloFrente = c.getAttribute('aria-label');
+    c.addEventListener('click', function () {
+      var virado = !c.classList.contains('virado');
+      c.classList.toggle('virado', virado);
+      c.setAttribute('aria-pressed', virado ? 'true' : 'false');
+      frente.setAttribute('aria-hidden', virado ? 'true' : 'false');
+      verso.setAttribute('aria-hidden', virado ? 'false' : 'true');
+      c.setAttribute('aria-label', virado ? verso.textContent.replace(/\s+/g, ' ').trim() : rotuloFrente);
+      if (virado) descobertos[i] = true;
+      var n = Object.keys(descobertos).length;
+      contadorMitos.textContent = n === cartoesMito.length
+        ? 'Você descobriu todos os ' + n + '. Agora você já sabe mais que muita gente!'
+        : 'Você descobriu ' + n + ' de ' + cartoesMito.length;
+    });
+  });
+
+  /* ========================================================
+     COMPARTILHAR — usa o menu do celular; sem ele, abre o WhatsApp
+     ======================================================== */
+  function compartilhar(texto) {
+    var url = location.href.split('#')[0];
+    if (navigator.share) { navigator.share({ title: 'OP MCZ · Orçamento Popular de Maceió', text: texto, url: url }).catch(function () {}); return; }
+    window.open('https://wa.me/?text=' + encodeURIComponent(texto + ' ' + url), '_blank', 'noopener');
   }
-  document.getElementById('monte-comparar').addEventListener('click', function () { comparado = true; desenharMonte(); });
-  document.getElementById('monte-recomecar').addEventListener('click', function () { zerarMeu(); desenharMonte(); });
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('.js-compartilhar');
+    if (b) compartilhar(b.getAttribute('data-texto') || 'Entenda o orçamento de Maceió de um jeito simples.');
+  });
 
   /* ========================================================
      4. QUIZ — chute e descubra
      ======================================================== */
   var PERGUNTAS = [
-    { p: 'Se o orçamento coubesse em um salário mínimo (' + moeda(SALARIO_MINIMO) + '), quanto iria para obras e investimentos?',
-      op: [moeda(fracao(ORCAMENTO_TOTAL) * 0.05), PARTES[1].reais, moeda(SALARIO_MINIMO / 2)], certa: 1,
-      exp: 'Seriam cerca de ' + PARTES[1].reais + ', o que no orçamento inteiro dá R$\u00a01,03 bilhão. A maior parte, ' + PARTES[0].reais + ', mantém os serviços funcionando.' },
+    { p: 'Qual é a maior despesa da Prefeitura de Maceió?', op: ['Obras e investimentos', 'Pessoal: salários e encargos dos servidores', 'Pagamento da dívida'], certa: 1,
+      exp: 'A despesa com pessoal é a maior: ' + PARTES[0].total + ' em 2027. Escolas e postos de saúde dependem, antes de tudo, das pessoas que trabalham neles.' },
     { p: 'Os R$\u00a06,16 bilhões já estão no caixa da Prefeitura?', op: ['Sim, já estão guardados', 'Não, é uma previsão para 2027'], certa: 1,
       exp: 'É uma previsão para o ano todo. O dinheiro entra aos poucos, e parte dele já tem uso definido por lei.' },
     { p: 'Se uma obra aparece no orçamento, ela já está garantida?', op: ['Sim, está garantida', 'Não, ainda depende de outras etapas'], certa: 1,
       exp: 'Estar no orçamento é o primeiro passo. A obra ainda depende de o dinheiro entrar, de projeto e de contratação.' },
     { p: 'Quem aprova o orçamento da cidade?', op: ['O prefeito, sozinho', 'Os vereadores, na Câmara', 'O Governo do Estado'], certa: 1,
       exp: 'A Prefeitura propõe, os vereadores discutem, podem mudar e votam. Depois o prefeito sanciona e o orçamento vira lei.' },
-    { p: 'O dinheiro da Câmara é o mesmo das emendas dos vereadores?', op: ['Sim, é o mesmo dinheiro', 'Não, são coisas diferentes'], certa: 1,
-      exp: 'O orçamento da Câmara mantém o funcionamento dela. As emendas indicam onde aplicar recursos, e quem executa é a Prefeitura.' }
+    { p: 'Pagar juros é o mesmo que diminuir a dívida?', op: ['Sim, é a mesma coisa', 'Não, só a amortização diminui a dívida'], certa: 1,
+      exp: 'Juros são o custo do empréstimo. O que diminui o que a cidade deve é a amortização. Em 2027 estão previstos R$\u00a0158,0 milhões de juros e R$\u00a0148,9 milhões de amortização.' }
   ];
   var quiz = { atual: 0, escolhida: null, pontos: 0, fim: false };
   var caixa = document.getElementById('quiz-caixa');
@@ -268,8 +252,10 @@
         el('h3', { text: 'Navegador do Orçamento 2027' }),
         el('p', { text: msg }),
         el('div', { cls: 'botoes', style: { justifyContent: 'center', marginTop: '6px' } }, [
-          el('a', { cls: 'btn btn--laranja', text: 'Ir para o Participa Maceió ↗',
+          el('a', { cls: 'btn btn--marinho', text: 'Ir para o Participa Maceió ↗',
             attrs: { href: 'https://www.participa.maceio.al.gov.br/participa-maceio/principal.faces', target: '_blank', rel: 'noopener noreferrer' } }),
+          el('button', { cls: 'btn btn--laranja js-compartilhar', text: 'Compartilhar meu resultado',
+            attrs: { type: 'button', 'data-texto': 'Acertei ' + quiz.pontos + ' de 5 no quiz sobre o orçamento de Maceió. E você?' } }),
           el('button', { cls: 'btn btn--contorno', text: 'Refazer o quiz', attrs: { type: 'button' },
             on: { click: function () { quiz = { atual: 0, escolhida: null, pontos: 0, fim: false }; desenharQuiz(); } } })
         ])
@@ -331,6 +317,8 @@
   function rotuloCurto(t) { return t.nome.split(' · ')[0]; }
 
   var dicAberto = null;
+  var DIC_INICIAIS = 8;   // quantas palavras aparecem antes de "Ver todas"
+  var dicTodos = false;
   function normalizar(t) { return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 
   function desenharTermos() {
@@ -340,10 +328,12 @@
     var q = busca ? normalizar(busca.value.trim()) : '';
     limpar(lista);
     var achados = 0;
+    var limite = (q || dicTodos) ? Infinity : DIC_INICIAIS;
     TERMOS_DIC.forEach(function (t) {
       var texto = normalizar(t.nome + ' ' + (t.variantes || []).join(' ') + ' ' + t.def);
       if (q && texto.indexOf(q) < 0) return;
       achados++;
+      if (achados > limite) return;
       var aberto = dicAberto === t.id, idPainel = 'dic-' + t.id;
       var cab = el('button', { cls: 'dic__termo', attrs: { type: 'button', 'aria-expanded': aberto ? 'true' : 'false', 'aria-controls': idPainel },
         on: { click: function () { dicAberto = aberto ? null : t.id; pararFala(); desenharTermos();
@@ -357,6 +347,10 @@
       lista.appendChild(el('li', { cls: 'dic__item' + (aberto ? ' dic__item--aberto' : '') }, [cab, painel]));
     });
     var vazio = document.getElementById('dic-vazio'); if (vazio) vazio.hidden = achados > 0;
+    if (achados > limite) {
+      lista.appendChild(el('li', { cls: 'dic__mais' }, [el('button', { cls: 'btn btn--contorno dic__ver-todas', text: 'Ver todas as ' + achados + ' palavras',
+        attrs: { type: 'button' }, on: { click: function () { dicTodos = true; desenharTermos(); } } })]));
+    }
   }
   (function () {
     var busca = document.getElementById('busca-termo');
@@ -366,7 +360,7 @@
   function mostrarNoDicionario(id) {
     if (!GLOSS_POR_ID[id]) return;
     var busca = document.getElementById('busca-termo'); if (busca) busca.value = '';
-    dicAberto = id; desenharTermos();
+    dicAberto = id; dicTodos = true; desenharTermos();
     var item = document.getElementById('dic-' + id);
     if (item) item.parentElement.scrollIntoView({ behavior: semMovimentoGlobal() ? 'auto' : 'smooth', block: 'center' });
   }
@@ -421,6 +415,12 @@
   var listaEtapas = document.getElementById('etapas');
   var etapas = Array.prototype.slice.call(listaEtapas.querySelectorAll('.etapa'));
   var etapaAtual = 0;
+  /* Selo "Você está aqui" na etapa indicada em data-atual (no HTML) */
+  (function () {
+    var n = parseInt(listaEtapas.getAttribute('data-atual'), 10) || 1;
+    var alvo = etapas[Math.min(Math.max(n, 1), etapas.length) - 1];
+    if (alvo) alvo.insertBefore(el('span', { cls: 'selo-aqui', text: 'VOCÊ ESTÁ AQUI' }), alvo.firstChild);
+  })();
   var relogio = null;
   var semMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   listaEtapas.style.setProperty('--tempo-etapa', (TEMPO_ETAPA / 1000) + 's');
@@ -458,7 +458,7 @@
      Marca automaticamente a 1ª vez que cada termo aparece em cada seção.
      Toque (celular), mouse (computador) ou teclado abrem o balão.
      ======================================================== */
-  var NAO_MARCAR = 'a, button, h1, h2, h3, label, script, style, svg, input, textarea, select, .termo-tecnico, .glossario-pop, #dic-lista, .barra-topo, .barra-menu, .cabecalho, .sobretitulo, .pilula, .rodape__titulo, .nota__legenda';
+  var NAO_MARCAR = 'a, button, h1, h2, h3, .linha__nome, label, script, style, svg, input, textarea, select, .termo-tecnico, .glossario-pop, #dic-lista, .barra-topo, .barra-menu, .cabecalho, .sobretitulo, .pilula, .rodape__titulo, .nota__legenda';
   var mapaVariantes = {};
   var listaVariantes = [];
   GLOSS.forEach(function (t) {
@@ -606,7 +606,7 @@
   window.addEventListener('scroll', function () { if (!pop.hidden) posicionar(); }, { passive: true });
   window.addEventListener('resize', function () { if (!pop.hidden) posicionar(); });
 
-  // Textos que mudam com os cliques (nota, lupa, quiz...) também ganham os balões
+  // Textos que mudam com os cliques (despesas, quiz...) também ganham os balões
   var agendado = false;
   var principal = document.querySelector('main') || document.body;
   new MutationObserver(function () {
@@ -631,20 +631,20 @@
   })();
 
   /* ---------- Início ---------- */
-  /* Preenche no HTML as menções ao salário mínimo e os valores por área */
-  Array.prototype.forEach.call(document.querySelectorAll('.js-salario'), function (e) { e.textContent = moeda(SALARIO_MINIMO); });
-  Array.prototype.forEach.call(document.querySelectorAll('.js-salario-ano'), function (e) { e.textContent = SALARIO_ANO; });
-  (function () {
-    var itens = Array.prototype.slice.call(document.querySelectorAll('.area[data-valor]'));
-    var reais = noSalario(itens.map(function (e) { return +e.getAttribute('data-valor'); }));
-    itens.forEach(function (e, i) { var v = e.querySelector('.area__valor'); if (v) v.textContent = moeda(reais[i]); });
-  })();
-  zerarMeu();
+  /* Por área: no computador já abre; no celular fica recolhido para encurtar a página */
+  (function () { var d = document.getElementById('areas-mais'); if (d && !ehCelular()) d.open = true; })();
+  /* Preenche no HTML os valores por área */
+  Array.prototype.forEach.call(document.querySelectorAll('.area[data-valor]'), function (e) {
+    var v = e.querySelector('.area__valor'); if (v) v.textContent = formatar(+e.getAttribute('data-valor'), true);
+  });
   desenharNota();
-  desenharLupa();
-  desenharMonte();
   desenharQuiz();
   desenharTermos();
   marcarTermos(document.querySelector('main'));
   marcarTermos(document.querySelector('footer'));
+
+  /* Instalar como aplicativo e funcionar sem internet (só quando o site está publicado) */
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
 })();

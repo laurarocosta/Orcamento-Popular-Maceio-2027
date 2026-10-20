@@ -236,52 +236,7 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .itens { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
 .itens li { display: flex; gap: 10px; align-items: center; }
 .aviso-azul { margin-top: 16px; background: var(--ceu); border-radius: 18px; padding: 16px 20px; font-weight: 700; color: var(--marinho); }
-
-/* Lupa */
-.lupa { margin-top: 28px; background: var(--branco); border: 2px solid var(--borda); border-radius: 26px; padding: 24px; }
-.lupa__topo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
-.lupa__titulo { display: flex; align-items: center; gap: 12px; }
-.lupa__titulo h3 { font-size: 24px; line-height: 1.1; }
-.lupa__titulo p { font-size: 15px; color: var(--texto-suave); }
-.lupa__botoes { display: flex; gap: 8px; }
-.lupa__info { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 14px; font-weight: 800; color: var(--texto-suave); margin: 18px 0 8px; }
-.lupa__barra { display: flex; height: 70px; border-radius: 14px; overflow: hidden; background: #DCE7F2; }
-.lupa__fatia { min-width: 4px; display: flex; align-items: center; padding: 0 10px; color: var(--marinho); font-weight: 800; font-size: 14px; white-space: nowrap; overflow: hidden; transition: width .4s ease; }
-.lupa__texto { margin-top: 14px; font-size: 18px; }
-
-/* ---------- Monte o seu ---------- */
-.monte { display: flex; flex-wrap: wrap; gap: 24px; }
-.monte__lista { flex: 2 1 420px; display: flex; flex-direction: column; gap: 12px; }
-.linha { background: #0A5E96; border-radius: 18px; padding: 14px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.linha__cor { width: 18px; height: 18px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 0 0 2px #FFFFFF; }
-.linha__nome { flex: 1 1 160px; font-weight: 800; }
-.linha__real { font-size: 14px; font-weight: 700; color: var(--laranja-claro); }
-.linha__controles { display: flex; align-items: center; gap: 8px; }
-.linha__valor { min-width: 82px; text-align: center; font-family: var(--fonte-titulo); font-weight: 800; font-size: 26px; }
-/* Botões de + e −: maiores, com relevo e resposta ao toque */
-.passo {
-  width: 52px; height: 52px; border-radius: 14px; border: 0; font-size: 26px; font-weight: 800; line-height: 1;
-  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
-}
-.passo--menos { background: var(--branco); color: var(--marinho); box-shadow: 0 4px 0 #9FB3C6; }
-.passo--mais { background: var(--laranja); color: var(--marinho); box-shadow: 0 4px 0 #B8730A, 0 0 0 4px rgba(243, 157, 15, .22); }
-.passo:hover { transform: translateY(-2px); }
-.passo--menos:hover { box-shadow: 0 6px 0 #9FB3C6; }
-.passo--mais:hover { background: #F5AC33; box-shadow: 0 6px 0 #B8730A, 0 0 0 6px rgba(243, 157, 15, .3); }
-.passo:active { transform: translateY(3px); }
-.passo--menos:active { box-shadow: 0 1px 0 #9FB3C6; }
-.passo--mais:active { box-shadow: 0 1px 0 #B8730A; }
-.btn--comparar { box-shadow: 0 4px 0 #B8730A; }
-.btn--comparar:not(:disabled):active { transform: translateY(3px); box-shadow: 0 1px 0 #B8730A; }
-/* Quando tudo estiver distribuído, o botão de comparar pulsa para chamar atenção */
-.btn--comparar.pronto { animation: pulsar 1.6s ease-in-out infinite; }
 @keyframes pulsar { 0%, 100% { box-shadow: 0 4px 0 #B8730A, 0 0 0 0 rgba(243, 157, 15, .55); } 50% { box-shadow: 0 4px 0 #B8730A, 0 0 0 10px rgba(243, 157, 15, 0); } }
-.monte__painel { flex: 1 1 280px; align-self: flex-start; background: var(--branco); color: var(--texto); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 12px; }
-.monte__rotulo { font-size: 14px; font-weight: 800; color: var(--texto-suave); }
-.monte__restante { font-family: var(--fonte-titulo); font-weight: 800; font-size: 44px; line-height: 1; color: var(--marinho); }
-.monte__barra { display: flex; height: 20px; gap: 2px; border-radius: 8px; overflow: hidden; background: #E8EEF4; }
-.monte__barra div { transition: width .2s ease; }
-.monte__msg { font-size: 15px; }
 
 /* ---------- Quiz ---------- */
 .progresso { position: relative; height: 56px; margin: 0 10px 14px; }
@@ -361,16 +316,10 @@ button:disabled { cursor: not-allowed; opacity: .45; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
-/* ---------- Fundo ilustrado do "Monte o seu orçamento" ---------- */
-#monte {
-  background-color: #0E78BD; /* azul do Participa Maceió */
-  background-image: url("fundo-monte.svg");
-  background-size: cover;
-  background-position: center;
-}
-@media (max-width: 640px) {
-  #monte { background-size: 280% auto; background-position: 0 0; background-repeat: no-repeat; }
-}
+/* ---------- "Mitos e verdades": azul-marinho da identidade, com ondas como no rodapé ---------- */
+#mitos { background: var(--marinho); }
+.onda--mitos-topo { display: block; height: 32px; background: var(--fundo); }
+.onda--mitos-base { display: block; height: 32px; background: var(--marinho); }
 
 /* ---------- Termos técnicos com explicação (balão) ---------- */
 .termo-tecnico {
@@ -417,7 +366,6 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .faixa--marinho .termo-tecnico:hover, .faixa--marinho .termo-tecnico[aria-expanded="true"],
 .detalhe .termo-tecnico:hover, .detalhe .termo-tecnico[aria-expanded="true"],
 .etapa--ativa .termo-tecnico:hover { background: rgba(255, 255, 255, .2); }
-
 
 /* ==========================================================
    CELULAR (prioridade: quase todo mundo vai acessar por aqui)
@@ -490,27 +438,6 @@ section[id] { scroll-margin-top: 12px; }
   .areas { padding: 18px; border-radius: 20px; }
   .areas__lista { gap: 16px; }
 
-  /* monte o seu: botões grandes e o "ainda para distribuir" sempre à vista */
-  .monte { display: block; }
-  .monte__lista { gap: 10px; }
-  .linha { padding: 12px 14px; gap: 8px 10px; }
-  .linha__nome { flex: 1 1 calc(100% - 30px); }
-  .linha__controles { flex: 1 1 100%; justify-content: space-between; }
-  .linha__valor { flex: 1; font-size: 26px; }
-  .passo { width: 58px; height: 52px; }
-  .monte__painel {
-    position: sticky; bottom: calc(70px + env(safe-area-inset-bottom)); z-index: 5;
-    margin-top: 14px; padding: 14px 16px; gap: 10px; border-radius: 18px;
-    display: grid; grid-template-columns: 1fr auto; align-items: center;
-    box-shadow: 0 -8px 28px rgba(5, 30, 70, .28);
-  }
-  .monte__rotulo { grid-column: 1 / 2; font-size: 13px; }
-  .monte__restante { grid-column: 2 / 3; grid-row: 1 / 2; font-size: 28px; }
-  .monte__barra { grid-column: 1 / -1; height: 14px; }
-  .monte__painel .btn--comparar { grid-column: 1 / -1; min-height: 52px; font-size: 16px; }
-  .monte__painel #monte-recomecar { grid-column: 1 / -1; min-height: 44px; font-size: 15px; border-width: 0; background: transparent; text-decoration: underline; padding: 4px; }
-  .monte__msg { grid-column: 1 / -1; }
-
   /* caminho */
   .etapas { gap: 10px; }
   .etapa { padding: 18px; }
@@ -547,11 +474,14 @@ section[id] { scroll-margin-top: 12px; }
 /* Números-chave no celular: o aviso em cima, os dois números lado a lado */
 @media (max-width: 720px) {
   .secao--compacta { padding-top: 14px; }
-  .grade-cartoes .cartao:not(.cartao--aviso) { flex: 1 1 calc(50% - 5px); padding: 14px; }
+  .grade-cartoes .cartao:not(.cartao--aviso) { flex: 1 1 calc(50% - 5px); padding: 14px 18px; }
   .grade-cartoes .cartao__numero { font-size: 22px; line-height: 1.15; margin: 4px 0; }
   .grade-cartoes .cartao__rotulo { font-size: 12.5px; }
   .grade-cartoes .cartao__texto { font-size: 13.5px; line-height: 1.4; }
 }
+
+/* Valores em bilhões e milhões nos botões das despesas */
+@media (max-width: 720px) { .parte__valor { font-size: 19px; white-space: nowrap; } }
 
 /* Telas bem estreitas: barra de cima numa linha só e topo mais baixo */
 @media (max-width: 400px) {
@@ -593,11 +523,14 @@ section[id] { scroll-margin-top: 12px; }
 /* Números-chave no celular: o aviso em cima, os dois números lado a lado */
 @media (max-width: 720px) {
   .secao--compacta { padding-top: 14px; }
-  .grade-cartoes .cartao:not(.cartao--aviso) { flex: 1 1 calc(50% - 5px); padding: 14px; }
+  .grade-cartoes .cartao:not(.cartao--aviso) { flex: 1 1 calc(50% - 5px); padding: 14px 18px; }
   .grade-cartoes .cartao__numero { font-size: 22px; line-height: 1.15; margin: 4px 0; }
   .grade-cartoes .cartao__rotulo { font-size: 12.5px; }
   .grade-cartoes .cartao__texto { font-size: 13.5px; line-height: 1.4; }
 }
+
+/* Valores em bilhões e milhões nos botões das despesas */
+@media (max-width: 720px) { .parte__valor { font-size: 19px; white-space: nowrap; } }
 
 /* Telas bem estreitas: barra de cima numa linha só e topo mais baixo */
 @media (max-width: 400px) {
@@ -606,3 +539,185 @@ section[id] { scroll-margin-top: 12px; }
   .marca__op { height: 40px; }
 }
 @media (max-width: 720px) and (prefers-reduced-motion: reduce) { .previa { transition: none; } }
+
+/* ==========================================================
+   Mitos e verdades: cartões que viram ao tocar
+   ========================================================== */
+.mitos__contador { display: inline-block; margin: 0 0 18px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); font-weight: 800; font-size: 14px; color: var(--branco); }
+.mitos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.mitos li { display: flex; }
+.mito { all: unset; box-sizing: border-box; display: block; width: 100%; cursor: pointer; perspective: 1200px; -webkit-tap-highlight-color: transparent; border-radius: 22px; }
+.mito:focus-visible { outline: 3px solid var(--amarelo, #FCC326); outline-offset: 3px; }
+.mito__giro { display: grid; height: 100%; min-height: 270px; transition: transform .55s cubic-bezier(.3,.7,.3,1); transform-style: preserve-3d; }
+.mito.virado .mito__giro { transform: rotateY(180deg); }
+.mito__face { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: 22px; background: var(--branco); color: var(--marinho);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 10px 24px rgba(8, 40, 80, .22); }
+.mito__verso { transform: rotateY(180deg); background: #FFF8E1; }
+.mito__num { align-self: flex-end; font-size: 12px; font-weight: 800; color: var(--texto-suave, #5B6F86); }
+.mito__pergunta { font-size: 12px; font-weight: 800; letter-spacing: 1.6px; color: #036BAC; margin-top: -18px; }
+.mito__frase { font-family: var(--fonte-titulo); font-weight: 800; font-size: 20px; line-height: 1.25; flex: 1; }
+.mito__dica { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #036BAC; }
+.mito__selo { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; font-weight: 800; font-size: 15px; letter-spacing: 1px; }
+.mito__selo--mito { background: var(--laranja); color: var(--marinho); }
+.mito__selo--verdade { background: var(--marinho); color: var(--branco); }
+.mito__exp { font-size: 16px; line-height: 1.5; color: var(--texto-2); flex: 1; }
+.mitos__arraste { display: none; }
+@media (max-width: 1000px) { .mitos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  /* No celular: um cartão por vez, arrastando para o lado, com o próximo aparecendo na beirada */
+  .mitos { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 4px 16px 18px; scroll-padding: 0 16px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .mitos::-webkit-scrollbar { display: none; }
+  .mitos li { flex: 0 0 84%; scroll-snap-align: center; }
+  .mito__giro { min-height: 300px; }
+  .mito__frase { font-size: 21px; }
+  .mitos__arraste { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 4px 0 0; font-size: 14px; font-weight: 700; color: #E3EEF8; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mito__giro { transform: none !important; }
+  .mito__verso { transform: none; visibility: hidden; }
+  .mito.virado .mito__verso { visibility: visible; }
+  .mito.virado .mito__frente { visibility: hidden; }
+}
+
+/* ==========================================================
+   Conforto no celular: letras mínimas, toque mais fácil e seções recolhíveis
+   ========================================================== */
+/* Palavras com explicação: área de toque maior, sem mudar o visual do texto */
+.termo-tecnico { padding: 10px 0; margin: -10px 0; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* "Ver as despesas por área" (abre e fecha) */
+.areas__mais > summary { list-style: none; }
+.areas__mais > summary::-webkit-details-marker { display: none; }
+.areas__abrir { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; margin-top: 8px; padding: 10px 18px;
+  border: 2px solid var(--marinho); border-radius: 14px; font-weight: 800; color: var(--marinho); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.areas__seta { font-size: 24px; line-height: 1; }
+.areas__mais[open] > .areas__abrir { margin-bottom: 14px; }
+.areas__mais[open] .areas__seta { transform: rotate(45deg); }
+@media (min-width: 721px) { .areas__mais > .areas__abrir { display: none; } }
+
+/* Dicionário: botão "Ver todas as palavras" */
+.dic__mais { list-style: none; margin-top: 6px; }
+.dic__ver-todas { width: 100%; min-height: 50px; }
+
+@media (max-width: 720px) {
+  .barra-topo { font-size: 12px; }
+  .pilula { font-size: 12px; }
+  .previa__rotulo { font-size: 14px; }
+  .nota__legenda { font-size: 14px; }
+  .parte__nome { font-size: 14px; }
+  .grade-cartoes .cartao__rotulo { font-size: 14px; }
+  .mito__num, .mito__pergunta { font-size: 13px; }
+  .selo-aqui { font-size: 13px; }
+  .nav-celular a { font-size: 12px; }
+}
+@media (max-width: 360px) {
+  .parte__valor { font-size: 17px; }
+  .parte { padding: 10px; gap: 8px; }
+  .nav-celular a { font-size: 11.5px; letter-spacing: -.2px; }
+}
+
+/* De onde vem o dinheiro */
+#receitas { padding-top: 8px; }
+.areas--receitas { margin-top: 18px; }
+.receita__oficial { margin-top: 4px; font-size: 13px; color: var(--texto-suave); }
+
+/* Botão "Compartilhar" dos Mitos */
+.mitos__acoes { display: flex; justify-content: center; margin-top: 22px; }
+.mitos__acoes .btn { min-height: 50px; }
+@media (max-width: 720px) { .mitos__acoes .btn { width: 100%; } }
+
+/* ==========================================================
+   Orçamento para quem mais precisa (OCA, idoso, situação de rua)
+   ========================================================== */
+.faixa--ceu { background: var(--ceu); }
+#receitas { padding-top: 56px; }
+@media (max-width: 720px) { #receitas { padding-top: 40px; } }
+.temas__chips { display: none; }
+.temas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; margin-top: 8px; }
+.tema { position: relative; background: var(--branco); border-radius: 22px; padding: 22px; box-shadow: 0 8px 24px rgba(23, 62, 117, .10); border-top: 8px solid var(--cor-tema); }
+.tema__cabeca { display: flex; align-items: center; gap: 12px; }
+.tema__icone { display: grid; place-items: center; width: 56px; height: 56px; flex-shrink: 0; border-radius: 16px; background: var(--ceu); color: var(--marinho); }
+.tema__titulo { font-size: 20px; line-height: 1.2; }
+.tema__total { font-family: var(--fonte-titulo); font-weight: 800; font-size: 34px; line-height: 1.1; color: var(--marinho); margin: 14px 0 6px; }
+.tema__desc { font-size: 15.5px; color: var(--texto-2); }
+.tema__divisao { height: 14px; margin: 16px 0 8px; border-radius: 999px; background: #C9D6E3; overflow: hidden; }
+.tema__divisao span { display: block; height: 100%; border-radius: 999px 0 0 999px; }
+.tema__legenda { display: grid; gap: 4px; font-size: 14px; color: var(--texto-2); }
+.tema__legenda span { display: flex; align-items: baseline; gap: 6px; }
+.tema__legenda i { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; transform: translateY(1px); }
+.tema__legenda strong { color: var(--marinho); }
+.tema__sub { font-size: 15px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: #036BAC; margin: 18px 0 10px; }
+.tema__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.tema__lista li { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; align-items: baseline; }
+.tema__acao { font-size: 15px; font-weight: 600; color: var(--texto); }
+.tema__valor { font-weight: 800; font-size: 15px; color: var(--marinho); white-space: nowrap; }
+.tema__trilho { grid-column: 1 / -1; height: 8px; border-radius: 999px; background: #E8EEF4; overflow: hidden; }
+.tema__trilho i { display: block; height: 100%; border-radius: 999px; }
+.tema__mais > summary { list-style: none; display: flex; justify-content: space-between; align-items: center; min-height: 48px; margin-top: 10px;
+  font-weight: 800; color: var(--marinho); cursor: pointer; border-top: 1px solid var(--borda); -webkit-tap-highlight-color: transparent; }
+.tema__mais > summary::-webkit-details-marker { display: none; }
+.tema__mais[open] > summary { margin-bottom: 10px; }
+.tema__seta { font-size: 24px; line-height: 1; }
+.tema__mais[open] .tema__seta { transform: rotate(45deg); }
+.tema__oficial { margin-top: 12px; font-size: 13px; color: var(--texto-suave); }
+.temas__nota { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--branco); border-left: 5px solid var(--laranja); font-size: 15px; color: var(--texto-2); }
+@media (max-width: 1000px) { .temas { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) {
+  /* No celular: escolhe um público por vez, para não virar uma lista enorme */
+  .temas__chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 4px 0 12px; }
+  .temas__chip { all: unset; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 6px 12px; min-height: 96px;
+    border-radius: 16px; background: var(--branco); border: 2px solid transparent; color: var(--marinho); font-weight: 800; font-size: 13px; line-height: 1.2; text-align: center; cursor: pointer;
+    -webkit-tap-highlight-color: transparent; box-shadow: 0 3px 10px rgba(23, 62, 117, .08); }
+  .temas__chip svg { width: 36px; height: 36px; }
+  .temas__chip[aria-selected="true"] { border-color: var(--marinho); background: var(--marinho); color: var(--branco); }
+  .temas__chip:focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; }
+  .temas.com-abas .tema:not(.tema--ativo) { display: none; }
+  .tema { padding: 18px; }
+  .tema__cabeca { display: none; }
+  .tema__total { font-size: 30px; margin-top: 0; }
+}
+
+/* ==========================================================
+   A Câmara e as emendas: plenário com 27 cadeiras
+   ========================================================== */
+.plenario { background: var(--branco); border: 2px solid var(--borda); border-radius: 26px; padding: 26px; margin-top: 8px; max-width: 760px; text-align: center; }
+.plenario__titulo { font-size: 30px; line-height: 1.15; }
+.plenario__titulo span { color: #036BAC; }
+.plenario__desenho { display: block; width: 100%; max-width: 520px; height: auto; margin: 14px auto 4px; overflow: visible; }
+.cadeira { cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; }
+.cadeira__aro { fill: transparent; stroke: transparent; stroke-width: 3; transition: stroke .15s; }
+.cadeira:focus-visible .cadeira__aro { stroke: #C9D6E3; }
+@media (hover: hover) { .cadeira:hover .cadeira__aro { stroke: #C9D6E3; } }
+.cadeira--ativa .cadeira__aro { stroke: var(--marinho); fill: var(--branco); }
+.plenario__legenda { display: flex; justify-content: center; gap: 18px; font-size: 14px; font-weight: 700; color: var(--texto-2); }
+.plenario__legenda span { display: inline-flex; align-items: center; gap: 6px; }
+.plenario__legenda i { width: 13px; height: 13px; border-radius: 50%; }
+.plenario__frase { font-size: 19px; color: var(--marinho); margin: 16px auto 0; max-width: 520px; }
+.plenario__resumo { margin: 14px auto 0; max-width: 520px; padding: 12px 16px; border-radius: 14px; background: var(--ceu); font-size: 15px; color: var(--texto-2); min-height: 48px; }
+.plenario__resumo strong { color: var(--marinho); }
+.cor-saude { color: #036BAC; font-weight: 800; }
+.cor-outras { color: #B86F00; font-weight: 800; }
+.plenario__nota { margin: 14px auto 0; max-width: 560px; font-size: 14.5px; color: var(--texto-2); }
+.plenario__origem { margin: 10px auto 0; font-size: 13.5px; color: var(--texto-suave); }
+@media (max-width: 720px) {
+  .plenario { padding: 20px 16px; border-radius: 20px; }
+  .plenario__titulo { font-size: 24px; }
+  .plenario__frase { font-size: 17px; }
+}
+.camara__subtitulo { font-size: 22px; margin: 34px 0 12px; }
+.camara { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 760px; }
+.camara__cartao { background: var(--branco); border: 1px solid var(--borda); border-radius: 20px; padding: 18px; }
+.camara__cartao p { font-size: 15px; color: var(--texto-2); margin-top: 6px; }
+.camara__cartao--destaque { background: var(--marinho); border-color: var(--marinho); }
+.camara__cartao--destaque .camara__rotulo { color: var(--laranja-claro); }
+.camara__cartao--destaque .camara__numero, .camara__cartao--destaque p { color: var(--branco); }
+.camara__rotulo { font-size: 14px; font-weight: 800; color: var(--texto-suave); }
+.camara__numero { font-family: var(--fonte-titulo); font-weight: 800; font-size: 26px; line-height: 1.15; color: var(--marinho); margin-top: 4px; }
+.calendario { list-style: none; margin: 12px 0 4px; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5px; }
+.calendario li { display: flex; flex-direction: column; align-items: center; padding: 6px 2px; border-radius: 8px; background: rgba(255,255,255,.12); color: var(--branco); }
+.calendario span { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #D6E4F2; }
+.calendario strong { font-size: 14px; }
+@media (max-width: 720px) {
+  .camara { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
