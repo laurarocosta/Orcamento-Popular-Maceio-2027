@@ -805,3 +805,8 @@ section[id] { scroll-margin-top: 12px; }
 /* Atalhos no celular: o último ocupa a linha inteira */
 @media (max-width: 720px) { .atalho:last-child { flex-direction: row; align-items: center; min-height: 64px; } }
 #duodecimo { scroll-margin-top: 16px; }
+
+/* Orçamentos por público: a lista fecha com "Outras ações" e o total bate com o valor do topo */
+.tema__outras .tema__acao small { display: block; font-size: 13px; font-weight: 500; color: var(--texto-suave); margin-top: 2px; }
+.tema__soma { margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: #F3F7FB; font-size: 14.5px; color: var(--texto-2); }
+.tema__soma strong { color: var(--marinho); }

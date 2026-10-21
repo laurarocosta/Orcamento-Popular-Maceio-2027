@@ -1,6 +1,6 @@
 /* OP MCZ — funciona sem internet depois da primeira visita.
    Ao publicar uma versão nova, troque o número de VERSAO para o celular baixar os arquivos novos. */
-var VERSAO = 'opmcz-2026-10-21c';
+var VERSAO = 'opmcz-2026-10-21d';
 var ARQUIVOS = ['./', 'index.html', 'style.css', 'script.js', 'glossario.js', 'montserrat.woff2',
   'logo-op-mcz.svg', 'favicon.svg', 'apple-touch-icon.png', 'icone-192.png', 'icone-512.png'];
 
