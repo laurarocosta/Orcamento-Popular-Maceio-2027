@@ -14,6 +14,7 @@
                  Maiúsculas e minúsculas não importam.
      def       → explicação em até duas frases, com palavras do dia a dia.
      mostrarNoDicionario → false para esconder da lista do Dicionário (opcional).
+     link      → { texto, url } para mostrar um link no balão e no Dicionário (opcional).
 
    Revisão técnica: [NOME DA PESSOA / SETOR] · [DATA DA REVISÃO]
    ========================================================== */
@@ -32,7 +33,8 @@ window.GLOSSARIO = [
 
   { id: 'ploa', nome: 'PLOA · Projeto de Lei Orçamentária Anual', falar: 'Projeto de Lei Orçamentária Anual',
     variantes: ['PLOA', 'Projeto de Lei Orçamentária Anual', 'Projeto de Lei Orçamentária'],
-    def: 'A proposta de orçamento que a Prefeitura envia à Câmara Municipal. Os vereadores analisam, podem fazer mudanças e votam.' },
+    def: 'A proposta de orçamento que a Prefeitura envia à Câmara Municipal. Os vereadores analisam, podem fazer mudanças e votam.' ,
+    link: { texto: 'Ver os documentos do PLOA 2027', url: 'https://drive.google.com/drive/folders/1b6MdJC4krF_IPxUwpncHWg4j5XxfHiaG' } },
 
   { id: 'loa', nome: 'LOA · Lei Orçamentária Anual', falar: 'Lei Orçamentária Anual',
     variantes: ['LOA', 'Lei Orçamentária Anual'],
@@ -89,6 +91,10 @@ window.GLOSSARIO = [
   { id: 'emendas-impositivas', nome: 'Emendas impositivas', falar: 'Emendas impositivas',
     variantes: ['emendas impositivas', 'emendas parlamentares impositivas', 'emenda impositiva', 'emendas parlamentares'],
     def: 'Indicações que os vereadores fazem no orçamento para aplicar recursos em ações específicas. A Prefeitura é obrigada a executá-las, salvo impedimento técnico.' },
+
+  { id: 'reserva-parlamentar', nome: 'Reserva parlamentar', falar: 'Reserva parlamentar',
+    variantes: ['reserva parlamentar'],
+    def: 'A parte do orçamento guardada para as emendas dos vereadores. Fica reservada até eles indicarem onde aplicar; depois, o dinheiro vai para as ações escolhidas.' },
 
   { id: 'emendas-cidadas', nome: 'Emendas Cidadãs', falar: 'Emendas Cidadãs',
     variantes: ['Emendas Cidadãs', 'Emenda Cidadã'],

@@ -161,7 +161,6 @@
     var $ = function (id) { return document.getElementById(id); };
     $('emendas-total').textContent = formatar(RESERVA_PARLAMENTAR);
     $('plenario-frase').innerHTML = 'Cada cadeira indica <strong>' + formatar(cada) + '</strong>: metade para a saúde, metade para outras áreas.';
-    $('plenario-origem').textContent = 'Esse valor sai da reserva de contingência, que guarda ' + formatar(RESERVA_CONTINGENCIA) + '.';
     var cadeiras = Array.prototype.slice.call(desenho.querySelectorAll('.cadeira'));
     function escolher(c) {
       cadeiras.forEach(function (x) { x.classList.toggle('cadeira--ativa', x === c); x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
@@ -348,6 +347,7 @@
       var painel = el('div', { cls: 'dic__def', attrs: { id: idPainel } }, [el('p', { text: t.def })]);
       if (!aberto) painel.hidden = true;
       var ouvir = botaoOuvir(t); if (ouvir && aberto) painel.appendChild(ouvir);
+      if (t.link && aberto) painel.appendChild(linkExterno(t.link, 'dic__link'));
       lista.appendChild(el('li', { cls: 'dic__item' + (aberto ? ' dic__item--aberto' : '') }, [cab, painel]));
     });
     var vazio = document.getElementById('dic-vazio'); if (vazio) vazio.hidden = achados > 0;
@@ -534,6 +534,11 @@
     pop.style.setProperty('--seta-x', Math.min(Math.max(18, r.left + r.width / 2 - left), pw - 18) + 'px');
   }
 
+  function linkExterno(l, cls) {
+    var a = el('a', { cls: cls, text: l.texto, attrs: { href: l.url, target: '_blank', rel: 'noopener' } });
+    a.appendChild(el('span', { cls: 'sr-only', text: ' (abre em nova aba)' }));
+    return a;
+  }
   function abrir(termoEl, fixar, focarDentro) {
     var t = GLOSS_POR_ID[termoEl.getAttribute('data-termo')];
     if (!t) return;
@@ -551,6 +556,7 @@
       acoes.appendChild(el('button', { cls: 'glossario-pop__link', text: 'Ver no dicionário', attrs: { type: 'button' },
         on: { click: function () { fecharPop(false); mostrarNoDicionario(t.id); } } }));
     }
+    if (t.link) acoes.appendChild(linkExterno(t.link, 'glossario-pop__link'));
     pop.appendChild(fechar);
     pop.appendChild(el('div', { cls: 'glossario-pop__nome', text: t.nome }));
     pop.appendChild(el('p', { cls: 'glossario-pop__def', text: t.def }));
