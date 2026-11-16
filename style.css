@@ -899,3 +899,14 @@ a.glossario-pop__link { display: inline-block; }
     .tema__oficial { align-self: start; }
   }
 }
+
+/* Celular: barra de baixo em azul-marinho, mais visível */
+@media (max-width: 720px) {
+  .nav-celular { background: var(--marinho); border-top: 0; box-shadow: 0 -6px 20px rgba(23, 62, 117, .28); }
+  .nav-celular a, .nav-celular__menu { color: #E3ECF7; }
+  .nav-celular a[aria-current="true"], .nav-celular__menu[aria-expanded="true"] { color: var(--branco); background: rgba(255, 255, 255, .12); }
+  .nav-celular a[aria-current="true"]::before { left: 18%; right: 18%; height: 4px; background: var(--laranja); }
+  .nav-celular a[aria-current="true"] svg { color: var(--laranja); }
+  .nav-celular a:active, .nav-celular__menu:active { background: rgba(255, 255, 255, .18); }
+  .nav-celular a:focus-visible, .nav-celular__menu:focus-visible { outline: 3px solid var(--laranja); outline-offset: -3px; }
+}
