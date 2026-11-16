@@ -889,3 +889,13 @@ a.glossario-pop__link { display: inline-block; }
 @media (max-width: 400px) {
   .docs__botoes .btn { font-size: 15.5px; padding: 12px 14px; text-align: center; }
 }
+
+/* Para quem: os três cartões alinhados linha a linha (título, valor, barra, lista…) e da mesma altura */
+@media (min-width: 1001px) {
+  .temas { align-items: stretch; }
+  @supports (grid-template-rows: subgrid) {
+    .tema { display: grid; grid-row: span 10; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+    .tema__cabeca { align-self: start; }
+    .tema__oficial { align-self: start; }
+  }
+}
