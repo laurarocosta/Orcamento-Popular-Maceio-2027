@@ -920,3 +920,89 @@ a.glossario-pop__link { display: inline-block; }
 .btn-libras:focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; }
 .barra-topo__links { align-items: center; }
 .barra-topo__direita { display: flex; align-items: center; gap: 18px; }
+
+/* Janela "Este site em Libras" (explicação do VLibras) */
+.libras-modal { width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 32px); overflow-y: auto; padding: 26px 26px 22px; border: 0; border-radius: 24px; background: var(--branco); color: var(--texto); box-shadow: 0 24px 60px rgba(10, 30, 60, .35); }
+.libras-modal::backdrop { background: rgba(10, 25, 50, .55); }
+.libras-modal__fechar { all: unset; position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; font-size: 28px; line-height: 1; color: var(--texto-2); cursor: pointer; }
+.libras-modal__fechar:hover { background: var(--lm-claro); }
+.libras-modal__topo { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; padding-right: 40px; }
+.libras-modal__icone { display: grid; place-items: center; width: 58px; height: 58px; flex-shrink: 0; border-radius: 18px; background: var(--lm-claro); color: var(--lm-forte); }
+.libras-modal__sobre { margin: 0; font-size: 12px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--lm-destaque); }
+.libras-modal h2 { margin: 2px 0 0; font-size: 25px; line-height: 1.15; color: var(--lm-forte); }
+.libras-modal__intro { margin: 0 0 16px; font-size: 16px; line-height: 1.55; color: var(--texto-2); }
+.libras-modal h3 { margin: 0 0 10px; font-size: 16px; color: var(--lm-forte); }
+.libras-modal__passos { list-style: none; counter-reset: passo; margin: 0 0 16px; padding: 0; display: grid; gap: 10px; }
+.libras-modal__passos li { counter-increment: passo; position: relative; padding: 2px 0 2px 42px; font-size: 15px; line-height: 1.45; color: var(--texto-2); }
+.libras-modal__passos li::before { content: counter(passo); position: absolute; left: 0; top: 0; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--lm-forte); color: #fff; font-weight: 800; font-size: 14px; }
+.libras-modal__passos strong { color: var(--lm-forte); }
+.libras-modal__pular { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14.5px; color: var(--texto-2); cursor: pointer; }
+.libras-modal__pular input { width: 20px; height: 20px; accent-color: var(--lm-forte); }
+.libras-modal__botoes { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 8px; }
+.libras-modal__abrir { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 12px 22px; border-radius: 14px; background: var(--lm-botao); color: var(--lm-botao-texto); font-weight: 800; font-size: 16px; cursor: pointer; }
+.libras-modal__abrir:hover { filter: brightness(1.06); }
+.libras-modal__mais { font-weight: 700; font-size: 14.5px; color: var(--lm-forte); }
+.libras-modal__abrir:focus-visible, .libras-modal__fechar:focus-visible, .libras-modal__mais:focus-visible { outline: 3px solid var(--lm-destaque); outline-offset: 2px; }
+@media (max-width: 720px) {
+  .libras-modal { margin: auto auto 0; width: 100%; max-width: 100%; border-radius: 22px 22px 0 0; padding: 22px 18px calc(18px + env(safe-area-inset-bottom)); }
+  .libras-modal h2 { font-size: 22px; }
+  .libras-modal__abrir { width: 100%; }
+  .libras-modal__botoes { justify-content: center; }
+}
+:root { --lm-forte: var(--marinho); --lm-claro: var(--ceu); --lm-destaque: var(--azul); --lm-botao: var(--laranja); --lm-botao-texto: var(--marinho); }
+
+/* ---------- Acessibilidade: botões da barra do topo ---------- */
+.acess-btn { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: 8px; color: var(--branco); font-weight: 800; cursor: pointer; }
+.acess-btn:hover, .acess-btn[aria-pressed="true"] { background: rgba(255,255,255,.18); }
+.acess-btn:focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; }
+.lupa .lupa__menos { display: none; }
+.lupa--max .lupa__mais { display: none; }
+.lupa--max .lupa__menos { display: inline; }
+.barra-topo__direita { gap: 10px 14px; flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 720px) {
+  .lupa__texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .acess-btn { min-height: 32px; padding: 4px 7px; }
+  .barra-topo__direita { gap: 6px; }
+}
+@media (max-width: 380px) { .contraste__texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
+
+/* ---------- Lupa: aumenta o site todo em 2 níveis ---------- */
+html.letra-1 body { zoom: 1.15; }
+html.letra-2 body { zoom: 1.3; }
+
+/* ---------- Alto contraste: fundo preto, texto branco, links e botões em amarelo.
+   As cores dos gráficos (barras e legendas) ficam, porque carregam informação. ---------- */
+html.alto-contraste, html.alto-contraste body { background: #000 !important; color: #fff !important; }
+html.alto-contraste body *:not(svg):not(svg *):not(img):not([style*="background"]):not(.area__barra):not(.tema__divisao):not(.parte__cor) {
+  background-color: #000 !important; color: #fff !important; border-color: #fff !important; box-shadow: none !important; text-shadow: none !important;
+}
+html.alto-contraste .barra-topo, html.alto-contraste .barra-menu, html.alto-contraste .nav-celular { border-bottom: 2px solid #fff !important; }
+html.alto-contraste .nav-celular { border-top: 2px solid #fff !important; }
+html.alto-contraste a, html.alto-contraste a * { color: #FFE600 !important; }
+html.alto-contraste a { text-decoration: underline !important; }
+html.alto-contraste button, html.alto-contraste .btn, html.alto-contraste summary { border: 2px solid #FFE600 !important; color: #FFE600 !important; }
+html.alto-contraste button *, html.alto-contraste .btn *, html.alto-contraste summary * { color: #FFE600 !important; }
+html.alto-contraste .termo-tecnico { border: 0 !important; color: #FFE600 !important; text-decoration: underline dotted !important; }
+html.alto-contraste [aria-selected="true"], html.alto-contraste [aria-current="true"], html.alto-contraste [aria-pressed="true"], html.alto-contraste [aria-expanded="true"] { outline: 3px solid #FFE600 !important; outline-offset: -3px; }
+html.alto-contraste :focus-visible { outline: 3px solid #FFE600 !important; outline-offset: 2px !important; }
+html.alto-contraste .area__trilho, html.alto-contraste .tema__trilho { background-color: #333 !important; border: 1px solid #fff !important; }
+html.alto-contraste .area__barra { background: #FFE600 !important; }
+html.alto-contraste .tema__divisao { background: #888 !important; }
+html.alto-contraste .opcao--certa { border: 3px solid #3DDC84 !important; }
+html.alto-contraste .opcao--certa::after { content: "  ✓ certa"; color: #3DDC84; }
+html.alto-contraste .opcao--errada { border: 3px solid #FF6B6B !important; }
+html.alto-contraste .opcao--errada::after { content: "  ✗ errada"; color: #FF6B6B; }
+html.alto-contraste .libras-modal::backdrop { background: rgba(0,0,0,.8); }
+html.alto-contraste .libras-modal__abrir { background: #FFE600 !important; color: #000 !important; }
+html.alto-contraste .libras-modal__abrir * { color: #000 !important; }
+html.alto-contraste .libras-modal__passos li::before { background: #FFE600 !important; color: #000 !important; }
+
+/* Lupa no celular: o menu de baixo mantém o tamanho, e linhas com valor podem quebrar */
+html.letra-1 .nav-celular { zoom: .8696; }
+html.letra-2 .nav-celular { zoom: .7693; }
+@media (max-width: 720px) {
+  html.letra-1 .area__topo, html.letra-2 .area__topo { flex-wrap: wrap; row-gap: 0; }
+  html.letra-1 .tema__lista li, html.letra-2 .tema__lista li { grid-template-columns: minmax(0, 1fr) auto; }
+  html.letra-1 .tema__acao, html.letra-2 .tema__acao { min-width: 0; overflow-wrap: anywhere; }
+  html.letra-2 .tema__lista li { grid-template-columns: minmax(0, 1fr); }
+}

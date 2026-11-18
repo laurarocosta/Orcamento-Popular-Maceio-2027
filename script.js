@@ -523,15 +523,16 @@
   function posicionar() {
     if (!popTermo || pop.hidden) return;
     if (ehCelular()) { pop.style.left = ''; pop.style.top = ''; return; }
+    var z = parseFloat(getComputedStyle(document.body).zoom) || 1;   // a lupa usa zoom: converte as medidas
     var r = popTermo.getBoundingClientRect(), m = 12, vw = window.innerWidth, vh = window.innerHeight;
     pop.style.left = '0px'; pop.style.top = '0px';
-    var pw = pop.offsetWidth, ph = pop.offsetHeight;
+    var pw = pop.offsetWidth * z, ph = pop.offsetHeight * z;
     var left = Math.min(Math.max(m, r.left + r.width / 2 - pw / 2), vw - pw - m);
     var top = r.bottom + 10, acima = false;
     if (top + ph > vh - m && r.top - ph - 10 > m) { top = r.top - ph - 10; acima = true; }
-    pop.style.left = left + 'px'; pop.style.top = top + 'px';
+    pop.style.left = (left / z) + 'px'; pop.style.top = (top / z) + 'px';
     pop.classList.toggle('glossario-pop--acima', acima);
-    pop.style.setProperty('--seta-x', Math.min(Math.max(18, r.left + r.width / 2 - left), pw - 18) + 'px');
+    pop.style.setProperty('--seta-x', (Math.min(Math.max(18 * z, r.left + r.width / 2 - left), pw - 18 * z) / z) + 'px');
   }
 
   function linkExterno(l, cls) {
@@ -657,4 +658,32 @@
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function (r) { r.update(); }).catch(function () {}); });
   }
+})();
+
+/* ---------- Acessibilidade: lupa (2 níveis) e alto contraste, lembrados neste aparelho ---------- */
+(function () {
+  var lupa = document.getElementById('lupa'), contraste = document.getElementById('contraste');
+  if (!lupa || !contraste) return;
+  var html = document.documentElement;
+  var ROTULO = ['Aumentar letra', 'Aumentar mais', 'Letra normal'],
+      FALA = ['Aumentar o tamanho do texto', 'Aumentar mais o tamanho do texto', 'Voltar o texto ao tamanho normal'];
+  function aplicarLetra(n) {
+    html.classList.remove('letra-1', 'letra-2'); if (n) html.classList.add('letra-' + n);
+    lupa.querySelector('.lupa__texto').textContent = ROTULO[n];
+    lupa.setAttribute('aria-label', FALA[n]); lupa.setAttribute('aria-pressed', n ? 'true' : 'false');
+    lupa.classList.toggle('lupa--max', n === 2);
+  }
+  var nivel = 0;
+  try { nivel = parseInt(localStorage.getItem('opmcz-letra'), 10) || 0; } catch (e) {}
+  aplicarLetra(nivel);
+  lupa.addEventListener('click', function () {
+    nivel = (nivel + 1) % 3; aplicarLetra(nivel);
+    try { localStorage.setItem('opmcz-letra', String(nivel)); } catch (e) {}
+  });
+  function aplicarContraste(sim) { html.classList.toggle('alto-contraste', sim); contraste.setAttribute('aria-pressed', sim ? 'true' : 'false'); }
+  aplicarContraste(html.classList.contains('alto-contraste'));
+  contraste.addEventListener('click', function () {
+    var sim = !html.classList.contains('alto-contraste'); aplicarContraste(sim);
+    try { localStorage.setItem('opmcz-contraste', sim ? '1' : '0'); } catch (e) {}
+  });
 })();
