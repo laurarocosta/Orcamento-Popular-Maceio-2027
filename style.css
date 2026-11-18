@@ -910,3 +910,13 @@ a.glossario-pop__link { display: inline-block; }
   .nav-celular a:active, .nav-celular__menu:active { background: rgba(255, 255, 255, .18); }
   .nav-celular a:focus-visible, .nav-celular__menu:focus-visible { outline: 3px solid var(--laranja); outline-offset: -3px; }
 }
+
+/* VLibras: foco do botão nas cores do OP MCZ */
+:root { --vlibras-btn-focus-visible-outline: 3px solid #fff; --vlibras-btn-focus-visible-shadow: 0 0 0 6px #F39D0F; }
+
+/* Botão Libras no topo: em destaque, para ser fácil de achar */
+.btn-libras { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px; border-radius: 999px; background: var(--branco); color: var(--azul); font-weight: 800; cursor: pointer; }
+.btn-libras:hover { background: var(--laranja); color: var(--marinho); }
+.btn-libras:focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; }
+.barra-topo__links { align-items: center; }
+.barra-topo__direita { display: flex; align-items: center; gap: 18px; }
